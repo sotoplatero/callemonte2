@@ -35,63 +35,8 @@
       
         </li>
       </ul>
-        <b-modal centered 
-          hide-header 
-          id="modal-show" 
-          ref="modal-show" 
-          v-if="selectedProduct"
-          content-class="border-0"
-          body-class="position-static p-0" 
-          footer-class="p-2"
-          @show="updateProduct(currentProduct)">
 
-
-          <button type="button" class="btn back" aria-label="Close" @click.prevent="$bvModal.hide('modal-show')">
-            <x-icon size="1.5x" class="custom-class"></x-icon>
-          </button>
-          <div class="card border-0" style="" >
-            <div class="card-img-top aspect-ratio-box" v-if="currentProduct.photo">
-              <a href="#" class="aspect-ratio-box-inside">
-                <img :src="currentProduct.photo === true ? placeholderImage : currentProduct.photo" :alt="currentProduct.title" >
-              </a>
-            </div>
-            <div class="card-body p-3">
-              <div class="">
-                <div class="small text-secondary">
-                  <span class="">{{currentProduct.location}}</span>
-                  <span v-if="currentProduct.date">&bull;</span>
-                  <span class="">{{currentProduct.date}}</span>
-                </div>
-                <div class="">
-                  <a :href="currentProduct.url" target="_black" rel="noopener noreferrer">
-                    <b>{{currentProduct.title}}</b>
-                  </a>
-                  <img :src="'/fav/'+currentProduct.site+'.png'" width="16" class="ml-2">
-                </div>
-                <div class="text-secondary">
-                  $<b>{{currentProduct.price}}</b>
-                  <a :href="'tel:' + phone" v-if="currentProduct.phones.length"  v-for="phone in currentProduct.phones">
-                  {{ phone }}
-                  </a>
-                </div>
-                
-              </div>
-            </div>
-            <div class="d-flex justify-content-end text-uppercase p-1">
-                </div>
-          </div>
-            <template v-slot:modal-footer>
-              <button class="btn btn-light text-uppercase ml-2" @click.prevent="hide">Eliminar</button>
-              <a 
-                :href="'tel:' + currentProduct.phones[0]" 
-                v-if="currentProduct.phones && currentProduct.phones.length" 
-                class="btn btn-success">
-                <b>Llamar</b>
-              </a>            
-            </template>          
-        <b-overlay :show="$store.state.products.updating" no-wrap rounded spinner-type="grow" spinner-variant="success">
-        </b-overlay>
-        </b-modal>
+      <Details :selectedProduct="selectedProduct"></Details>
         
       <div class="row mt-3">
         <div class="col-12 mb-4" > 
@@ -135,15 +80,15 @@
 </template>
 
 <script>
-// import Details from '~/components/Details';
-import Footbar from '~/components/Footbar';
-import {  CameraIcon, TrashIcon, EyeOffIcon, FacebookIcon, TwitterIcon, MailIcon, XIcon }  from 'vue-feather-icons'
+import Details from '~/components/Details';
+import Footbar from '~/components/Footbar'; 
+import {  CameraIcon, TrashIcon, EyeOffIcon, FacebookIcon, TwitterIcon, MailIcon }  from 'vue-feather-icons'
 import { mapActions } from 'vuex'
 import { mapGetters } from 'vuex'
 import { mapMutations } from 'vuex'
 
 export default {
-  components: { Footbar,CameraIcon, TrashIcon, EyeOffIcon, FacebookIcon, TwitterIcon, MailIcon, XIcon },
+  components: { Details, Footbar,CameraIcon, TrashIcon, EyeOffIcon, FacebookIcon, TwitterIcon, MailIcon, },
   // watchQuery: true, 
   fetch() {
     this.$nuxt.context.store.dispatch('products/search', this.$nuxt.context.query );
@@ -169,9 +114,6 @@ export default {
   computed: {
     ...mapGetters({ productsCount: 'products/productsCount' }),
     ...mapGetters({ hidesCount: 'products/hidesCount' }),
-    currentProduct: function() {
-      return this.$store.state.products.items.find( el => el.url === this.selectedProduct.url )
-    },   
     filteredProducts(){
       let products = this.$store.state.products.items
       return products
@@ -190,10 +132,6 @@ export default {
       this.selectedProduct = product,
       this.$bvModal.show('modal-show')
     },  
-    hide(){
-      this.$bvModal.hide('modal-show')
-      this.$store.commit('products/toggleHide',this.currentProduct)
-    }    
   }
 
 };
