@@ -68,7 +68,10 @@
         <div class="card border-0 shadow-sm">
           <div class="card-body">
             <h3 class="card-title"><a href="https://github.com/sotoplatero/callemonte" target="_blank" >Código abierto</a></h3>
-            <p class="lead text-justify">Si quieres mejorarlo solo clona, codifica y pull request para el github.</p>
+            <p class="lead text-justify">
+              Si quieres mejorarlo haz un <i>fork</i> en GitHub, aplica tus mejoras y
+              <a href="https://github.com/sotoplatero/callemonte/compare" target="_blank">crea un pull request</a>.
+            </p>
           </div>
         </div>
 
