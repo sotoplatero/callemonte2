@@ -5,7 +5,7 @@
       <div class="row justify-content-center">
         <div class="col-md-8">    
           <nuxt/>
-<!--           <footer class="text-center">
+          <!-- <footer class="text-center">
             <nuxt-link to="/" class="">Inicio</nuxt-link>
             <span class="text-secondary mx-2">&bull;</span>
             <nuxt-link to="/about" class="">Nosotros</nuxt-link>
@@ -20,6 +20,7 @@
     
   </div>
 </template>
+
 <script>
 import Navbar from '~/components/Navbar';
 export default {

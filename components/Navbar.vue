@@ -11,7 +11,7 @@
                     placeholder="¿Que quieres comprar?" 
                     v-model="q"
                     @keypress.enter.prevent="search" 
-                    ></input>
+                  ></input>
                 </div>
                 <Filters/>
                 <Menu/>

@@ -1,29 +1,33 @@
 <template>
-	<div class="">
-	    <button class="btn btn-link text-white border-0" type="button" v-b-modal.menu-modal >
-	    	<MenuIcon></MenuIcon >
-	    </button>
+  <div class="">
+    <button class="btn btn-link text-white border-0" type="button" v-b-modal.menu-modal>
+      <MenuIcon></MenuIcon>
+    </button>
 
-		<b-modal centered hide-footer hide-header id="menu-modal" size="sm" body-class="p-0" content-class="mt-0 border-0">
+    <b-modal centered hide-footer hide-header id="menu-modal" size="sm" body-class="p-0" content-class="mt-0 border-0">
 
-			<div class="text-center font-weight-bold">
-	            <nuxt-link to="/" class="d-block py-2">
-	            	<span>Inicio</span>
-	            </nuxt-link>
-	            <nuxt-link to="/about" class="d-block py-2">Nosotros</nuxt-link>
-	            <nuxt-link to="/contact" class="d-block py-2">Contacto</nuxt-link>
-<!-- 			    <a href class="d-block py-2">Ocultos</a>
-			    <a href class="d-block py-2">Favoritos</a>
-			    <a href class="d-block py-2">Todos</a>
- -->			</div>
+      <div class="text-center font-weight-bold">
+        <nuxt-link to="/" class="d-block py-2">
+          <span>Inicio</span>
+        </nuxt-link>
+        <nuxt-link to="/about" class="d-block py-2">Nosotros</nuxt-link>
+        <nuxt-link to="/contact" class="d-block py-2">Contacto</nuxt-link>
+        <!--
+        <a href class="d-block py-2">Ocultos</a>
+        <a href class="d-block py-2">Favoritos</a>
+        <a href class="d-block py-2">Todos</a>
+        -->
+      </div>
 
-		</b-modal>  
+    </b-modal>
 
-	</div>	
+  </div>
 </template>
+
 <script>
-import { MenuIcon  } from 'vue-feather-icons'	
-export default {
-	components: { MenuIcon  },
-};
+  import {MenuIcon} from 'vue-feather-icons'
+
+  export default {
+    components: {MenuIcon}
+  }
 </script>
