@@ -2,20 +2,26 @@
   <div>
     <Navbar />  
     <div class="container">
-      <div class="row justify-content-center">
-        <div class="col-md-8">    
+      <div class="w-full sm:w-1/2 mx-auto ">
           <nuxt/>
-<!--           <footer class="text-center">
-            <nuxt-link to="/" class="">Inicio</nuxt-link>
-            <span class="text-secondary mx-2">&bull;</span>
-            <nuxt-link to="/about" class="">Nosotros</nuxt-link>
-            <span class="text-secondary mx-2">&bull;</span>
-            <nuxt-link to="/contact" class="">Contacto</nuxt-link>
-            <span class="text-secondary mx-2">&bull;</span>
-            <a href="https://medium.com/callemonte" target="_blank" class="">Blog</a>            
-          </footer>  -->         
-        </div>
       </div>
+      <footer >
+        <div class="w-full sm:w-1/2 mx-auto" >
+          <div class="space-x-4">
+            <nuxt-link to="/" class=" ">
+              <span>Inicio</span>
+            </nuxt-link>
+            <nuxt-link to="/about" class=" ">
+              Nosotros
+          </nuxt-link>
+            <nuxt-link to="/contact" class=" ">
+              Contacto
+          </nuxt-link>        
+            
+          </div>
+          
+        </div>
+      </footer>
     </div>
     
   </div>

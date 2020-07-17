@@ -1,2 +1,7 @@
+[dev]
+   command = "npm run dev"
+
 [build]
-functions = "./fn-build"
+	functions = "fn"
+	publish = "dist"
+	command = "npm run generate"

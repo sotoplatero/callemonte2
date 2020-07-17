@@ -1,5 +1,5 @@
 <template>
-  <section class="vertical-center m-0 bg-white">
+  <section class="h-screen m-0 bg-white">
       <div class="container ">
         <div class="row justify-content-center text-center">
           <div class="col-md-6">
@@ -15,7 +15,7 @@
               <!-- <input type="text" class="form-control" placeholder="Recipient's username" aria-label="Recipient's username" aria-describedby="button-addon2"> -->
                 <input 
                   autofocus
-                  class="form-control form-control-lg" 
+                  class="py-3 px-6 text-lg bg-gray-100" 
                   type="text" 
                   placeholder="¿Que quieres comprar?" 
                   name="input"  
@@ -43,10 +43,8 @@
 </template>
 
 <script>
-import { SearchIcon } from 'vue-feather-icons'
 export default {
   layout: 'home',
-  components: { SearchIcon },
   data(){
     return {
       input: ''

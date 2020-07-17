@@ -65,11 +65,9 @@
 
 <script>
 import { mapActions } from 'vuex'
-import {  XIcon }  from 'vue-feather-icons'
 
 export default {
 	props: [ 'selectedProduct' ],
-	components: { XIcon },
 	data(){
 		return {
 			loading: false,

@@ -23,8 +23,6 @@
     </nav>
 </template>
 <script>
-import {  MenuIcon } from 'vue-feather-icons'
 export default {
-  components: { MenuIcon },
 }	
 </script>

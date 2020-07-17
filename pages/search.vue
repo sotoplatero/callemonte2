@@ -8,30 +8,40 @@
         <a href="https://notificon.com" target="_blank" class="ml-auto"><b>Crea una alerta</b></a>                
       </div>
 
-      <ul class="list-unstyled" id="products">
+      <ul class="space-y-1" id="products">
         <li 
-          class="product border-0 card mb-1 "  
-          :class="product.updated ? 'bg-secondary text-white' : ''"
-          v-for="(product,index) in filteredProducts" >
+            class="product flex font-semibold px-3 py-4 rounded-lg hover:bg-gray-200"  
+            :class="product.updated ? 'bg-secondary text-white' : ''"
+            v-for="(product,index) in filteredProducts" >
 
-          <div class="card-body d-flex align-items-center px-2 py-3">
-            <a class="flex-grow-1" href @click.prevent="openDetails(product)" :class="product.updated ? 'text-white' : ''">
-              <span class="font-weight-bold">
-                <span class="">$</span>{{ product.price }}
-              </span>
-              <span class="title" v-html="product.htmlTitle"></span>
-              <img :src="'/fav/'+product.site+'.png'" width="15" class="ml-2 align-baseline">
+          <!-- <div class="card-body d-flex align-items-center px-2 py-3"> -->
+
+
+
+            <a 
+                href 
+                class="flex mr-auto" 
+                v-on:click.prevent="openDetails(product)" 
+                :class="product.updated ? 'text-white' : ''"
+            >
+
+
+                <span class="font-bold mr-2 ">
+                    <span class="text-gray-600 font-normal">$</span>{{ product.price }}
+                </span>
+
+              <span class="title text-blue-600 hover:text-blue-700" v-html="product.htmlTitle"></span>
+
             </a>
-            <div class="actions d-none d-sm-block">
-              <a href @click.prevent="$store.commit('products/toggleHide',product)" 
-                class="text-decoration-none ml-2" 
-                :class="product.updated ? 'text-white' : 'text-secondary'"
-                title="Ocultar este resultado">
-                  <TrashIcon size="1.1x" ></TrashIcon>
-              </a>                    
-            </div>
-            
-          </div>
+
+            <button 
+                class="ml-2 md:ml-4 w-6 h-6 leading-none"  
+                :class="product.favorite ? 'text-green-500 hover:text-green-600' : 'text-gray-400 hover:text-gray-500' "
+                v-on:click="$store.commit('products/toggleFavorite',product)"
+            >
+                <svg class="h-6 w-6 fill-current"  fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+                <!-- <img :src="'/fav/'+product.site+'.png'" class=""> -->
+            </button>
       
         </li>
       </ul>
@@ -40,7 +50,7 @@
         
       <div class="row mt-3">
         <div class="col-12 mb-4" > 
-          <button class="btn btn-success btn-block  py-3 border-0" @click="next" :disabled="$store.state.products.searching">
+          <button class="p-4 bg-green-500 text-white block w-full rounded-lg text-center" @click="next" :disabled="$store.state.products.searching">
             <b-spinner type="grow" small v-if="$store.state.products.searching"></b-spinner>   
             <b>Vamos por más</b>
           </button>
@@ -82,13 +92,12 @@
 <script>
 import Details from '~/components/Details';
 import Footbar from '~/components/Footbar'; 
-import {  CameraIcon, TrashIcon, EyeOffIcon, FacebookIcon, TwitterIcon, MailIcon }  from 'vue-feather-icons'
 import { mapActions } from 'vuex'
 import { mapGetters } from 'vuex'
 import { mapMutations } from 'vuex'
 
 export default {
-  components: { Details, Footbar,CameraIcon, TrashIcon, EyeOffIcon, FacebookIcon, TwitterIcon, MailIcon, },
+  components: { Details, Footbar },
   // watchQuery: true, 
   fetch() {
     this.$nuxt.context.store.dispatch('products/search', this.$nuxt.context.query );
@@ -118,7 +127,7 @@ export default {
       let products = this.$store.state.products.items
       return products
         .filter( el => !el.hide )
-        .sort( (a,b) => b.score - a.score || a.price - b.price )      
+        // .sort( (a,b) => b.score - a.score || a.price - b.price )      
     },
   },
   methods: {

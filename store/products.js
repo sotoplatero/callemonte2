@@ -27,13 +27,14 @@ export const mutations = {
     product.hide = !product.hide 
   },  
 
-
   toggleFavorite( state, product ) {
     product.favorite = !product.favorite 
   },
+
   toggleUpdating( state, value ) { 
     state.updating = value
   },
+
   setSearching( state, value ) { 
     state.searching = value
   },
@@ -55,11 +56,12 @@ export const actions = {
     if (pmin=='') pmin=1
 
     sites.forEach( site => {
-      let url = `https://callemonte.com/.netlify/functions/${site}?q=${q}&pmin=${pmin}&pmax=${pmax}&p=${p}&province=${province}`
-      this.$axios.$get(url)
+      let url = `/.netlify/functions/${site}?q=${q}&pmin=${pmin}&pmax=${pmax}&p=${p}&province=${province}`
+      fetch(url)
+        .then( response => response.json() )
         .then( response => { 
-          let products = response.forEach( (el,index) => { 
-            // htmlTitle: el.title.replace( vm.reQuery, "<b>$&</b>" ),
+          let products = response.forEach( async (el,index) => { 
+            // htmlTitle: el.title.replace( q, "<mark>$&</mark>" ),
             el.htmlTitle = el.title
             el.score = el.title.toLowerCase().score( q.toLowerCase() )
             el.hide = false
@@ -75,7 +77,6 @@ export const actions = {
           if (counter === sites.length) {
             commit('setSearching',false)
           }
-          console.log('response')
         })
         .catch(e=>{
           counter++
@@ -94,12 +95,12 @@ export const actions = {
     if (!product.updated) {
       commit('toggleUpdating', true)
       // let url = `http://localhost:9000/.netlify/functions/photos?url=${product.url}`
-      let url = `https://callemonte.com/.netlify/functions/details?url=${product.url}`
+      let url = `/.netlify/functions/details?url=${product.url}`
 
       let indexOfProduct = state.items.map((_, i) => i).find(e => state.items[e].url == product.url)
-      this.$axios.$get(url)
+      fetch(url)
+        .then( response => response.json() )
         .then( response => {
-          console.log(response)
           commit('update', {
             index: indexOfProduct,
             product: {...product, ...response}
@@ -118,7 +119,7 @@ export const getters = {
   filtered( state ) {
     return state.items
       .filter( el => !el.hide )
-      .sort( (a,b) => b.score - a.score || a.price - b.price )
+      // .sort( (a,b) => b.score - a.score || a.price - b.price )
   },
 
   current: state => url => state.items.find( el => el.url === url ),

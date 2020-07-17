@@ -1,4 +1,4 @@
-import fetch from "node-fetch"
+const fetch = require("node-fetch");
 var cleaner = require('./libs/cleaner');
 
 exports.handler =  async (event, context, callback) => {

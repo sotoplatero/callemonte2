@@ -1,4 +1,4 @@
-import fetch from "node-fetch"
+const fetch = require("node-fetch");
 var cheerio = require('cheerio');
 var cleaner = require('./libs/cleaner');
 const moment = require('moment')
@@ -20,7 +20,7 @@ exports.handler =  async (event, context, callback) => {
             price: parseInt( $el.find( selPrice).length ? $el.find( selPrice).text() : 0 ),
             title: cleaner( $el.find( 'span[data-cy="adTitle"]' ).text() ),
             url: 'https://www.revolico.com' + $el.find('a[href$="html"]').attr('href'),
-            // description: $(el).find( 'span[data-cy="adDescription"]' ).text(),
+            description: $(el).find( 'span[data-cy="adDescription"]' ).text(),
             // date: moment( parseInt( $el.find( 'time[datetime]' ).attr('datetime') ) ),
             // phones: $el.find( selTitle ).text().match(rePhone) || [],
             // photo: $el.find('span[data-cy="adPhoto"]').length > 0,

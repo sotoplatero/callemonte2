@@ -62,9 +62,9 @@ export default {
   modules: [
     // Doc:https://github.com/nuxt-community/modules/tree/master/packages/bulma
     // '@nuxtjs/bulma',
-    'bootstrap-vue/nuxt',
+    '@nuxtjs/tailwindcss',
     // '@nuxtjs/pwa',
-    '@nuxtjs/axios',
+    // '@nuxtjs/axios',
     // '@nuxtjs/proxy',
   ],
 
@@ -88,18 +88,8 @@ export default {
   },
 
   proxy: {
-    '/.netlify': 'http://localhost:9000' 
+    // '/.netlify': 'http://localhost:9000' 
   }, 
-
-  boostrapVue: {
-    bootstrapCSS: false,
-    bootstrapVueCSS: false,
-    components: ['BModal','BOverlay'],
-    // directives: ['VBModal'],
-    // componentPlugins: [
-
-    // ],
-  },
 
   pwa: {
     manifest: {
