@@ -5,6 +5,7 @@ export const state = () => ({
   items: [],
   updating: false,
   searching: false,
+  currentProduct: {},
 })
 
 export const mutations = {
@@ -39,6 +40,11 @@ export const mutations = {
     state.searching = value
   },
 
+  setCurrentProduct( state, product ) { 
+    // console.log(product)
+    state.currentProduct = product
+  },
+
   clear(state) { 
     state.items = [] 
   },
@@ -49,6 +55,7 @@ export const actions = {
     const sites = [ 'bachecubano','revolico','porlalivre','timbirichi','1cuc','merolico' ];
     let { q, pmin=1, pmax, p = 1, province='' } = payload
     let counter = 0
+
     commit('setSearching',true)
 
     if ( p === 1) commit('clear')

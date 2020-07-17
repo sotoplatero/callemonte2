@@ -2,6 +2,7 @@ const fetch = require("node-fetch");
 var cheerio = require('cheerio');
 var cleaner = require('./libs/cleaner');
 const moment = require('moment')
+const { reLocations } = require('./libs/vars.js') ;
 
 const rePhone = /((5|7)\d{7})|((24|32|33|45)\d{6})/g;
 
@@ -21,7 +22,8 @@ exports.handler =  async (event, context, callback) => {
             title: cleaner( $el.find( 'span[data-cy="adTitle"]' ).text() ),
             url: 'https://www.revolico.com' + $el.find('a[href$="html"]').attr('href'),
             description: $(el).find( 'span[data-cy="adDescription"]' ).text(),
-            // date: moment( parseInt( $el.find( 'time[datetime]' ).attr('datetime') ) ),
+            date: moment( parseInt( $el.find( 'time[datetime]' ).attr('datetime') ) ),
+            location: ($el.text().match(reLocations) || '').toString(),
             // phones: $el.find( selTitle ).text().match(rePhone) || [],
             // photo: $el.find('span[data-cy="adPhoto"]').length > 0,
         }

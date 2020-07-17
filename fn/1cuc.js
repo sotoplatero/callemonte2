@@ -2,7 +2,7 @@ const fetch = require("node-fetch");
 var cheerio = require('cheerio');
 var cleaner = require('./libs/cleaner');
 const moment = require('moment')
-
+const { reLocations, reRepetition } = require('./libs/vars.js') ;
 const rePhone = /((5|7)\d{7})|((24|32|33|45)\d{6})/g;
 
 exports.handler =  async (event, context, callback) => {
@@ -22,8 +22,9 @@ exports.handler =  async (event, context, callback) => {
                 price: parseInt( ($el.find('.v-price strong').text() || '').replace(/\D/g,'') ),
                 title: cleaner( $a.children().remove().end().text() ),
                 url: $a.attr('href'),
-                description: $el.find('descrip').text;,
-                // date: moment( $el.find('.publicated-date').text().trim(), 'D MMMM' ),
+                description: $el.find('.descrip').text().trim().replace(/\n/g,'').replace(reRepetition, '$1'),
+                date: moment( $el.find('.publicated-date').text().trim(), 'D MMMM' ),
+                location: $el.find('p').text().match(reLocations).toString(),
                 // photo: $el.find('img').hasClass('im_blank') ? '' : 'https:' + $el.find('a.thumb img').attr('src'),
             }
 

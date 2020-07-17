@@ -2,60 +2,27 @@
   <div> 
     <div v-if="productsCount > 0" class="content-result">
 
-      <div class="d-flex tool my-3 align-items-center ">
-        <span>{{ productsCount }} Resultados</span>
-        <!-- <a href >{{ hidesCount }} <TrashIcon size="1.1x" ></TrashIcon></a> -->
-        <a href="https://notificon.com" target="_blank" class="ml-auto"><b>Crea una alerta</b></a>                
-      </div>
-
-      <ul class="space-y-1" id="products">
-        <li 
-            class="product flex font-semibold px-3 py-4 rounded-lg hover:bg-gray-200"  
-            :class="product.updated ? 'bg-secondary text-white' : ''"
-            v-for="(product,index) in filteredProducts" >
-
-          <!-- <div class="card-body d-flex align-items-center px-2 py-3"> -->
-
-
-
-            <a 
-                href 
-                class="flex mr-auto" 
-                v-on:click.prevent="openDetails(product)" 
-                :class="product.updated ? 'text-white' : ''"
-            >
-
-
-                <span class="font-bold mr-2 ">
-                    <span class="text-gray-600 font-normal">$</span>{{ product.price }}
-                </span>
-
-              <span class="title text-blue-600 hover:text-blue-700" v-html="product.htmlTitle"></span>
-
-            </a>
-
-            <button 
-                class="ml-2 md:ml-4 w-6 h-6 leading-none"  
-                :class="product.favorite ? 'text-green-500 hover:text-green-600' : 'text-gray-400 hover:text-gray-500' "
-                v-on:click="$store.commit('products/toggleFavorite',product)"
-            >
-                <svg class="h-6 w-6 fill-current"  fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
-                <!-- <img :src="'/fav/'+product.site+'.png'" class=""> -->
-            </button>
-      
-        </li>
-      </ul>
-
-      <Details :selectedProduct="selectedProduct"></Details>
-        
-      <div class="row mt-3">
-        <div class="col-12 mb-4" > 
-          <button class="p-4 bg-green-500 text-white block w-full rounded-lg text-center" @click="next" :disabled="$store.state.products.searching">
-            <b-spinner type="grow" small v-if="$store.state.products.searching"></b-spinner>   
-            <b>Vamos por más</b>
-          </button>
+        <div class="d-flex tool my-3 align-items-center ">
+            <span>{{ productsCount }} Resultados</span>
+            <!-- <a href >{{ hidesCount }} <TrashIcon size="1.1x" ></TrashIcon></a> -->
+            <a href="https://notificon.com" target="_blank" class="ml-auto"><b>Crea una alerta</b></a>                
         </div>
-      </div>
+
+        <ul class="space-y-3 mx-2" id="products">
+            <Product :product="product" v-for="(product,index) in filteredProducts" :key="index"/>
+        </ul>
+
+        <button 
+            class="p-4 bg-green-500 text-white block w-full rounded-lg text-center " 
+            :class="$store.state.products.searching ? 'opacity-50' : ''"
+            @click="next" 
+            :disabled="$store.state.products.searching"
+        >
+            <b>Vamos por más</b>
+        </button>
+
+        <Details :selectedProduct="selectedProduct" :showing="showDetails" v-if="showDetails"></Details>
+        
 
       <div class="text-center mt-3 mb-5">
         <div class="mb-3"><b>Si te gustó Callemonte compártelo y corre la bola.</b></div>
@@ -91,24 +58,25 @@
 
 <script>
 import Details from '~/components/Details';
-import Footbar from '~/components/Footbar'; 
+import Product from '~/components/Product'; 
 import { mapActions } from 'vuex'
 import { mapGetters } from 'vuex'
 import { mapMutations } from 'vuex'
 
 export default {
-  components: { Details, Footbar },
+  components: { Details, Product },
   // watchQuery: true, 
   fetch() {
     this.$nuxt.context.store.dispatch('products/search', this.$nuxt.context.query );
   },  
   head() {
     return {
-      htmlAttrs: { class: 'padding-top' }
+      htmlAttrs: { class: 'pt-20 dark:bg-gray-900 dark:text-gray-100' }
     }
   },  
   data(){
     return {
+      showDetails: false,
       p: 1,
       selectedProduct: null,
       placeholderImage: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAIAAAACCAYAAABytg0kAAAAFElEQVQIW2MMDQ39z8DAwMAIYwAAKgMD/9AXrvgAAAAASUVORK5CYII='      
@@ -139,7 +107,7 @@ export default {
     },
     openDetails( product ) {
       this.selectedProduct = product,
-      this.$bvModal.show('modal-show')
+      this.showDetails = true;
     },  
   }
 

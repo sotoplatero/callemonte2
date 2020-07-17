@@ -1,6 +1,7 @@
 const fetch = require("node-fetch");
 var cheerio = require('cheerio');
 var cleaner = require('./libs/cleaner');
+const { reLocations, reRepetition } = require('./libs/vars.js') ;
 
 var Sugar = require('sugar');
 require('sugar/locales/es.js');
@@ -21,14 +22,16 @@ exports.handler =  async (event, context, callback) => {
             reId = /[a-zA-Z]+$/,
             reNoImage = /default/g;
 
+            date = Sugar.Date.create( $el.find('li .icon-clock').parent().text().trim() )
         return {
             price:  $el.find('precio').first().text().replace(/\D/g,''),
             title:  cleaner( $el.find('h5.anuncio-titulo').text() ),
             url: $el.attr('href'),
+            location: $el.text().match(reLocations).toString(),
+            date: Sugar.Date.format(date, '%b %e %R'),
+            description:  $el.find('.info-anuncio small').text().trim().replace(reRepetition,''),
             // photo:  $el.find('.thumbnail').attr('data-src-mobile'),
-            // description:  $el.find('.info-anuncio small').text(),
             // phones: $el.find('h5.anuncio-titulo').text().replace(/\W/g,'').match(rePhone) || [],
-            // date: Sugar.Date.create( $el.find('li .icon-clock').parent().text().trim() )
         };
 
     }).get();

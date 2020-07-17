@@ -1,12 +1,12 @@
 <template>
-  <div>
+  <div class="dark:bg-gray-900">
     <Navbar />  
-    <div class="container">
+    <div class="">
       <div class="w-full sm:w-1/2 mx-auto ">
           <nuxt/>
       </div>
       <footer >
-        <div class="w-full sm:w-1/2 mx-auto" >
+        <div class="w-full sm:w-1/2 mx-auto text-center font-semibold py-10" >
           <div class="space-x-4">
             <nuxt-link to="/" class=" ">
               <span>Inicio</span>

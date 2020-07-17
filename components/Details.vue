@@ -1,7 +1,7 @@
 <template>
 
 
-        <b-modal centered 
+<!--         <b-modal centered 
           hide-header 
           id="modal-show" 
           ref="modal-show" 
@@ -9,82 +9,90 @@
           content-class="border-0"
           body-class="position-static p-0" 
           footer-class="p-2"
-          @shown="open">
+          @shown="open"> -->
+        <cm-modal :showing="show" v-on:close="$emit('close')">
+            <div v-if="currentProduct">
 
-          <div v-if="selectedProduct">
+              <button type="button" class="btn back" aria-label="Close" @click.prevent="">
+                x
+              </button>
 
-            <button type="button" class="btn back" aria-label="Close" @click.prevent="$bvModal.hide('modal-show')">
-              <x-icon size="1.5x" class="custom-class"></x-icon>
-            </button>
-
-            <div class="card border-0" style="" >
-              <div class="card-img-top aspect-ratio-box" v-if="product.photo">
-                <a href="#" class="aspect-ratio-box-inside">
-                  <img :src="product.photo === true ? placeholderImage : product.photo" :alt="product.title" >
-                </a>
-              </div>
-              <div class="card-body p-3">
-                <div class="">
-                  <div class="small text-secondary">
-                    <span class="">{{product.location}}</span>
-                    <span v-if="product.date">&bull;</span>
-                    <span class="">{{product.date}}</span>
-                  </div>
+              <div class="card border-0" style="" >
+                <div class="card-img-top aspect-ratio-box" v-if="product.photo">
+                  <a href="#" class="aspect-ratio-box-inside">
+                    <img :src="product.photo === true ? placeholderImage : product.photo" :alt="product.title" >
+                  </a>
+                </div>
+                <div class="card-body p-3">
                   <div class="">
-                    <a :href="product.url" target="_black" rel="noopener noreferrer">
-                      <b>{{product.title}}</b>
-                    </a>
-                    <img :src="'/fav/'+product.site+'.png'" width="16" class="ml-2">
+                    <div class="small text-secondary">
+                      <span class="">{{product.location}}</span>
+                      <span v-if="product.date">&bull;</span>
+                      <span class="">{{product.date}}</span>
+                    </div>
+                    <div class="">
+                      <a :href="product.url" target="_black" rel="noopener noreferrer">
+                        <b>{{product.title}}</b>
+                      </a>
+                      <img :src="'/fav/'+product.site+'.png'" width="16" class="ml-2">
+                    </div>
+                    <div class="text-secondary">
+                      $<b>{{product.price}}</b>
+                      <a :href="'tel:' + phone" v-if="product.phones.length"  v-for="phone in product.phones">
+                      {{ phone }}
+                      </a>
+                    </div>
+                    
                   </div>
-                  <div class="text-secondary">
-                    $<b>{{product.price}}</b>
-                    <a :href="'tel:' + phone" v-if="product.phones.length"  v-for="phone in product.phones">
-                    {{ phone }}
-                    </a>
-                  </div>
-                  
                 </div>
               </div>
             </div>
-          </div>
-            <template v-slot:modal-footer v-if="selectedProduct">
-              <button class="btn btn-light text-uppercase ml-2" @click.prevent="hide">Eliminar</button>
-              <a 
-                :href="'tel:' + product.phones[0]" 
-                v-if="product.phones && product.phones.length" 
-                class="btn btn-success">
-                <b>Llamar</b>
-              </a>            
-            </template>          
+                <button class="btn btn-light text-uppercase ml-2" @click.prevent="hide">Eliminar</button>
+                <a 
+                  :href="'tel:' + product.phones[0]" 
+                  v-if="product.phones && product.phones.length" 
+                  class="btn btn-success">
+                  <b>Llamar</b>
+                </a>            
+          
+        </cm-modal>
             
 
-          <b-overlay :show="$store.state.products.updating" no-wrap rounded spinner-type="grow" spinner-variant="success">
+<!--           <b-overlay :show="$store.state.products.updating" no-wrap rounded spinner-type="grow" spinner-variant="success">
           </b-overlay>
-        </b-modal>
+        </b-modal> -->
 </template>
 
 <script>
 import { mapActions } from 'vuex'
+import CmModal from './base/CMModal';
 
 export default {
-	props: [ 'selectedProduct' ],
+  components: { CmModal },
+	props: [ 'currentProduct', 'showDetails' ],
 	data(){
 		return {
 			loading: false,
 			placeholderImage: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAIAAAACCAYAAABytg0kAAAAFElEQVQIW2MMDQ39z8DAwMAIYwAAKgMD/9AXrvgAAAAASUVORK5CYII='
 		}
 	},
+  mounted(){
+    console.log(this.currentProduct)
+  },
 	computed: {
+    show: function() {
+      return this.showDetails;
+    },
 		product: function() {
-			let url = this.selectedProduct.url
+			let url = this.currentProduct.url
 			return this.$store.state.products.items.find( el => el.url === url )
 		}
 	},
 	methods: {
 	    ...mapActions({ updateProduct: 'products/update' }),
 	    open(){
-	    	console.log(this.selectedProduct)
-	    	if (this.selectedProduct) {
+	    	console.log(this.currentProduct)
+	    	if (this.currentProduct) {
 		    	this.updateProduct(this.product)
 	    	}
 	    } , 		
