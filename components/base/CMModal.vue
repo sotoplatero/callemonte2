@@ -1,7 +1,7 @@
 <template>
   <div
     v-if="showing"
-    class="fixed inset-0 w-full h-screen flex items-center justify-center "
+    class="fixed inset-0 w-full h-screen flex items-center justify-center opacity-25"
     @click.self="close"
   >
     <div class="relative max-w-2xl bg-white dark:bg-gray-800 dark:border-gray-700 shadow-2xl rounded-lg p-8 border">
