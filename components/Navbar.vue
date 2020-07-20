@@ -1,6 +1,6 @@
 <template>
-  <div class="dark:bg-gray-900">
-      <nav class="fixed w-full top-0 py-2 "> 
+  <div class="z-50 ">
+      <nav class="fixed w-full top-0 py-2 bg-gray-100 dark:bg-gray-900  shadow z-50"> 
         <div class="px-2 w-full max-w-screen-lg sm:w-1/2 mx-auto ">
           <div class="w-full ">
               <div class="">
@@ -32,22 +32,6 @@
                 </div>
             </div>
 
-<!--                 <div class="relative w-full" >
-                  <input class="py-2 pl-10 pr-2 w-full bg-gray-200 border-2 border-gray-200  rounded-lg focus:border-gray-400 "
-                    id="searchInput"
-                    placeholder="¿Que quieres comprar?" 
-                    v-model="q"
-                    @keypress.enter.prevent="search" 
-                    ></input>
-
-                    <span class="absolute top-0 left-0 h-6 w-6 text-gray-500 block py-2">
-
-                      <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd"></path></svg>                    
-                      
-                    </span>
-                </div> -->
-                <!-- <Filters/> -->
-                <!-- <Menu/> -->
               </div> 
           </div>
         </div>
@@ -70,7 +54,9 @@ export default {
         q: '',
     }
   },
-
+  mounted(){
+    this.q = this.$route.query.q
+  },
   methods: {
     search() {
       if ( this.q.length > 0 ) {
@@ -91,5 +77,5 @@ export default {
       this.$refs[ref].hide();
     }           
   }    
-}
+};
 </script>

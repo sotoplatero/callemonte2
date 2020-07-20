@@ -20,6 +20,8 @@ exports.handler =  async (event, context, callback) => {
                 title: el.title,
                 price: el.price,
                 photo: el.firstImageUrl,
+                description: el.shortDescription,
+                location: el.location,
                 url: el.url,
                 date: el.created_at
             }

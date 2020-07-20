@@ -3,8 +3,8 @@ import Vue from 'vue'
 
 export const state = () => ({
   items: [],
-  updating: false,
-  searching: false,
+  updating: [],
+  searching: [],
   currentProduct: {},
 })
 
@@ -32,12 +32,22 @@ export const mutations = {
     product.favorite = !product.favorite 
   },
 
-  toggleUpdating( state, value ) { 
-    state.updating = value
+  startUpdating( state, value ) { 
+    state.updating.push( value )
   },
 
-  setSearching( state, value ) { 
-    state.searching = value
+  stopUpdating( state, value ) { 
+    const index = state.updating.indexOf(value);
+    state.updating.splice(index, 1);    
+  },
+
+  startSearching( state, value ) { 
+    state.searching.push(value)
+  },
+
+  stopSearching( state, value ) { 
+    const index = state.searching.indexOf(value);
+    state.searching.splice(index, 1);    
   },
 
   setCurrentProduct( state, product ) { 
@@ -56,14 +66,14 @@ export const actions = {
     let { q, pmin=1, pmax, p = 1, province='' } = payload
     let counter = 0
 
-    commit('setSearching',true)
-
     if ( p === 1) commit('clear')
-
-    if (pmin=='') pmin=1
+    pmin = pmin || 1;
 
     sites.forEach( site => {
       let url = `/.netlify/functions/${site}?q=${q}&pmin=${pmin}&pmax=${pmax}&p=${p}&province=${province}`
+
+      commit( 'startSearching', site )
+
       fetch(url)
         .then( response => response.json() )
         .then( response => { 
@@ -80,17 +90,10 @@ export const actions = {
             }
 
           });
-          counter++
-          if (counter === sites.length) {
-            commit('setSearching',false)
-          }
+          commit('stopSearching',site)
         })
         .catch(e=>{
-          counter++
-          if (counter === sites.length) {
-            commit('setSearching',false)
-          }
-
+          commit('stopSearching',site)
         })
 
     })
@@ -98,23 +101,24 @@ export const actions = {
 
   },
 
-  update( {commit, state}, product ) {
+  async update( {commit, state}, product ) {
     if (!product.updated) {
-      commit('toggleUpdating', true)
-      // let url = `http://localhost:9000/.netlify/functions/photos?url=${product.url}`
       let url = `/.netlify/functions/details?url=${product.url}`
 
-      let indexOfProduct = state.items.map((_, i) => i).find(e => state.items[e].url == product.url)
-      fetch(url)
-        .then( response => response.json() )
-        .then( response => {
-          commit('update', {
-            index: indexOfProduct,
-            product: {...product, ...response}
-          })
-          commit('toggleUpdating',false)
-        })
-        .catch( e => commit('toggleUpdating',false) )
+      let indexOfProduct = state.items
+          .map( (_, i) => i )
+          .find( e => state.items[e].url == product.url )
+
+      commit( 'startUpdating', product.url )
+
+      let response = await fetch(url).then( res => res.json() );
+
+      commit('update', {
+        index: indexOfProduct,
+        product: { ...product, ...response } 
+      });
+
+      commit( 'stopUpdating', product.url );
     }
 
   }

@@ -1,66 +1,66 @@
 <template>
+    <cm-modal :showing="show" v-on:close="$emit('close')">
+
+        <div class="card-img-top aspect-ratio-box" v-if="product.photo">
+          <a href="#" class="aspect-ratio-box-inside">
+            <img :src="product.photo === true ? placeholderImage : product.photo" :alt="product.title" >
+          </a>
+        </div>
+
+          <div class="" style="" >
 
 
-<!--         <b-modal centered 
-          hide-header 
-          id="modal-show" 
-          ref="modal-show" 
-          :lazy="true"
-          content-class="border-0"
-          body-class="position-static p-0" 
-          footer-class="p-2"
-          @shown="open"> -->
-        <cm-modal :showing="show" v-on:close="$emit('close')">
-            <div v-if="currentProduct">
+            <div class="">
+              <div class="">
+                <div class="mr-2">
 
-              <button type="button" class="btn back" aria-label="Close" @click.prevent="">
-                x
-              </button>
+                    <span>
+                        <span class="text-gray-600 font-normal">$</span>
+                        {{ product.price }}
+                    </span>
 
-              <div class="card border-0" style="" >
-                <div class="card-img-top aspect-ratio-box" v-if="product.photo">
-                  <a href="#" class="aspect-ratio-box-inside">
-                    <img :src="product.photo === true ? placeholderImage : product.photo" :alt="product.title" >
+                    <span class="ml-2 text-gray-600 text-xs uppercase font-semibold tracking-wide space-x-2">
+                      <span v-if="product.location">{{ product.location }}</span>
+                      <span v-if="product.date">{{ product.date }}</span>
+                    </span>
+
+                    <img :src="'/fav/'+product.site+'.png'" class="z-0 ml-2 h-4 w-4 inline opacity-50 hover:opacity-100">
+
+                </div>
+
+                <div class="" >
+                  <a :href="product.url" class="" target="_black" rel="noopener noreferrer">
+                     {{product.title}}
                   </a>
                 </div>
-                <div class="card-body p-3">
-                  <div class="">
-                    <div class="small text-secondary">
-                      <span class="">{{product.location}}</span>
-                      <span v-if="product.date">&bull;</span>
-                      <span class="">{{product.date}}</span>
-                    </div>
-                    <div class="">
-                      <a :href="product.url" target="_black" rel="noopener noreferrer">
-                        <b>{{product.title}}</b>
-                      </a>
-                      <img :src="'/fav/'+product.site+'.png'" width="16" class="ml-2">
-                    </div>
-                    <div class="text-secondary">
-                      $<b>{{product.price}}</b>
-                      <a :href="'tel:' + phone" v-if="product.phones.length"  v-for="phone in product.phones">
-                      {{ phone }}
-                      </a>
-                    </div>
-                    
-                  </div>
-                </div>
+
+                <p class="font-normal mt-4" v-if="product.description">
+                    {{ product.description }}
+                </p>
+
+                <a :href="'tel:' + phone" v-if="product.phones.length"  v-for="phone in product.phones">
+                    {{ phone }}
+                </a>
+                
               </div>
             </div>
-                <button class="btn btn-light text-uppercase ml-2" @click.prevent="hide">Eliminar</button>
-                <a 
-                  :href="'tel:' + product.phones[0]" 
-                  v-if="product.phones && product.phones.length" 
-                  class="btn btn-success">
-                  <b>Llamar</b>
-                </a>            
-          
-        </cm-modal>
+          </div>
+<!-- 
+            <button class="btn btn-light text-uppercase ml-2" @click.prevent="hide">Eliminar</button>
+            <a 
+              :href="'tel:' + product.phones[0]" 
+              v-if="product.phones && product.phones.length" 
+              class="btn btn-success">
+              <b>Llamar</b>
+            </a>            
+        <button 
+            class="bg-gray-200 hover:bg-gray-300 font-bold py-3 px-6 rounded focus:outline-none text-gray-800"  
+            v-on:click.prevent="$emit('close')"
+        >Cancelar
+        </button> -->
+      
+    </cm-modal>
             
-
-<!--           <b-overlay :show="$store.state.products.updating" no-wrap rounded spinner-type="grow" spinner-variant="success">
-          </b-overlay>
-        </b-modal> -->
 </template>
 
 <script>
@@ -68,7 +68,7 @@ import { mapActions } from 'vuex'
 import CmModal from './base/CMModal';
 
 export default {
-  components: { CmModal },
+    components: { CmModal },
 	props: [ 'currentProduct', 'showDetails' ],
 	data(){
 		return {
@@ -76,30 +76,26 @@ export default {
 			placeholderImage: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAIAAAACCAYAAABytg0kAAAAFElEQVQIW2MMDQ39z8DAwMAIYwAAKgMD/9AXrvgAAAAASUVORK5CYII='
 		}
 	},
-  mounted(){
-    console.log(this.currentProduct)
-  },
 	computed: {
-    show: function() {
-      return this.showDetails;
-    },
+        show: function() {
+          return this.showDetails;
+        },
 		product: function() {
-			let url = this.currentProduct.url
-			return this.$store.state.products.items.find( el => el.url === url )
+            return this.currentProduct;
+			// let url = this.currentProduct.url
+			// return this.$store.state.products.items.find( el => el.url === url )
 		}
 	},
+    watch: {
+        currentProduct (val, oldVal) {
+            console.log(val)
+            if (val) {
+               this.$store.commit('products/update',this.currentProduct) 
+            }
+        }
+    },    
 	methods: {
 	    ...mapActions({ updateProduct: 'products/update' }),
-	    open(){
-	    	console.log(this.currentProduct)
-	    	if (this.currentProduct) {
-		    	this.updateProduct(this.product)
-	    	}
-	    } , 		
-		hide(){
-			this.$bvModal.hide('modal-show')
-			this.$store.commit('products/toggleHide',this.currentProduct)
-		}
 	}
 
 };

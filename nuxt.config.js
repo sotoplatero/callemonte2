@@ -70,6 +70,7 @@ export default {
   */
   build: {
     // analyze: true,
+
     postcss: {
       preset: {
         features: {
@@ -77,12 +78,18 @@ export default {
         }
       }
     },
+
     /*
     ** You can extend webpack config here
     */
     extend(config, ctx) {
     }
   },
+  
+  buildModules: [
+    // Simple usage
+    '@nuxtjs/color-mode'
+  ],    
 
   proxy: {
     // '/.netlify': 'http://localhost:9000' 
