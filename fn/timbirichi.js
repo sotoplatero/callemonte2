@@ -22,14 +22,15 @@ exports.handler =  async (event, context, callback) => {
             reId = /[a-zA-Z]+$/,
             reNoImage = /default/g;
 
-            date = Sugar.Date.create( $el.find('li .icon-clock').parent().text().trim() )
+        let date = Sugar.Date.create( $el.find('li .icon-clock').parent().text().trim() );
+
         return {
             price:  $el.find('precio').first().text().replace(/\D/g,''),
             title:  cleaner( $el.find('h5.anuncio-titulo').text() ),
             url: $el.attr('href'),
             location: $el.text().match(reLocations).toString(),
             date: Sugar.Date.format(date, '%b %e %R'),
-            description:  $el.find('.info-anuncio small').text().trim().replace(reRepetition,''),
+            description:  $el.find('.info-anuncio small').text().trim().replace(reRepetition,'$1'),
             // photo:  $el.find('.thumbnail').attr('data-src-mobile'),
             // phones: $el.find('h5.anuncio-titulo').text().replace(/\W/g,'').match(rePhone) || [],
         };

@@ -25,13 +25,16 @@
     "node-fetch": "^2.6.0",
     "nuxt": "^2.12.2",
     "req-fast": "^0.2.19",
+    "store": "^2.0.12",
     "string_score": "^0.1.22",
     "sugar": "^2.0.6",
     "vue-social-sharing": "^2.4.7"
   },
   "devDependencies": {
+    "@nuxtjs/color-mode": "^1.0.0",
     "node-sass": "^4.13.1",
     "nodemon": "^1.19.4",
-    "sass-loader": "^7.3.1"
+    "sass-loader": "^7.3.1",
+    "tailwindcss-dark-mode": "^1.1.5"
   }
 }

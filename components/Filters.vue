@@ -5,12 +5,12 @@
 
 				<div class="w-1/2">
 					<label class="mb-2 block font-semibold">Precio Minimo</label>
-					<input type="text" class="block appearance-none w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 pr-8 rounded  leading-tight focus:outline-none focus:shadow-outline" v-model="filters.pmin">
+					<input type="text" class="block appearance-none w-full bg-white dark:bg-gray-600 border border-gray-600 px-4 py-2 pr-8 rounded  leading-tight focus:outline-none focus:shadow-outline" v-model="filters.pmin">
 				</div> 
 
 				<div class="w-1/2">
 					<label class="mb-2 block font-semibold">Precio Minimo</label>
-					<input type="text" class="block appearance-none w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 pr-8 rounded  leading-tight focus:outline-none focus:shadow-outline" v-model="filters.pmax">
+					<input type="text" class="block appearance-none w-full bg-white  dark:bg-gray-600 border border-gray-600 px-4 py-2 pr-8 rounded  leading-tight focus:outline-none focus:shadow-outline" v-model="filters.pmax">
 				</div>   
 
 	    	</div>
@@ -18,7 +18,7 @@
 			<div class="form-group">
 				<label class="mb-2 block font-semibold">Provincia</label>
 				<div class="block relative w-full">
-				  <select class="block appearance-none w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 pr-8 rounded  leading-tight focus:outline-none focus:shadow-outline">
+				  <select class="block appearance-none w-full bg-white dark:bg-gray-600 border border-gray-600 px-4 py-2 pr-8 rounded  leading-tight focus:outline-none focus:shadow-outline">
 	            	<option v-for="[key,name] in Object.entries(provinces)" :value="key">{{name}}</option>
 				  </select>
 				  <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
@@ -28,10 +28,10 @@
 			</div>    
 
 			<footer>
-				<button class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-3 px-6 rounded focus:outline-none focus:shadow-outline	" click.prevent="apply">
+				<button class="bg-blue-600 hover:bg-blue-500 font-bold py-3 px-6 rounded focus:outline-none text-blue-100" v-on:click.prevent="apply">
 					<b>Aplicar</b>
 				</button>
-				<button class="bg-gray-200 hover:bg-gray-300 font-bold py-3 px-6 rounded focus:outline-none "  @click.prevent="$emit('close')">Cancelar</button>
+<!-- 				<button class="bg-gray-200 hover:bg-gray-300 font-bold py-3 px-6 rounded focus:outline-none text-gray-800"  @click.prevent="$emit('close')">Cancelar</button> -->
 			</footer>
       		
       	</div>
@@ -71,6 +71,11 @@ export default {
 			}
 		}
 	},
+	watch: {
+		showFilters: function(val, oldVal) {
+			this.filters = { ...this.filters, ...this.$route.query }
+		}
+	},
 	computed: {
 		show: function () {
 		    return this.showFilters;
@@ -81,14 +86,15 @@ export default {
 			this.filters = { ...this.filters, ...this.$route.query }
 		},
 		apply() {
-			if (this.filters.pmin<=	0) {
+			if (this.filters.pmin <=0) {
 				this.filters.pmin=1
 			}
+			let filters = { ...this.$route.query, ...this.filters }
 	        this.$router.push({ 
 	          path: '/search', 
-	          query: this.filters
+	          query: filters
 	        })
-	        this.modalShow = false;
+	        this.$emit('close');
 		}
 	}
 

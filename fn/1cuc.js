@@ -22,7 +22,12 @@ exports.handler =  async (event, context, callback) => {
                 price: parseInt( ($el.find('.v-price strong').text() || '').replace(/\D/g,'') ),
                 title: cleaner( $a.children().remove().end().text() ),
                 url: $a.attr('href'),
-                description: $el.find('.descrip').text().trim().replace(/\n/g,'').replace(reRepetition, '$1'),
+                description: $el.find('.descrip')
+                    .text()
+                    .trim()
+                    .replace(/\n/g,'')
+                    .replace(reRepetition, '$1')
+                    .substring(0,280),
                 date: moment( $el.find('.publicated-date').text().trim(), 'D MMMM' ),
                 location: $el.find('p').text().match(reLocations).toString(),
                 // photo: $el.find('img').hasClass('im_blank') ? '' : 'https:' + $el.find('a.thumb img').attr('src'),

@@ -1,3 +1,12 @@
 @import 'tailwindcss/base';
 @import 'tailwindcss/components';
+/*.btn {
+	@apply bg-blue-500  text-white font-bold py-3 px-6 rounded ;
+}
+.btn:hover {
+	@apply bg-blue-600
+}
+.btn:focus {
+	@apply outline-none shadow-outline	
+}*/
 @import 'tailwindcss/utilities';

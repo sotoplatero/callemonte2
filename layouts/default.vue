@@ -1,35 +1,31 @@
 <template>
-  <div class="dark:bg-gray-900">
+  <div class="bg-gray-100 dark:bg-gray-900">
     <Navbar />  
-    <div class="">
-      <div class="w-full sm:w-1/2 mx-auto ">
+    <div class="min-h-screen">
+      <div class="w-full max-w-3xl mx-auto px-2">
           <nuxt/>
       </div>
-      <footer >
-        <div class="w-full sm:w-1/2 mx-auto text-center font-semibold py-10" >
-          <div class="space-x-4">
-            <nuxt-link to="/" class=" ">
-              <span>Inicio</span>
-            </nuxt-link>
-            <nuxt-link to="/about" class=" ">
-              Nosotros
-          </nuxt-link>
-            <nuxt-link to="/contact" class=" ">
-              Contacto
-          </nuxt-link>        
-            
-          </div>
-          
-        </div>
-      </footer>
+      <Footbar/>
     </div>
     
   </div>
 </template>
 <script>
 import Navbar from '~/components/Navbar';
+import Footbar from '~/components/Footbar';
 export default {
-  components: { Navbar },
+  components: { Navbar, Footbar },
+
+  head() {
+    return {
+      htmlAttrs: {
+        class: 'bg-gray-100 text-gray-900 dark:bg-gray-900 dark:text-gray-100',
+      },
+      bodyAttrs: {
+        class:  'pt-20 bg-gray-100 text-gray-900 dark:bg-gray-900 dark:text-gray-100'
+      }      
+    } 
+  } 
 }
 </script>
 
