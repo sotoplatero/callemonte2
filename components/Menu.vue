@@ -3,6 +3,7 @@
 	<a href="/favorites">Favorites</a>
 </cm-modal>
 </template>
+
 <script>
 	import CmModal from './base/CMModal';
 export default {

@@ -10,6 +10,7 @@
     
   </div>
 </template>
+
 <script>
 import Navbar from '~/components/Navbar';
 import Footbar from '~/components/Footbar';

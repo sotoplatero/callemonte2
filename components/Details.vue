@@ -101,25 +101,27 @@ export default {
 };
 
 </script>
-<style>
-.aspect-ratio-box {
-  height: 0;
-  overflow: hidden;
-  padding-top: 75%;
-  background: white;
-  position: relative;
-}
-.aspect-ratio-box-inside {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-}
-.aspect-ratio-box-inside img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover; /*magic*/
-}
 
+<style>
+  .aspect-ratio-box {
+    height: 0;
+    overflow: hidden;
+    padding-top: 75%;
+    background: white;
+    position: relative;
+  }
+
+  .aspect-ratio-box-inside {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  .aspect-ratio-box-inside img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /*magic*/
+  }
 </style>

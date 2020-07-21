@@ -37,9 +37,26 @@
               
             </form>
             </div>
-            
-          </div>
 
+            <div class="form-group">
+              <label class="label">Mensaje</label>
+              <textarea
+                class="form-control"
+                name="message"
+                rows="5"
+                v-model="msg"
+                required
+              ></textarea>
+            </div>
+
+            <div class="control">
+              <button class="btn btn-success">Enviar &rarr;</button>
+            </div>
+          </form>
+
+        </div>
+
+      </div>
     </div>
 </template>
 
@@ -53,13 +70,5 @@ export default {
       msg: null,
       errors: []
     }
-  },
-  beforeRouteEnter(to, from, next) {
-    next(vm => {
-      vm.prevPath = from.fullPath
-    })
-  },
-  methods: {
   }
-}
 </script>

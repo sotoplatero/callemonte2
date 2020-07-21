@@ -11,7 +11,12 @@ export const state = () => ({
 
 export const mutations = {
 
-  add( state, product ){
+  add( state, payload ){
+    let product = { 
+      ...payload, 
+      hide: false,
+      favorite: false,
+    }
     state.items.push( product )
   },
 
@@ -101,6 +106,9 @@ export const actions = {
 
     })
 
+    axios.all(promises).then( () => {
+      commit('setSearching',false)
+    });
 
   },
 
