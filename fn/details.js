@@ -27,14 +27,15 @@ exports.handler =  async (event, context, callback) => {
         }
 
         if ( /porlalivre/.test(url) ) {
+            let date = Sugar.Date.create($('i.fa-arrow-circle-up').parent().text().trim());
             data = {
                 // photos: $('.img-thumbnail').map( (i,el) => 'https://porlalivre.com' + $(el).attr('href') ).get(),
                 photo: 'https://porlalivre.com' + $('.img-thumbnail').first().attr('href'),
-                phones: $('.contact-info').text().match(/\d{8}/g) || [],
+                phones: $('.contact-info').text().replace(/\D/g,'').match(/\d{8}/g) || [],
+                date: Sugar.Date.format( date, '%b %e %R' ),
 
             }
             // location = $('i.fa-home').parent().text().trim()
-            // date = $('i.fa-arrow-circle-up').parent().text().trim()
         }
 
         if ( /1cuc/.test(url) ) {
@@ -55,32 +56,14 @@ exports.handler =  async (event, context, callback) => {
         }
 
         if ( /bachecubano/.test(url) ) {
+            let date = Sugar.Date.create( parseInt( $('.tg-created-timestamp').text() ) );
+            let photo = $('.item-slider > li > a').first().attr('href');
+            let phones = $('[href^="tel:"]').first().text().replace(/\D/g,'').match( /\d{8}/g );
+
             data =  {
-
-                photo: (()=>{
-                    photos = $('.item-slider > li > a')
-                        .first()
-                        .attr('href');
-                    if ( !photos) {
-                        photos = $('.img-fluid').first().attr('src');
-                    }
-                    return photos;
-                })(),
-
-                phones: (() => {
-                    phones = $('[href^="tel:"]').first().text().replace(/\D/g,'').match( /\d{8}/g );
-
-                    if (phones === "") {
-                        phones = $('#content').text().replace(/\W/g,'').match( /\d{8}/g )
-                    }
-                    return phones;
-                })(),
-
-                date: (() => {
-                        date = Sugar.Date.create( parseInt( $('.tg-created-timestamp').text() ) );
-                        return Sugar.Date.format( date, '%b %e %R' );
-                    })(),
-
+                photo: !photos ? $('.img-fluid').first().attr('src') : photo,
+                phones: !phones ? $('#content').text().replace(/\W/g,'').match( /\d{8}/g ) : phones,
+                date: Sugar.Date.format( date, '%b %e %R' ),
                 description: $('#content').text().substring(0,250),
             }
         }        

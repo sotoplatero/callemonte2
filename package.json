@@ -18,9 +18,8 @@
     "cheerio": "^1.0.0-rc.3",
     "cross-env": "^5.2.1",
     "encoding": "^0.1.12",
-    "lodash.uniq": "^4.5.0",
-    "lodash.uniqby": "^4.7.0",
     "moment": "^2.24.0",
+    "netlify-cli": "^2.58.0",
     "netlify-lambda": "^1.5.1",
     "node-fetch": "^2.6.0",
     "nuxt": "^2.12.2",
@@ -28,12 +27,11 @@
     "store": "^2.0.12",
     "string_score": "^0.1.22",
     "sugar": "^2.0.6",
-    "vue-cookie": "^1.1.4",
-    "vue-social-sharing": "^2.4.7"
+    "vuex-persistedstate": "^3.0.1"
   },
   "devDependencies": {
     "@nuxtjs/color-mode": "^1.0.0",
-    "node-sass": "^4.13.1",
+    "node-sass": "^4.14.1",
     "nodemon": "^1.19.4",
     "sass-loader": "^7.3.1",
     "tailwindcss-dark-mode": "^1.1.5"

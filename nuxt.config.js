@@ -12,7 +12,12 @@ export default {
   */
   head: {
     title: pkg.name,
-
+    htmlAttrs: {
+      class: 'bg-gray-100 text-gray-900 dark:bg-gray-900 dark:text-gray-100',
+    },
+    bodyAttrs: {
+      class:  'pt-20 bg-gray-100 text-gray-900 dark:bg-gray-900 dark:text-gray-100'
+    } ,
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
@@ -51,7 +56,7 @@ export default {
   ** Plugins to load before mounting the App
   */
   plugins: [
-    {src: '~plugins/vue-cookie', ssr: false}
+    { src: '~/plugins/localStorage.js', ssr: false }
     // { src: '~/plugins/vue-gallery.js', ssr: false },
     // { src: '~/plugins/vue-social.js', ssr: false }
   ],
@@ -95,11 +100,11 @@ export default {
     // '/.netlify': 'http://localhost:9000' 
   }, 
 
-  pwa: {
-    manifest: {
-      name: 'Callemonte',
-      lang: 'es'
-    }
-  }
+  // pwa: {
+  //   manifest: {
+  //     name: 'Callemonte',
+  //     lang: 'es'
+  //   }
+  // }
 
 }

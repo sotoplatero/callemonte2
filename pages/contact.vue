@@ -5,7 +5,7 @@
             <h2 class="text-3xl font-bold">CALLEMONTE</h2>
             <h4 class="text-xl">Contacto</h4>
           </div>         
-          <div class="card border-0 shadow-sm">
+          <div class="p-10 bg-white dark:bg-gray-800 shadow rounded-lg">
             <div class="card-body">
               
             <p class="lead">Escríbeme si tienes alguna sugerencia, si encuentras algún error o solo para felicitarme por esta herramienta que el reconocimiento también me gusta. Te responderé en la mayor brevedad posible. </p>

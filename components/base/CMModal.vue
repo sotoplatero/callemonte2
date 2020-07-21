@@ -5,7 +5,9 @@
         class="fixed inset-0 w-full h-screen flex items-center justify-center bg-gray-900 bg-opacity-75 z-50 px-2"
         @click.self="close"
     >
-        <div class="relative  max-w-2xl w-full md:w-2/5 bg-white dark:bg-gray-800 border-0 shadow-xl rounded-lg p-8">
+        <div 
+          class="relative  max-w-2xl bg-white dark:bg-gray-800 border-0 shadow-xl rounded-lg p-8"
+          :class="size ? size : 'w-full md:w-2/5'">
 
             <button
                 aria-label="close"
@@ -25,6 +27,7 @@
 <script>
 export default {
   props: {
+    size: '',
     showing: {
       required: true,
       type: Boolean

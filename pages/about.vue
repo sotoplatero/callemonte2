@@ -12,46 +12,46 @@
           
         </div>
 
-        <div class="mb-6"> 
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4"> 
 
-          <div class="mb-4">
-            <h3 class="font-semibold">Cuida tus Datos.</h3> 
+          <div class="p-10 bg-white dark:bg-gray-800 shadow rounded-lg">
+            <h3 class="font-bold">Cuida tus Datos.</h3> 
             <p class="lead text-justify">Ahorra tu paquete de datos utilizando solo la información necesaria.</p>
           </div>    
 
-          <div class="mb-4">
-              <h3 class="font-semibold">Rápido.</h3> 
+          <div class="p-10 bg-white dark:bg-gray-800 shadow rounded-lg">
+              <h3 class="font-bold">Rápido.</h3> 
               <p class="lead text-justify">Pensado para que sea rápido solo se centra en encontrar lo que quieres comprar.</p>
           </div>
 
-          <div class="mb-4">
-            <h3 class="font-semibold">Limpia el texto.</h3> 
+          <div class="p-10 bg-white dark:bg-gray-800 shadow rounded-lg">
+            <h3 class="font-bold">Limpia el texto.</h3> 
             <p class="lead text-justify">Elimina los caracteres extraños como <code>* ! _</code> y las palabras y frases que no dicen nada como <i>Vendooo</i> o <i>llame ya</i> que solo molestan.</p>
           </div>
 
-          <div class="mb-4">
-            <h3 class="font-semibold">Anuncios con precio.</h3>
+          <div class="p-10 bg-white dark:bg-gray-800 shadow rounded-lg">
+            <h3 class="font-bold">Anuncios con precio.</h3>
             <p class="lead text-justify"> Callemonte es un buscador de productos y todo producto a la venta debe tener un precio.</p>
           </div>
 
-          <div class="mb-4">
-            <h3 class="font-semibold">Sin Duplicados</h3>
+          <div class="p-10 bg-white dark:bg-gray-800 shadow rounded-lg">
+            <h3 class="font-bold">Sin Duplicados</h3>
             <p class="lead text-justify">Filtra los anuncios que están repetidos incluso si se repiten en varios sitios.</p>
           </div>
 
-          <div class="mb-4">
-            <h3 class="font-semibold">Sin publicidad.</h3>
+          <div class="p-10 bg-white dark:bg-gray-800 shadow rounded-lg">
+            <h3 class="font-bold">Sin publicidad.</h3>
             <p class="lead text-justify">No se muestra ninguna publicidad, solo los anuncios de su interés.</p>
           </div>
 
-          <div class="mb-4">
-            <h3 class="font-semibold"><a href="https://github.com/sotoplatero/callemonte" target="_blank" >Código abierto</a></h3>
+          <div class="p-10 bg-white dark:bg-gray-800 shadow rounded-lg">
+            <h3 class="font-bold"><a href="https://github.com/sotoplatero/callemonte" target="_blank" >Código abierto</a></h3>
             <p class="lead text-justify">Si quieres mejorarlo PR el el github. Si quieres colaborar <a href="/contact" class="underline">contacta</a></p>
           </div>
 
         </div>
 
-        <p class="italic">
+        <p class="italic mt-6">
           Callemonte está en desarrollo y puede que tenga algún problema, no dudes en <a href="/contact">escribirnos</a> para hacerlo mejor.
         </p>
 

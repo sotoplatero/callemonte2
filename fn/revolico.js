@@ -3,6 +3,9 @@ var cheerio = require('cheerio');
 var cleaner = require('./libs/cleaner');
 const moment = require('moment')
 const { reLocations } = require('./libs/vars.js') ;
+var Sugar = require('sugar');
+require('sugar/locales/es.js');
+Sugar.Date.setLocale('es');
 
 const rePhone = /((5|7)\d{7})|((24|32|33|45)\d{6})/g;
 
@@ -15,14 +18,15 @@ exports.handler =  async (event, context, callback) => {
 
     let data = $('li[data-cy="adRow"]').map( (i,el) => {
         let $el = $(el), 
-            selPrice = 'span[data-cy="adPrice"]';
+            selPrice = 'span[data-cy="adPrice"]',
+            date = Sugar.Date.create( parseInt($el.find( 'time[datetime]' ).attr('datetime')) );
 
         return {
             price: parseInt( $el.find( selPrice).length ? $el.find( selPrice).text() : 0 ),
             title: cleaner( $el.find( 'span[data-cy="adTitle"]' ).text() ),
             url: 'https://www.revolico.com' + $el.find('a[href$="html"]').attr('href'),
             description: $(el).find( 'span[data-cy="adDescription"]' ).text(),
-            date: moment( parseInt( $el.find( 'time[datetime]' ).attr('datetime') ) ),
+            date: Sugar.Date.format(date, '%b %e %R'),
             location: ($el.text().match(reLocations) || '').toString(),
             // phones: $el.find( selTitle ).text().match(rePhone) || [],
             // photo: $el.find('span[data-cy="adPhoto"]').length > 0,

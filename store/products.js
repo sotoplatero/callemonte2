@@ -1,5 +1,4 @@
 import Vue from 'vue'
-var storejs = require('store/dist/store.modern');
 require("string_score")
 
 export const state = () => ({
@@ -8,7 +7,6 @@ export const state = () => ({
   searching: [],
   currentProduct: {},
   query: '',
-  favorites: storejs.get('favorites') || 0,
 })
 
 export const mutations = {
@@ -23,8 +21,8 @@ export const mutations = {
         ...payload.product, 
         updated: true 
       }
-    // state.items.splice(payload.index, 1, product)
-    Vue.set(state.items, payload.index, product )
+    state.items.splice(payload.index, 1, product)
+    // Vue.set(state.items, payload.index, product )
   },
 
   toggleHide( state, product ) { 
@@ -116,14 +114,17 @@ export const actions = {
 
       commit( 'startUpdating', product.url )
 
-      let response = await fetch(url).then( res => res.json() );
+      try {
+        let response = await fetch(url).then( res => res.json() );
 
-      commit('update', {
-        index: indexOfProduct,
-        product: { ...product, ...response } 
-      });
-
+        commit('update', {
+          index: indexOfProduct,
+          product: { ...product, ...response } 
+        });
+      }
+      catch(err) {}
       commit( 'stopUpdating', product.url );
+
     }
 
   }

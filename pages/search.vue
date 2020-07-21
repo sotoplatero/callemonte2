@@ -49,7 +49,7 @@ export default {
   components: { Product },
   // watchQuery: true, 
   fetch() {
-    this.$nuxt.context.store.dispatch('products/search', this.$nuxt.context.query );
+    this.$nuxt.context.store.dispatch( 'products/search', this.$nuxt.context.query );
   },  
 
   data(){
@@ -73,7 +73,7 @@ export default {
       let products = this.$store.state.products.items
       return products
         .filter( el => !el.hide )
-        // .sort( (a,b) => b.score - a.score || a.price - b.price )      
+        .sort( (a,b) => b.score - a.score || a.price - b.price )      
     },
     searching() {
         return  (this.$store.state.products.searching.length > 0)
