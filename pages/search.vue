@@ -6,7 +6,7 @@
             <span>{{ productsCount }} Resultados</span>
         </div>
 
-        <ul class="space-y-3 mb-4" id="products">
+        <ul class="space-y-2 mb-4" id="products">
             <Product :product="product" v-for="(product,index) in filteredProducts" :key="index"/>
         </ul>
 

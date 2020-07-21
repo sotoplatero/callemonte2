@@ -61,12 +61,12 @@
 
             
         </div>      
-        <div class="flex justify-around text-sm text-center pb-6 pt-2">
+        <div class="flex justify-around text-sm text-center pb-6 pt-2 text-gray-600">
 
             <button 
                 v-on:click="show"
                 :disabled = "product.updated"
-                :class="product.updated ? 'pointer-events-none text-gray-500' : ''"
+                :class="product.updated ? 'pointer-events-none text-gray-400 dark:text-gray-700' : ''"
                 class = "w-1/4 text-center uppercase font-bold text-sm">
 
                 <svg class="h-6 w-6 inline" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor"><path d="M8 4H6a2 2 0 00-2 2v12a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-2m-4-1v8m0 0l3-3m-3 3L9 8m-5 5h2.586a1 1 0 01.707.293l2.414 2.414a1 1 0 00.707.293h3.172a1 1 0 00.707-.293l2.414-2.414a1 1 0 01.707-.293H20"></path></svg>             
@@ -106,7 +106,7 @@
 
             <button 
                 disabled="product.phones"
-                :class="!product.phones ? 'pointer-events-none text-gray-500' : ''"
+                :class="!product.phones ? 'pointer-events-none text-gray-400 dark:text-gray-700' : ''"
                 class="w-1/4 text-center disabled:text-gray-600 uppercase font-bold text-sm">
 
                 <svg class="h-6 w-6 inline"  fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor"><path d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg>
