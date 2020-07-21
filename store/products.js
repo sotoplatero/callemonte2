@@ -1,5 +1,6 @@
-require("string_score")
 import Vue from 'vue'
+var storejs = require('store/dist/store.modern');
+require("string_score")
 
 export const state = () => ({
   items: [],
@@ -7,6 +8,7 @@ export const state = () => ({
   searching: [],
   currentProduct: {},
   query: '',
+  favorites: storejs.get('favorites') || 0,
 })
 
 export const mutations = {

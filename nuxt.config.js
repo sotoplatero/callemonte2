@@ -51,9 +51,9 @@ export default {
   ** Plugins to load before mounting the App
   */
   plugins: [
-    // '~/plugins/axios',
+    {src: '~plugins/vue-cookie', ssr: false}
     // { src: '~/plugins/vue-gallery.js', ssr: false },
-    { src: '~/plugins/vue-social.js', ssr: false }
+    // { src: '~/plugins/vue-social.js', ssr: false }
   ],
 
   /*
@@ -85,7 +85,7 @@ export default {
     extend(config, ctx) {
     }
   },
-  
+
   buildModules: [
     // Simple usage
     '@nuxtjs/color-mode'

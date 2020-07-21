@@ -68,7 +68,7 @@ exports.handler =  async (event, context, callback) => {
                 })(),
 
                 phones: (() => {
-                    phones = $('[href^="tel:"]').first().text().replace(/\D/g,'');
+                    phones = $('[href^="tel:"]').first().text().replace(/\D/g,'').match( /\d{8}/g );
 
                     if (phones === "") {
                         phones = $('#content').text().replace(/\W/g,'').match( /\d{8}/g )
