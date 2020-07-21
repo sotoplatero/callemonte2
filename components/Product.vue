@@ -125,6 +125,8 @@
     
 </template>
 <script>
+var store = require('store/dist/store.modern');
+
 export default {
     props: [ 'product' ],
     data(){
@@ -140,6 +142,9 @@ export default {
         show(){
             this.$store.dispatch('products/update',this.product) 
         },
+        toggleFavorite() {
+            let favorites = store.get('favorites') || [];
+        }
     }
 };
 </script> 

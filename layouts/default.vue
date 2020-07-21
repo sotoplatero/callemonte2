@@ -2,7 +2,7 @@
   <div class="bg-gray-100 dark:bg-gray-900">
     <Navbar />  
     <div class="min-h-screen">
-      <div class="w-full md:w-3/4 lg:w-1/2 mx-auto px-2">
+      <div class="w-full max-w-3xl mx-auto px-2">
           <nuxt/>
       </div>
       <Footbar/>

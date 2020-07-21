@@ -6,6 +6,7 @@ export const state = () => ({
   updating: [],
   searching: [],
   currentProduct: {},
+  query: '',
 })
 
 export const mutations = {
@@ -50,9 +51,8 @@ export const mutations = {
     state.searching.splice(index, 1);    
   },
 
-  setCurrentProduct( state, product ) { 
-    // console.log(product)
-    state.currentProduct = product
+  setQuery( state, value ) { 
+    state.query = value
   },
 
   clear(state) { 
@@ -63,16 +63,19 @@ export const mutations = {
 export const actions = {
   search ( { commit, state }, payload ) {
     const sites = [ 'bachecubano','revolico','porlalivre','timbirichi','1cuc','merolico' ];
-    let { q, pmin=1, pmax, p = 1, province='' } = payload
+    let { q, pmin = 1, pmax, p = 1, province='' } = payload
     let counter = 0
 
-    if ( p === 1) commit('clear')
+    if ( p === 1) {
+      commit('clear')
+    }
     pmin = pmin || 1;
 
     sites.forEach( site => {
+      commit( 'startSearching', site )
+
       let url = `/.netlify/functions/${site}?q=${q}&pmin=${pmin}&pmax=${pmax}&p=${p}&province=${province}`
 
-      commit( 'startSearching', site )
 
       fetch(url)
         .then( response => response.json() )

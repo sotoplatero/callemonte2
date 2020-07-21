@@ -25,6 +25,7 @@
     "node-fetch": "^2.6.0",
     "nuxt": "^2.12.2",
     "req-fast": "^0.2.19",
+    "store": "^2.0.12",
     "string_score": "^0.1.22",
     "sugar": "^2.0.6",
     "vue-social-sharing": "^2.4.7"

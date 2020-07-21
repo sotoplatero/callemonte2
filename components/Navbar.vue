@@ -1,7 +1,7 @@
 <template>
   <div class="z-50 ">
       <nav class="fixed w-full top-0 py-2 bg-gray-100 dark:bg-gray-900  shadow z-50"> 
-        <div class="px-2 w-full max-w-screen-lg sm:w-1/2 mx-auto ">
+        <div class="px-2 w-full max-w-3xl mx-auto ">
           <div class="w-full ">
               <div class="">
             <div class="relative flex flex-row justify-between h-16 text-xl">
