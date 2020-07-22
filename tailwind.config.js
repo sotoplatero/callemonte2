@@ -6,7 +6,6 @@
 */
 module.exports = {
   theme: {
-    darkSelector: '.dark-mode',
     extend: {
       spacing: {
         '1/2': '50%',
@@ -41,6 +40,7 @@ module.exports = {
         // => @media (prefers-color-scheme: dark) { ... }
       }
     }    
+    darkSelector: '.dark-mode',
   },
   variants: {
     backgroundColor: ['dark', 'dark-hover', 'dark-group-hover', 'dark-even', 'dark-odd'],
@@ -52,7 +52,9 @@ module.exports = {
   ],
   purge: {
     // Learn more on https://tailwindcss.com/docs/controlling-file-size/#removing-unused-css
-    whitelist: ['dark-mode'],
+    options: {
+      whitelist: ['dark-mode'],
+    },
     enabled: process.env.NODE_ENV === 'production',
     content: [
       'components/**/*.vue',
