@@ -39,7 +39,7 @@ module.exports = {
         // 'dark': {'raw': '(prefers-color-scheme: dark)'},
         // => @media (prefers-color-scheme: dark) { ... }
       }
-    }    
+    },   
     darkSelector: '.dark-mode',
   },
   variants: {
