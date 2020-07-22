@@ -1,6 +1,6 @@
 <template>
 <footer >
-  <div class="w-full sm:w-1/2 mx-auto text-center font-semibold py-10" >
+  <div class="w-full sm:w-1/2 mx-auto text-center font-semibold py-6" >
     <div class="space-x-4">
       <nuxt-link to="/" class=" ">
         <span>Inicio</span>
