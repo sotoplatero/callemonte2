@@ -1,5 +1,6 @@
 export const state = () => ({
   items: [],
+  show: false,
 })
 
 export const mutations = {
@@ -9,21 +10,26 @@ export const mutations = {
   },
 
   remove( state, product ) { 
-    const index = state.updating.indexOf(product);
+    const index = state.items.map( el => el.url ).indexOf(product.url);
     state.items.splice(index, 1);    
   },
 
   clear(state) { 
     state.items = [] 
   },
+
+  toggleShow( state, value ) {
+    state.show = !state.show 
+  },  
+
 }
 
 export const actions = {
   toggle ( { commit, state }, product ) {
     let favorites = state.items;
 
-    if ( favorites.find(el=>el===this.product) ) {
-      const index = favorites.indexOf(this.product);
+    if ( favorites.find(el=>el.url===product.url) ) {
+      const index = favorites.indexOf(product.url);
       commit('remove',product);
     } else {
       commit('add',product);

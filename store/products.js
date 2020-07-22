@@ -106,10 +106,6 @@ export const actions = {
 
     })
 
-    axios.all(promises).then( () => {
-      commit('setSearching',false)
-    });
-
   },
 
   async update( {commit, state}, product ) {

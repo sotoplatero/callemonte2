@@ -1,14 +1,16 @@
 <template>
     <div class="pt-10">
+
           <div class="text-center mb-6">
             <img src="/logo.png" class="w-16 mx-auto">
             <h2 class="text-3xl font-bold">CALLEMONTE</h2>
             <h4 class="text-xl">Contacto</h4>
-          </div>         
+          </div>   
+
           <div class="p-10 bg-white dark:bg-gray-800 shadow rounded-lg">
-            <div class="card-body">
               
             <p class="lead">Escríbeme si tienes alguna sugerencia, si encuentras algún error o solo para felicitarme por esta herramienta que el reconocimiento también me gusta. Te responderé en la mayor brevedad posible. </p>
+
             <form name="contact0" method="POST" action="/success" netlify-honeypot="bot-field" data-netlify="true" class="space-y-4">
               <p class="hidden">
                 <label>Don’t fill this out if you're human: <input name="bot-field" /></label>
@@ -36,27 +38,7 @@
               </div>
               
             </form>
-            </div>
-
-            <div class="form-group">
-              <label class="label">Mensaje</label>
-              <textarea
-                class="form-control"
-                name="message"
-                rows="5"
-                v-model="msg"
-                required
-              ></textarea>
-            </div>
-
-            <div class="control">
-              <button class="btn btn-success">Enviar &rarr;</button>
-            </div>
-          </form>
-
-        </div>
-
-      </div>
+          </div>
     </div>
 </template>
 
@@ -71,4 +53,5 @@ export default {
       errors: []
     }
   }
+};
 </script>

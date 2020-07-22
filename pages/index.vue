@@ -1,5 +1,4 @@
 <template>
-<<<<<<< HEAD
   <section class="flex items-center h-screen m-0 bg-white dark:bg-gray-900 dark:text-gray-100">
       <div class="w-full text-center">
           <div class="w-full md:w-1/2 mx-auto">
@@ -34,45 +33,6 @@
           </div>
           <Footbar />               
             
-=======
-  <section class="vertical-center m-0 bg-white">
-    <div class="container ">
-      <div class="row justify-content-center text-center">
-        <div class="col-md-6">
-          <div class="d-flex justify-content-center align-items-center">
-              <span>
-                <img src="/logo.png" width="40">
-              </span>
-            <h2 class="ml-2">CALLEMONTE</h2>
-          </div>
-          <h4 class="mb-5 mt-2">Buscador de clasificados en Cuba</h4>
-
-          <div class="input-group mb-3">
-            <!-- <input type="text" class="form-control" placeholder="Recipient's username" aria-label="Recipient's username" aria-describedby="button-addon2"> -->
-            <input
-              autofocus
-              class="form-control form-control-lg"
-              type="text"
-              placeholder="¿Que quieres comprar?"
-              name="input"
-              v-model="input"
-              @keyup.enter="search">
-            <div class="input-group-append">
-              <button class="btn btn-success" type="button" @click="search">
-                <SearchIcon></SearchIcon>
-              </button>
-            </div>
-          </div>
-
-          <div class="form-group">
-            <a href="https://notificon.com" class="btn btn-link text-dark" target="_blank"><b>Alertas</b></a>
-            <nuxt-link to="/about" class="btn btn-link text-secondary">Nosotros</nuxt-link>
-            <nuxt-link to="/contact" class="btn btn-link text-secondary">Contacto</nuxt-link>
-            <a href="https://medium.com/callemonte" target="_blank" class="btn btn-link text-secondary">Blog</a>
-          </div>
-
-        </div>
->>>>>>> 0e1ef1c95341fac1490ad0979aa30c864590b9d6
       </div>
 
     </div>
@@ -80,28 +40,10 @@
 </template>
 
 <script>
-<<<<<<< HEAD
 import Footbar from '~/components/Footbar';
-export default {
-  components: { Footbar },
-  layout: 'home',
-  data(){
-    return {
-      input: ''
-    }
-  },  
-  methods: {
-    search() {
-      let reMaxPrice = /<\s*(\d+)/;
-      let reMinPrice = />\s*(\d+)/;
-      let input = this.input;
-=======
-  import {SearchIcon} from 'vue-feather-icons'
->>>>>>> 0e1ef1c95341fac1490ad0979aa30c864590b9d6
-
   export default {
+    components: { Footbar },
     layout: 'home',
-    components: {SearchIcon},
     data() {
       return {
         input: ''

@@ -16,7 +16,7 @@ export default {
       class: 'bg-gray-100 text-gray-900 dark:bg-gray-900 dark:text-gray-100',
     },
     bodyAttrs: {
-      class:  'pt-20 bg-gray-100 text-gray-900 dark:bg-gray-900 dark:text-gray-100'
+      class:  'bg-gray-100 text-gray-900 dark:bg-gray-900 dark:text-gray-100'
     } ,
     meta: [
       { charset: 'utf-8' },

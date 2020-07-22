@@ -1,5 +1,6 @@
 ¸<template>
   <div class="py-10">
+
         <div class="text-center">
             <img src="/logo.png" class="w-16 mx-auto">
             <h2 class="text-3xl font-bold">CALLEMONTE</h2>
@@ -23,7 +24,6 @@
               <h3 class="font-bold">Rápido.</h3> 
               <p class="lead text-justify">Pensado para que sea rápido solo se centra en encontrar lo que quieres comprar.</p>
           </div>
-        </div>
 
           <div class="p-10 bg-white dark:bg-gray-800 shadow rounded-lg">
             <h3 class="font-bold">Limpia el texto.</h3> 
@@ -34,7 +34,6 @@
             <h3 class="font-bold">Anuncios con precio.</h3>
             <p class="lead text-justify"> Callemonte es un buscador de productos y todo producto a la venta debe tener un precio.</p>
           </div>
-        </div>
 
           <div class="p-10 bg-white dark:bg-gray-800 shadow rounded-lg">
             <h3 class="font-bold">Sin Duplicados</h3>
@@ -45,9 +44,6 @@
             <h3 class="font-bold">Sin publicidad.</h3>
             <p class="lead text-justify">No se muestra ninguna publicidad, solo los anuncios de su interés.</p>
           </div>
-        </div>
-
-      </div>
 
           <div class="p-10 bg-white dark:bg-gray-800 shadow rounded-lg">
             <h3 class="font-bold"><a href="https://github.com/sotoplatero/callemonte" target="_blank" >Código abierto</a></h3>
