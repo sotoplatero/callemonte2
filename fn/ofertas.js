@@ -22,7 +22,7 @@ exports.handler =  async (event, context, callback) => {
             // console.log(ads)
 
             ads.forEach( el => {
-                console.log(el)
+                console.log(el.text)
             })
 
             // let data = $('.listing.list-mode a').map( (i,el) => {
