@@ -4,7 +4,7 @@ const moment = require('moment')
 
 exports.handler =  async (event, context, callback) => {
     var { q, p = 1, pmin = 1, pmax = '', province = '' } = event.queryStringParameters;
-    let re = /casa|apartamento/i
+    let re = /casa|apartamento|apto/i
     let data = []
 
     if ( re.test(q) ) {
@@ -24,7 +24,7 @@ exports.handler =  async (event, context, callback) => {
                 description: el.shortDescription,
                 location: el.location,
                 url: el.url,
-                date: el.created_at
+                date: moment(el.created_at)
             }
         })
     }

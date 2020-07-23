@@ -67,7 +67,7 @@ export const mutations = {
 
 export const actions = {
   search ( { commit, state }, payload ) {
-    const sites = [ 'bachecubano','revolico','porlalivre','timbirichi','1cuc','merolico' ];
+    const sites = [ 'bachecubano','revolico','porlalivre','timbirichi','1cuc','merolico','hogarencuba' ];
     let { q, pmin = 1, pmax, p = 1, province='' } = payload
     let reQ = new RegExp(q.trim().replace(/\s+/g,'|'), "ig") 
     if ( p === 1) {
