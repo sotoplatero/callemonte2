@@ -1,6 +1,8 @@
 # Callemonte
 
-![Cuban podcasts](static/homepage.png)
+![Callemonte](static/homepage.png)
+
+Callemonte es un meta buscador de clasificados en los sitios dedicados a publicarlos para Cuba. Esta desarrollado con Nuxt y TailwindCSS y utiliza las funciones de netlify para el back.
 
 ## Build Setup
 
@@ -8,15 +10,12 @@
 # install dependencies
 $ npm install
 
-# serve with hot reload at localhost:3000
-$ npm run dev
+# install Ntelify Dev
+$ npm install
 
-# build for production and launch server
-$ npm run build
-$ npm start
-
-# generate static project
-$ npm run generate
+# serve with hot reload at localhost:8888
+$ netlify dev
 ```
+Con esto debe ser suficiente para correr callemonte localmente. 
 
-For detailed explanation on how things work, checkout [Nuxt.js docs](https://nuxtjs.org).
+Callemonte está pensado para todos los cubanos así que cualquiera puede mejorarlo solo envia un PR.
