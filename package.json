@@ -13,13 +13,13 @@
     "now-build": "nuxt build --spa --no-lock"
   },
   "dependencies": {
+    "@nuxtjs/color-mode": "^1.0.0",
     "@nuxtjs/pwa": "^3.0.0-beta.20",
     "@nuxtjs/tailwindcss": "^2.0.0",
-    "@nuxtjs/color-mode": "^1.0.0",
-    "tailwindcss-dark-mode": "^1.1.5",
     "cheerio": "^1.0.0-rc.3",
     "cross-env": "^5.2.1",
     "encoding": "^0.1.12",
+    "flexsearch": "^0.6.32",
     "moment": "^2.24.0",
     "netlify-cli": "^2.58.0",
     "netlify-lambda": "^1.5.1",
@@ -29,6 +29,7 @@
     "store": "^2.0.12",
     "string_score": "^0.1.22",
     "sugar": "^2.0.6",
+    "tailwindcss-dark-mode": "^1.1.5",
     "vuex-persistedstate": "^3.0.1"
   },
   "devDependencies": {
