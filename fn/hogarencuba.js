@@ -25,11 +25,9 @@ exports.handler =  async (event, context, callback) => {
             )
             .forEach( el => index.add(el.id, el.description) )
 
-        let result = index.search(q, {
-            limit: 100,
-        });
+        let result = index.search(q, { limit: 100 });
 
-        data =  data
+        data = data
             .filter( el => result.includes(el.id))
             .map( el => ({
                     title: el.title,
@@ -41,7 +39,6 @@ exports.handler =  async (event, context, callback) => {
                     date: moment(el.created_at)
                 })
             )
-        console.log(data)
     }
 
 

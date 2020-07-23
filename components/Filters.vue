@@ -18,7 +18,7 @@
 			<div class="form-group">
 				<label class="mb-2 block font-semibold">Provincia</label>
 				<div class="block relative w-full">
-				  <select class="block appearance-none w-full bg-white dark:bg-gray-600 border border-gray-600 px-4 py-2 pr-8 rounded  leading-tight focus:outline-none focus:shadow-outline">
+				  <select class="block appearance-none w-full bg-white dark:bg-gray-600 border border-gray-600 px-4 py-2 pr-8 rounded  leading-tight focus:outline-none focus:shadow-outline" v-model="filters.province">
 	            	<option v-for="[key,name] in Object.entries(provinces)" :value="key">{{name}}</option>
 				  </select>
 				  <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
