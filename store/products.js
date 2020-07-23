@@ -69,8 +69,7 @@ export const actions = {
   search ( { commit, state }, payload ) {
     const sites = [ 'bachecubano','revolico','porlalivre','timbirichi','1cuc','merolico' ];
     let { q, pmin = 1, pmax, p = 1, province='' } = payload
-    let counter = 0
-
+    let reQ = new RegExp(q.trim().replace(/\s+/g,'|'), "ig") 
     if ( p === 1) {
       commit('clear')
     }
@@ -87,7 +86,7 @@ export const actions = {
         .then( response => { 
           let products = response.forEach( async (el,index) => { 
             // htmlTitle: el.title.replace( q, "<mark>$&</mark>" ),
-            el.htmlTitle = el.title
+            el.htmlTitle = el.title.replace( reQ, "<mark>$&</mark>" )
             el.score = el.title.toLowerCase().score( q.toLowerCase() )
             el.hide = false
             el.favorite = false
