@@ -17,9 +17,9 @@ exports.handler =  async (event, context, callback) => {
     if ( re.test(q) ) {
 
         let type = q.match(re)[0];
-        // const response = await fetch(`https://www.hogarencuba.com/api.json`);
-        // const json = await response.json();
-        var json = JSON.parse(fs.readFileSync(__dirname +'/libs/api.json', 'utf8'));
+        const response = await fetch(`https://www.hogarencuba.com/api.json`);
+        var json = await response.json();
+        // var json = JSON.parse(fs.readFileSync(__dirname +'/libs/api.json', 'utf8'));
         data = json.filter( el => 
                 (el.price >= pmin) && 
                 (el.price <= pmax) &&
