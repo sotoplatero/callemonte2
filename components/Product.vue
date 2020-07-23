@@ -2,7 +2,7 @@
     <li 
         class="relative product font-semibold bg-white dark:bg-gray-800 dark:text-gray-100 rounded-lg overflow-hidden shadow"  
          >
-        <div class="relative pb-2/3" v-if="product.photo">
+        <div class="relative pb-2/3" v-if="product.updated && product.photo">
           <img 
               class="absolute h-full w-full object-cover" 
               :src="product.photo" 
@@ -147,7 +147,11 @@ export default {
     },
     methods: {
         show(){
-            this.$store.dispatch('products/update',this.product) 
+            if (!this.product.photo && !this.product.phones) {
+                this.$store.dispatch('products/update',this.product) 
+            } else {
+                this.$store.commit('products/update', this.product)
+            }
         },
         toggleFavorite() {
             this.$store.dispatch('products/update',this.product)

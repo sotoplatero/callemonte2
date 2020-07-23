@@ -1,7 +1,6 @@
 <template>
   <div>
-    <div v-if="productsCount > 0" class="content-result">
-
+    <div v-if="filteredProducts.length > 0" class="content-result">
         <div class="d-flex tool my-3 align-items-center ">
             <span >{{ filteredProducts.length }} Resultados</span>
         </div>
@@ -44,7 +43,6 @@
 <script>
 import Product from '~/components/Product'; 
 import { mapActions } from 'vuex'
-import { mapGetters } from 'vuex'
 
 export default {
   components: { Product },
@@ -55,41 +53,36 @@ export default {
             }, 
         }    
     },
-  fetch() {
-    this.$nuxt.context.store.dispatch( 'products/search', this.$nuxt.context.query );
-  },  
-
-  data(){
-    return {
-      p: 1,
-    }
-  },
-  created(){
-    this.searchProducts( this.$route.query );
-  },
-  watch: {
-    '$route.query': '$fetch'
-  },  
-  computed: {
-    ...mapGetters({ productsCount: 'products/productsCount' }),
-    ...mapGetters({ hidesCount: 'products/hidesCount' }),
-    filteredProducts(){
-      return this.$store.state.favorites.show ? 
-            this.$store.state.favorites.items :
-            this.$store.state.products.items
-            .filter( el => !el.hide )
-            .sort( (a,b) => b.score - a.score || a.price - b.price )      
+    watchQuery(newQuery, oldQuery){
+      this.searchProducts( newQuery );
     },
-    searching() {
-        return  (this.$store.state.products.searching.length > 0)
+    created() {
+      this.searchProducts( this.$nuxt.context.query );
+    },  
+    data(){
+      return {
+        p: 1,
+      }
+    },
+    computed: {
+      filteredProducts(){
+        let products = [...this.$store.state.products.items]
+        console.log(products.length)
+        return this.$store.state.favorites.show ? 
+                this.$store.state.favorites.items :
+                  products.sort( (a,b) => b.score - a.score || a.price - b.price )      
+      },
+      searching() {
+          return  (this.$store.state.products.searching.length > 0)
+      }
+    },
+
+    methods: {
+      ...mapActions({ searchProducts: 'products/search' }),  
+      next() {
+        this.p ++;
+        this.searchProducts({ ...this.$route.query, p: this.p })
+      }, 
     }
-  },
-  methods: {
-    ...mapActions({ searchProducts: 'products/search' }),  
-    next() {
-      this.p ++;
-      this.searchProducts( {...this.$route.query, p: this.p} )
-    }, 
   }
-}
 </script>

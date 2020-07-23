@@ -3,6 +3,6 @@ import createPersistedState from 'vuex-persistedstate'
 
 export default ({store}) => {
   createPersistedState({
-    paths: ['favorites']
+    paths: ['favorites', 'query']
   })(store)
 }

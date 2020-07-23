@@ -21,7 +21,6 @@
     "encoding": "^0.1.12",
     "flexsearch": "^0.6.32",
     "moment": "^2.24.0",
-    "netlify-cli": "^2.58.0",
     "netlify-lambda": "^1.5.1",
     "node-fetch": "^2.6.0",
     "nuxt": "^2.12.2",

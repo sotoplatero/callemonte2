@@ -78,9 +78,7 @@ export default {
         })
       }
     },
-    close(ref) {
-      this.$refs[ref].hide();
-    }           
+        
   }    
 };
 </script>

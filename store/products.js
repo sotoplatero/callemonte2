@@ -14,28 +14,16 @@ export const mutations = {
   add( state, payload ){
     let product = { 
       ...payload, 
-      hide: false,
-      favorite: false,
     }
     state.items.push( product )
   },
 
-  update(state, payload) {
-    let product = {
-        ...state.items[payload.index], 
-        ...payload.product, 
-        updated: true 
-      }
-    state.items.splice(payload.index, 1, product)
-    // Vue.set(state.items, payload.index, product )
-  },
+  update(state, product) {
+    const index = [...state.items].map( el => el.url ).indexOf(product.url);
 
-  toggleHide( state, product ) { 
-    product.hide = !product.hide 
-  },  
-
-  toggleFavorite( state, product ) {
-    product.favorite = !product.favorite 
+    let productUpdated = { ...product, updated: true }
+    console.log(index)
+    state.items.splice(index, 1, productUpdated)
   },
 
   startUpdating( state, value ) { 
@@ -70,9 +58,11 @@ export const actions = {
     const sites = [ 'bachecubano','revolico','porlalivre','timbirichi','1cuc','merolico','hogarencuba' ];
     let { q, pmin = 1, pmax, p = 1, province='' } = payload
     let reQ = new RegExp(q.trim().replace(/\s+/g,'|'), "ig") 
-    if ( p === 1) {
+
+    if ( p == 1) {
       commit('clear')
     }
+
     pmin = pmin || 1;
 
     sites.forEach( site => {
@@ -81,15 +71,11 @@ export const actions = {
       let url = `/.netlify/functions/${site}?q=${q}&pmin=${pmin}&pmax=${pmax}&p=${p}&province=${province}`
 
 
-      fetch(url)
-        .then( response => response.json() )
+      fetch(url).then( res => res.json() )
         .then( response => { 
-          let products = response.forEach( async (el,index) => { 
-            // htmlTitle: el.title.replace( q, "<mark>$&</mark>" ),
+          response.forEach( async (el,index) => { 
             el.htmlTitle = el.title.replace( reQ, "<mark>$&</mark>" )
             el.score = el.title.toLowerCase().score( q.toLowerCase() )
-            el.hide = false
-            el.favorite = false
             el.site = site
 
             if (!state.items.some( i => (i.site+i.price+i.title) === (el.site+el.price+el.title) )) {
@@ -111,21 +97,14 @@ export const actions = {
     if (!product.updated) {
       let url = `/.netlify/functions/details?url=${product.url}`
 
-      let indexOfProduct = state.items
-          .map( (_, i) => i )
-          .find( e => state.items[e].url == product.url )
-
       commit( 'startUpdating', product.url )
 
       try {
         let response = await fetch(url).then( res => res.json() );
-
-        commit('update', {
-          index: indexOfProduct,
-          product: { ...product, ...response } 
-        });
+        commit('update', {...product, ...response} );
       }
       catch(err) {}
+
       commit( 'stopUpdating', product.url );
 
     }
