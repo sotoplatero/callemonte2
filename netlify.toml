@@ -4,4 +4,4 @@
 [build]
 	functions = "fn"
 	publish = "dist"
-	command = "npm run generate"
+	command = "nuxt build && nuxt export"
