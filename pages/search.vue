@@ -69,7 +69,7 @@ export default {
         let products = [...this.$store.state.products.items]
         return this.$store.state.favorites.show ? 
                 this.$store.state.favorites.items :
-                  products      
+                  products.sort( (a,b) => (b.score - a.score || a.price - b.price) )      
       },
       searching() {
           return  (this.$store.state.products.searching.length > 0)

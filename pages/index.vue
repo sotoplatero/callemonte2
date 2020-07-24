@@ -6,9 +6,13 @@
             <img src="/logo.png" class="w-12 mx-auto">
             <h2 class="text-3xl font-bold">CALLEMONTE</h2>
             <h4 class="text-lg md:text-xl">Ecuentra lo que quieres comprar</h4>
+
+            <form action="/search" ref="formSearch">
             <div class="px-2">
-              <div class="relative flex flex-row justify-between h-16 text-xl w-full md:w-3/4 mx-auto my-6">
-                  <div class="-mx-2 pl-4 pr-2 flex flex-row items-center rounded-l-lg focus:outline-none z-10 pointer-events-none">
+              <div class="relative flex flex-row justify-between h-16 text-xl w-full md:w-3/4 mx-auto my-6" 
+              >
+                  <div class="-mx-2 pl-4 pr-2 flex flex-row items-center rounded-l-lg focus:outline-none z-10 pointer-events-none" 
+                  >
                       <div class="px-2">
                           <svg fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor" class="w-6 h-6 text-gray-400 dark:text-gray-600 transition duration-150"><path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
                           </svg>
@@ -18,19 +22,23 @@
                       <div class="h-full rounded-lg dark:shadow-md transition duration-150">
                           <input 
                               type="text" 
+                              id="q"
+                              name="q"
                               class="w-full h-full text-gray-800 dark:text-gray-200 bg-white dark:bg-gray-800 rounded-lg focus:outline-none shadow focus:shadow-outline transition duration-150" 
                               style="padding: 0px 2px 0px 3rem" 
                               placeholder="¿Qué quieres comprar?" 
-                              autofocus                  
+                              autofocus   
+                              autocomplete="off"               
                               v-model="input"
                               @keypress.enter.prevent="search" >
                       </div>
                   </div>
 
               </div>
-                   
+                <div class="text-red-500 font-semibold h-4">{{error}}</div> 
               
             </div>
+            </form>
             
           </div>
           <Footbar />               
@@ -48,22 +56,24 @@ import Footbar from '~/components/Footbar';
     layout: 'home',
     data() {
       return {
-        input: ''
+        input: '',
+        error: '',
+      }
+    },
+    watch:{
+      input(){ 
+        if (this.input.trim().length>0 ) {
+          this.error = ''
+        }
       }
     },
     methods: {
       search() {
-        let reMaxPrice = /<\s*(\d+)/;
-        let reMinPrice = />\s*(\d+)/;
-        let input = this.input;
-
-        let pmax = reMaxPrice.test(input) ? input.match(reMaxPrice)[1] : '';
-        let pmin = reMinPrice.test(input) ? input.match(reMinPrice)[1] : '';
-        let q = input.replace(reMinPrice, '').replace(reMaxPrice, '').trim();
-
-        if (this.input.length > 0) {
-          this.$router.push({path: '/search', query: {q: q, pmin: pmin, pmax: pmax}});
+        if ( this.input.trim() === '') {
+          this.error = "Escriba que esta buscando."
+          return false; 
         }
+        this.$refs.formSearch.submit()
       }
     }
   }

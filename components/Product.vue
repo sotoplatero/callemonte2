@@ -10,7 +10,7 @@
               >
         </div>
 
-        <div class="p-5 md:p-6 ">
+        <div class="p-4 md:p-6 ">
             <div class="mr-auto">
               <button 
                   :disabled = "product.updated"
@@ -23,19 +23,12 @@
                         class="mr-3 h-8 w-8 rounded">
 
                     <div>
-                        <div class="font-bold mr-2 leading-none">
-
-                            <span>
-                                <!-- <span class="text-gray-600 font-normal">$</span> -->
-                                $ {{ product.price }}
+                        <div class="leading-none font-bold mr-2 whitespace-no-wrap truncate">
+                            <span class="mr-auto">$ {{ product.price }}</span>
+                            <span class="flex text-gray-600 text-xs uppercase font-semibold tracking-wider inline-block w-full">
+                              <span v-if="product.location" > {{ product.location }}</span>
+                                <span v-if="product.date" ><span>&bull;</span>{{ product.date }}</span>
                             </span>
-
-                            <span class="ml-2 text-gray-600 text-xs uppercase font-semibold tracking-wide space-x-2">
-                              <span v-if="product.location">{{ product.location }}</span>
-                              <span v-if="product.date">{{ product.date }}</span>
-                            </span>
-
-
                         </div>
 
                         <h2 
@@ -52,9 +45,9 @@
                 </p>
                 
               </button>
-              <div  v-if="product.phones" class="mt-4">
-                    <svg class="h-6 w-6 inline mr-4" fill="currentColor" viewBox="0 0 20 20"><path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"></path></svg>                                       
-                  <a :href="'tel:'+phone" v-for="phone in product.phones" class="inline-block mr-2">
+              <div  v-if="product.phones" class="space-x-2 mt-2">
+                  <a :href="'tel:'+phone" v-for="phone in product.phones" class="inline-block py-1 px-4 rounded-full bg-blue-100 dark:bg-gray-700 text-blue-600">
+                    <svg class="h-4 w-4 inline" fill="currentColor" viewBox="0 0 20 20"><path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"></path></svg>                                       
                     {{phone}}
                   </a>
               </div>
@@ -62,21 +55,7 @@
 
             
         </div>      
-        <div class="grid grid-cols-3 justify-around text-sm text-center pb-6 pt-2 text-gray-600">
-
- <!--            <button 
-                v-on:click="show"
-                :disabled = "product.updated"
-                :class="product.updated ? 'pointer-events-none text-gray-400 dark:text-gray-700' : ''"
-                class = "w-1/4 text-center uppercase font-bold text-sm disabled:pointer-events-auto">
-
-                <svg class="h-6 w-6 inline" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor"><path d="M8 4H6a2 2 0 00-2 2v12a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-2m-4-1v8m0 0l3-3m-3 3L9 8m-5 5h2.586a1 1 0 01.707.293l2.414 2.414a1 1 0 00.707.293h3.172a1 1 0 00.707-.293l2.414-2.414a1 1 0 01.707-.293H20"></path></svg>             
-                
-                <span class="hidden md:inline inline-block  align-middle">
-                    Detalles
-                </span>
-
-            </button> -->
+        <div class="grid grid-cols-3 justify-around text-sm text-center pb-6 text-gray-600">
 
             <a 
                 :href="product.url" 
@@ -105,9 +84,10 @@
                 
             </button>
 
-            <button 
+            <a 
                 v-if="product.phones"
-                class="text-center disabled:text-gray-600 uppercase font-bold text-sm">
+                :href="'tel:'+product.phones[0]"
+                class="text-center disabled:text-gray-600 uppercase font-bold text-sm ">
 
                 <svg class="h-6 w-6 inline"  fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor"><path d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg>
 
@@ -115,7 +95,7 @@
                     Llamar
                 </span>
                 
-            </button>
+            </a>
             
         </div>   
         <div v-if="updating" class="absolute text-white flex items-center justify-center top-0 left-0 w-full h-full bg-gray-300 dark:bg-gray-800 dark:bg-opacity-75 z-100" style="background: rgba(0, 0, 0, 0.4) !important;">

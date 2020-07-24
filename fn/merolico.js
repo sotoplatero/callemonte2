@@ -41,14 +41,14 @@ exports.handler =  async (event, context, callback) => {
 
     let data = $('.adds-wrapper .item-list').map( (i,el) => { 
         let $el = $(el), 
-            $a = $el.find('h5.add-title a');
-
+            $a = $el.find('h5.add-title a'),
+            date = Sugar.Date.create($el.find('li.date').text().trim() );
         return {
             price: parseInt( $el.find('h2.item-price').text().replace(/\D/g,'') || 0 ),    
             title: cleaner( $a.text() ),
             url: $a.attr('href'),
             description: $el.find('.ads-details p').text().trim(),
-            date: Sugar.Date.create($el.find('li.date').text().trim() ),
+            date: Sugar.Date.format(date, '%b %e %R'),
             location: $el.find('.item-location').text().trim(),
             // photo: $el.find('[data-fancybox-href]').attr('data-fancybox-href') ,
             // phones: $a.attr('href').match(/\d{8}/g) ||

@@ -97,6 +97,12 @@ export default {
     '@nuxtjs/color-mode'
   ],    
 
+  colorMode: {
+    preference: 'system', // default value of $colorMode.preference
+    fallback: 'dark', // fallback value if not system preference found
+    componentName: 'ColorScheme',
+  },
+
   proxy: {
     // '/.netlify': 'http://localhost:9000' 
   }, 
