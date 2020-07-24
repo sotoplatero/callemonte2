@@ -9,7 +9,7 @@
     "build": "nuxt build",
     "start": "nuxt start",
     "start:lambda": "netlify-lambda serve fn",
-    "generate": "nuxt build && nuxt export",
+    "generate": "nuxt generate",
     "now-build": "nuxt build --spa --no-lock"
   },
   "dependencies": {

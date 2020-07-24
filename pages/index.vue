@@ -35,7 +35,7 @@
                   </div>
 
               </div>
-                <div class="text-red-500 font-semibold h-4">{{error}}</div> 
+                <div class="h-4"><span class="text-red-500 font-semibold ">{{error}}</span></div> 
               
             </div>
             </form>
