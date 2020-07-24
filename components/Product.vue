@@ -13,7 +13,8 @@
         <div class="p-5 md:p-6 ">
             <div class="mr-auto">
               <button 
-                  class="text-left w-full" 
+                  :disabled = "product.updated"
+                  class="text-left w-full disabled:pointer-events-none" 
                   v-on:click.prevent="show">
                 <div class="flex">
                     
@@ -61,13 +62,13 @@
 
             
         </div>      
-        <div class="flex justify-around text-sm text-center pb-6 pt-2 text-gray-600">
+        <div class="grid grid-cols-3 justify-around text-sm text-center pb-6 pt-2 text-gray-600">
 
-            <button 
+ <!--            <button 
                 v-on:click="show"
                 :disabled = "product.updated"
                 :class="product.updated ? 'pointer-events-none text-gray-400 dark:text-gray-700' : ''"
-                class = "w-1/4 text-center uppercase font-bold text-sm">
+                class = "w-1/4 text-center uppercase font-bold text-sm disabled:pointer-events-auto">
 
                 <svg class="h-6 w-6 inline" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor"><path d="M8 4H6a2 2 0 00-2 2v12a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-2m-4-1v8m0 0l3-3m-3 3L9 8m-5 5h2.586a1 1 0 01.707.293l2.414 2.414a1 1 0 00.707.293h3.172a1 1 0 00.707-.293l2.414-2.414a1 1 0 01.707-.293H20"></path></svg>             
                 
@@ -75,11 +76,11 @@
                     Detalles
                 </span>
 
-            </button>
+            </button> -->
 
             <a 
                 :href="product.url" 
-                class="w-1/4 text-center uppercase font-bold text-sm" 
+                class="text-center uppercase font-bold text-sm" 
                 target="_blank" 
                 rel="noreferer nofollow">
 
@@ -92,7 +93,7 @@
             </a>   
 
             <button 
-                class="w-1/4 text-center uppercase font-bold text-sm"
+                class="text-center uppercase font-bold text-sm"
                 :class="isFavorite ? 'text-yellow-500' : '' "
                 v-on:click="toggleFavorite"
             >   
@@ -105,9 +106,8 @@
             </button>
 
             <button 
-                disabled="product.phones"
-                :class="!product.phones ? 'pointer-events-none dark:text-gray-700' : 'text-gray-400'"
-                class="w-1/4 text-center disabled:text-gray-600 uppercase font-bold text-sm">
+                v-if="product.phones"
+                class="text-center disabled:text-gray-600 uppercase font-bold text-sm">
 
                 <svg class="h-6 w-6 inline"  fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor"><path d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg>
 
@@ -118,7 +118,7 @@
             </button>
             
         </div>   
-        <div v-if="updating" class="absolute flex items-center justify-center top-0 left-0 w-full h-full bg-gray-300 dark:bg-gray-800 dark:bg-opacity-75 z-100" >
+        <div v-if="updating" class="absolute text-white flex items-center justify-center top-0 left-0 w-full h-full bg-gray-300 dark:bg-gray-800 dark:bg-opacity-75 z-100" style="background: rgba(0, 0, 0, 0.4) !important;">
             <span>Descargando...</span>
         </div>
     </li>
@@ -156,7 +156,14 @@ export default {
         toggleFavorite() {
             this.$store.dispatch('products/update',this.product)
             this.$store.dispatch('favorites/toggle',this.product) 
-        }
+        },
+        visibilityChanged (isVisible, entry) {
+          // this.isVisible = isVisible
+          if (isVisible && this.product.updated) {
+            this.show()
+          }
+          // console.log(isVisible)
+        }        
     }
 };
 </script> 

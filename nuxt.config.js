@@ -56,7 +56,8 @@ export default {
   ** Plugins to load before mounting the App
   */
   plugins: [
-    { src: '~/plugins/localStorage.js', ssr: false }
+    { src: '~/plugins/localStorage.js', ssr: false },
+    { src: '~/plugins/observeVisibility.js', ssr: false },
     // { src: '~/plugins/vue-gallery.js', ssr: false },
     // { src: '~/plugins/vue-social.js', ssr: false }
   ],

@@ -67,10 +67,9 @@ export default {
     computed: {
       filteredProducts(){
         let products = [...this.$store.state.products.items]
-        console.log(products.length)
         return this.$store.state.favorites.show ? 
                 this.$store.state.favorites.items :
-                  products.sort( (a,b) => b.score - a.score || a.price - b.price )      
+                  products      
       },
       searching() {
           return  (this.$store.state.products.searching.length > 0)

@@ -29,6 +29,7 @@
     "string_score": "^0.1.22",
     "sugar": "^2.0.6",
     "tailwindcss-dark-mode": "^1.1.5",
+    "vue-observe-visibility": "^0.4.6",
     "vuex-persistedstate": "^3.0.1"
   },
   "devDependencies": {
