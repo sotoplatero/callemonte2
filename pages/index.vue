@@ -62,7 +62,7 @@ import Footbar from '~/components/Footbar';
     },
     watch:{
       input(){ 
-        if (this.input.trim().length>0 ) {
+        if (this.input.trim().length > 0 ) {
           this.error = ''
         }
       }
