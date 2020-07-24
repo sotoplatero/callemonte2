@@ -61,7 +61,7 @@ exports.handler =  async (event, context, callback) => {
             let phones = $('[href^="tel:"]').first().text().replace(/\D/g,'').match( /\d{8}/g );
 
             data =  {
-                photo: !photos ? $('.img-fluid').first().attr('src') : photo,
+                photo: !photo ? $('.img-fluid').first().attr('src') : photo,
                 phones: !phones ? $('#content').text().replace(/\W/g,'').match( /\d{8}/g ) : phones,
                 date: Sugar.Date.format( date, '%b %e %R' ),
                 description: $('#content').text().substring(0,250),

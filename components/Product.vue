@@ -16,18 +16,20 @@
                   :disabled = "product.updated"
                   class="text-left w-full disabled:pointer-events-none" 
                   v-on:click.prevent="show">
-                <div class="flex">
+                <div class="flex w-full">
                     
                     <img 
                         :src="'/fav/'+product.site+'.png'" 
                         class="mr-3 h-8 w-8 rounded">
 
-                    <div>
-                        <div class="leading-none font-bold mr-2 whitespace-no-wrap truncate">
-                            <span class="mr-auto">$ {{ product.price }}</span>
-                            <span class="flex text-gray-600 text-xs uppercase font-semibold tracking-wider inline-block w-full">
-                              <span v-if="product.location" > {{ product.location }}</span>
-                                <span v-if="product.date" ><span>&bull;</span>{{ product.date }}</span>
+                    <div class="w-full">
+                        <div class="leading-none font-bold mr-2 whitespace-no-wrap w-full">
+                            <span class="mr-2">$ {{ product.price }}</span>
+                            <span v-if="product.location" class="font-normal text-gray-500 min-w-0" style="min-width: 0px;">
+                                {{ product.location }}
+                            </span>
+                            <span class="font-normal text-gray-500 min-w-0" >
+                                <span v-if="product.date" ><span class="text-sm">&bull;</span> {{ product.date }}</span>
                             </span>
                         </div>
 
@@ -59,7 +61,7 @@
 
             <a 
                 :href="product.url" 
-                class="text-center uppercase font-bold text-sm" 
+                class="text-center uppercase font-bold text-sm visited:text-purple-600" 
                 target="_blank" 
                 rel="noreferer nofollow">
 
