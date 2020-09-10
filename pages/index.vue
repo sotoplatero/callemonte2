@@ -62,15 +62,15 @@ import Footbar from '~/components/Footbar';
     },
     watch:{
       input(){ 
-        if (this.input.trim().length > 0 ) {
+        if (this.input.trim().length >= 3 ) {
           this.error = ''
         }
       }
     },
     methods: {
       search() {
-        if ( this.input.trim() === '') {
-          this.error = "Escriba que esta buscando."
+        if ( this.input.trim().length < 3) {
+          this.error = "Escriba que quiere buscar, 3 letras o más."
           return false; 
         }
         this.$refs.formSearch.submit()
