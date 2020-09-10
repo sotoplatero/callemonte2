@@ -53,8 +53,11 @@ export default {
             }, 
         }    
     },
+    // watchQuery: true,
     watchQuery(newQuery, oldQuery){
+      console.log(newQuery)
       this.searchProducts( newQuery );
+      return true
     },
     created() {
       this.searchProducts( this.$nuxt.context.query );

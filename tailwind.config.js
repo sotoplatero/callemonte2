@@ -48,7 +48,8 @@ module.exports = {
     textColor: ['dark', 'dark-hover', 'dark-active', 'dark-placeholder']    
   },
   plugins: [
-    require('tailwindcss-dark-mode')()  
+    require('tailwindcss-dark-mode')(),
+    require('@tailwindcss/ui'), 
   ],
   purge: {
     // Learn more on https://tailwindcss.com/docs/controlling-file-size/#removing-unused-css
