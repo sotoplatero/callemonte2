@@ -9,7 +9,7 @@
 				</div> 
 
 				<div class="w-1/2">
-					<label class="mb-2 block font-semibold">Precio Minimo</label>
+					<label class="mb-2 block font-semibold">Precio Máximo</label>
 					<input type="text" class="block appearance-none w-full bg-white  dark:bg-gray-600 border border-gray-600 px-4 py-2 pr-8 rounded  leading-tight focus:outline-none focus:shadow-outline" v-model="filters.pmax">
 				</div>   
 
