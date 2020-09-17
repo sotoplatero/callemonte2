@@ -21,6 +21,7 @@
 	let searching = 0;
 
 	let indexProducts = new FlexSearch({
+		profile: "score",
 	    stemmer: "es", 
 	    filter: "es" ,	
 	    doc: {
@@ -29,8 +30,8 @@
 	    }
 	});
 
-	
-	$: filteredProducts = indexProducts ? indexProducts.search(filters.q) : [];
+	let filteredProducts = [];
+	// $: filteredProducts = indexProducts.search(filters.q);
 
 	onMount(() => {
 		filters = { 
@@ -44,30 +45,32 @@
 	});
 
 	function handleSearch() {
-		history.pushState(filters, '', '?'+queryString.stringify(filters)) ;
+		history.pushState(filters, '', '?' + queryString.stringify(filters)) ;
+		// indexProducts = indexProducts.clear();
 		products = [];
 	    search();
 	}
-
+	
 	function search() {
 		if ( !filters.q || filters.q.length === 0) {
 			return;
 		} 
-
+		
 	    const sites = [ 'bachecubano','revolico','porlalivre','timbirichi','1cuc','merolico','hogarencuba' ];
-
+		
 	    searching = sites.length;
-
+		
 	    let { q, pmin, pmax, page, province } = filters;
-
+		
 	    sites.forEach( async site => {
-	        let url = `/api/${site}?q=${q}&pmin=${pmin}&pmax=${pmax}&p=${page}&province=${province}`
+			let url = `/api/${site}?q=${q}&pmin=${pmin}&pmax=${pmax}&p=${page}&province=${province}`
 			const response = await fetch(url)
 			searching = searching - 1;
-
+			
 			if (response.ok) {
 				const productsSite = await response.json();
-				indexProducts.add(productsSite)
+				indexProducts.add(productsSite);
+				// indexProducts = indexProducts;
 				filteredProducts = indexProducts.search(filters.q) 
 				products = products.concat(productsSite)
 			}
@@ -89,7 +92,7 @@
         Calle<span class="" style="color: #00AA00;">Monte</span>
       </h2>
       <p class="mt-3 text-center text-base text-gray-500 sm:mt-5 sm:text-lg sm:max-w-xl sm:mx-auto my-5 md:text-xl lg:mx-0">
-          El buscador de clasificados más rápido del ejercito libertador.
+          El buscador de clasificados en Cuba.
       </p>
     </div>
     <div class="sticky top-0 py-2 dark:bg-gray-900 dark:text-gray-100 z-10">
