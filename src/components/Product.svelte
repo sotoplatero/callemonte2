@@ -26,7 +26,7 @@
 </script>
 <article>
 	<div class="relative px-2 sm:px-4 py-5 bg-white dark:bg-gray-800 flex w-full">
-	    <a href="{product.url}" title="Anuncio Original: {product.title}" rel="nofollow noreferer"> 
+	    <a href="{product.url}" title="Anuncio Original: {product.title}" rel="nofollow noreferer" target="_blank"> 
 		    <img 
 		    	alt="{site}"
 		        src="/static/fav/{site}.png" 
