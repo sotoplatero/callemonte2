@@ -14,16 +14,9 @@ const rePhone = /((5|7)\d{7})|((24|32|33|45)\d{6})/g;
 exports.handler =  async (event, context, callback) => {
     const { q, p = 1, pmin = 1, pmax = '' , province = '' } = event.queryStringParameters;
 
-    // browser = new Browser()
-    // browser.visit(`https://www.revolico.com/search.html?q=${q}&min_price=${pmin}&max_price=${pmax}&p=${p}&province=${province}`, function() {
-    //     let b = browser.html('body');
-    // console.log(b)
-    // })
     const response = await fetch(`https://www.revolico.com/search.html?q=${q}&min_price=${pmin}&max_price=${pmax}&p=${p}&province=${province}`);
     const body = await response.text();
     const $ = cheerio.load( body );
-    // let data = [];
-    // console.log( body.match(/<script[^>]*>(.*?)<\/script>/g) )
    
     let data = $('li[data-cy="adRow"]')
         .map( (i,el) => {

@@ -81,7 +81,7 @@
 				<input 
 					type="text" 
 					class="block appearance-none w-full bg-white dark:bg-gray-600 border dark:border-gray-500 px-4 py-2 pr-8 rounded  leading-tight focus:outline-none focus:shadow-outline" 
-					name="pmax" 
+					name="pmin" 
 					bind:value={value.pmin}>
 			</div> 
 
