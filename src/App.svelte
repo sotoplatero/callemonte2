@@ -108,7 +108,7 @@
 					type="text" 
 					autofocus
 					on:keypress={ e => { if (e.key == 'Enter') handleSearch() } }
-					class="w-full bg-white dark:bg-gray-800 appearance-none" 
+					class="w-full bg-white dark:bg-gray-800 appearance-none focus:outline-none" 
 					placeholder="¿Qué quieres comprar?">
           	</div>
 
