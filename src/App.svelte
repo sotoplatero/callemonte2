@@ -135,7 +135,7 @@
 
     </div>
 
-	<div class="divide-y divide-gray-100 dark:divide-gray-900 shadow rounded-lg overflow-hidden ">
+	<div class="divide-y divide-gray-100 dark:divide-gray-900 shadow rounded-lg overflow-hidden mb-10">
 		{#if filteredProducts}
 			{#each filteredProducts as product }
 				<Product 
