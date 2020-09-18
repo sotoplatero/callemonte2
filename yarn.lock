@@ -1891,6 +1891,11 @@ stealthy-require@^1.1.1:
   resolved "https://registry.yarnpkg.com/stealthy-require/-/stealthy-require-1.1.1.tgz#35b09875b4ff49f26a777e509b3090a3226bf24b"
   integrity sha1-NbCYdbT/SfJqd35QmzCQoyJr8ks=
 
+stemmer_es@^1.0.2:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/stemmer_es/-/stemmer_es-1.0.2.tgz#7b99793ed0f3a619027e2e5b4f0e613d7d6e1dfd"
+  integrity sha512-IZ8sL30Yma4hLZOlrg0WBaBk6xo+75KI0EczFNKGmFp5hQ0pJpQz9pe9pUAnkUpb6A2YjnzqS+WBMVxY9vsqmw==
+
 strict-uri-encode@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/strict-uri-encode/-/strict-uri-encode-2.0.0.tgz#b9c7330c7042862f6b142dc274bbcc5866ce3546"

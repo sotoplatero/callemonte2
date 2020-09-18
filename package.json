@@ -31,6 +31,7 @@
     "node-fetch": "^2.6.1",
     "query-string": "^6.13.1",
     "sirv-cli": "^0.4.4",
+    "stemmer_es": "^1.0.2",
     "sugar": "^2.0.6",
     "zombie": "^6.1.4"
   }
