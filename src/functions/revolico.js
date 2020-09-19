@@ -1,12 +1,11 @@
 const fetch = require("node-fetch");
 var cheerio = require('cheerio');
 var cleaner = require('./libs/cleaner');
-const { DateTime } = require("luxon");
-const moment = require('moment')
+// const moment = require('moment')
 const { reLocations } = require('./libs/vars.js') ;
-var Sugar = require('sugar');
-require('sugar/locales/es.js');
-Sugar.Date.setLocale('es');
+// var Sugar = require('sugar');
+// require('sugar/locales/es.js');
+// Sugar.Date.setLocale('es');
 
 var Browser = require("zombie");
 
@@ -20,8 +19,7 @@ exports.handler =  async (event, context, callback) => {
     let data = $('li[data-cy="adRow"]')
         .map( (i,el) => {
             let $el = $(el), 
-                selPrice = 'span[data-cy="adPrice"]',
-                date = Sugar.Date.create( parseInt($el.find( 'time[datetime]' ).attr('datetime')) );
+                selPrice = 'span[data-cy="adPrice"]';
 
             return {
                 price: parseInt( $el.find( selPrice).length ? $el.find( selPrice).text() : 0 ),

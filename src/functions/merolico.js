@@ -48,7 +48,6 @@ exports.handler =  async (event, context, callback) => {
             description: $el.find('.ads-details p').text().trim(),
             date: (()=>{
                 let date = Sugar.Date.create( $el.find('li.date').text().trim() ) ;
-                console.log(Date.parse(date))
                 return date ? Date.parse(date) : null;
             })(),
             location: (() => { 

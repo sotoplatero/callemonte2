@@ -52,8 +52,7 @@ exports.handler =  async (event, context, callback) => {
             date: (()=>{
                 let dateTxt = $el.find('ul.media-bottom li').first().text();
                 let date = parse( 
-                    dateTxt,
-                    'MMM. D, YYYY',
+                    dateTxt, 'MMM. D, YYYY',
                     { monthNamesShort: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sept', 'Oct', 'Nov', 'Dic']}
                 )
                 Sugar.Date.setLocale('es');

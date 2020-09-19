@@ -66,12 +66,8 @@
 			if (response.ok) {
 				const productsSite = await response.json();
 				indexProducts.add(productsSite);
-				products = indexProducts.search(filters.q,{
-				    sort: (a, b) => {
-				    	let dateA = parseInt(a.date)
-				    	let dateB = parseInt(b.date)
-				        return dateB - dateA;
-				    }					
+				products = indexProducts.search( filters.q, {
+				    sort: (a, b) => parseInt(b.date) - parseInt(a.date)					
 				}) 
 			}
 	    })
