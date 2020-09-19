@@ -22,7 +22,6 @@ exports.handler =  async (event, context, callback) => {
             reId = /[a-zA-Z]+$/,
             reNoImage = /default/g;
 
-        let date = Sugar.Date.create( $el.find('li .icon-clock').parent().text().trim() );
         return {
             price:  $el.find('precio').first().text().replace(/\D/g,''),
             title:  cleaner( $el.find('h5.anuncio-titulo').text() ),
@@ -31,9 +30,13 @@ exports.handler =  async (event, context, callback) => {
                 let location = $el.find('.info-anuncio ul').text()
                 return location ? location.match(reLocations).toString() : ''
             })(), //.toString(),
-            date: Sugar.Date.format(date, '%b %e %R'),
+            date: (()=>{
+                let dateTxt = $el.find('li .icon-clock').parent().text().trim();
+                let date = Sugar.Date.create( dateTxt );
+                return date ? Date.parse(date) : null;
+            })(),
             description:  $el.find('.info-anuncio small').text().trim().replace(reRepetition,'$1'),
-            phones: $el.text().replace(/\W/g,'').match(/\d{8}/g),
+            phones: $el.find('.info-anuncio small,h5.anuncio-titulo').text().replace(/\W/g,'').match(/\d{8}/g),
             // photo:  $el.find('.thumbnail').attr('data-src-mobile'),
             // phones: $el.find('h5.anuncio-titulo').text().replace(/\W/g,'').match(rePhone) || [],
         };

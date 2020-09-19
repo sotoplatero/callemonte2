@@ -3,10 +3,16 @@
 	import { createEventDispatcher } from 'svelte';
 	const dispatch = createEventDispatcher();	
 	export let product
-	$: site = product.url.match(/bachecubano|revolico|porlalivre|timbirichi|1cuc|merolico|hogarencuba/)
+	let site
+	$: site = product.url.match(/bachecubano|revolico|porlalivre|timbirichi|1cuc|merolico|hogarencuba/);
+
+	$: date = new Date(product.date).toLocaleDateString("en-GB",{
+	     year: "2-digit",
+	     month:"2-digit",
+	     day:"2-digit"
+     });
 
 	onMount(() => {
-		// console.log(product)
 	});
 
 	async function handleUpdate() {
@@ -37,18 +43,18 @@
 		    class="w-full min-w-0 { product.updated ? '' : 'cursor-pointer'}" 
 		    on:click="{handleUpdate}"
 	    >
-	        <div class="leading-none mr-2 whitespace-no-wrap w-full truncate space-x-2">
+	        <div class="leading-none mr-2 whitespace-no-wrap w-full truncate space-x-1">
 
 	            <span class="font-bold">
 		            $ { product.price }
 		        </span>
 
 	            <span class="font-normal text-sm text-gray-500 space-x-2" >
+	            {#if product.date}
+	                <span>{ date }</span>
+	            {/if}
 	            {#if product.location}
 	                <span>{ product.location }</span>
-	            {/if}
-	            {#if product.date}
-	                <span>{ product.date }</span>
 	            {/if}
 	            </span>
 
@@ -58,7 +64,7 @@
 				{product.title}
 	        </p>
 	        {#if product.description}
-		        <p class="text-sm mt-1">
+		        <p class="text-sm mt-1 text-gray-700 dark:text-gray-300">
 		        	{product.description}
 		        </p>
 	        {/if}
@@ -66,9 +72,9 @@
 	        {#if product.phones}
 				<div  class="flex flex-wrap mt-2">
 					{#each product.phones as phone}
-						<a href="tel:{phone}" class="flex items-center inline-flex py-1 px-2 rounded bg-blue-100 dark:bg-gray-700 text-blue-600 mr-1 mt-1">
+						<a href="tel:{phone}" class="flex items-center inline-flex py-1 px-2 rounded bg-blue-100 dark:bg-gray-700 text-blue-500 mr-1 mt-1">
 							<svg class="h-4 w-4 inline" fill="currentColor" viewBox="0 0 20 20"><path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"></path></svg>    
-							<span class="ml-1 text-sm font-mono">{phone}</span>
+							<span class="ml-1 text-sm font-mono font-semibold">{phone}</span>
 						</a>
 					{/each}
 				</div>

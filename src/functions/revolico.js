@@ -1,6 +1,7 @@
 const fetch = require("node-fetch");
 var cheerio = require('cheerio');
 var cleaner = require('./libs/cleaner');
+const { DateTime } = require("luxon");
 const moment = require('moment')
 const { reLocations } = require('./libs/vars.js') ;
 var Sugar = require('sugar');
@@ -8,8 +9,6 @@ require('sugar/locales/es.js');
 Sugar.Date.setLocale('es');
 
 var Browser = require("zombie");
-
-const rePhone = /((5|7)\d{7})|((24|32|33|45)\d{6})/g;
 
 exports.handler =  async (event, context, callback) => {
     const { q, p = 1, pmin = 1, pmax = '' , province = '' } = event.queryStringParameters;
@@ -29,7 +28,7 @@ exports.handler =  async (event, context, callback) => {
                 title: cleaner( $el.find( 'span[data-cy="adTitle"]' ).text() ),
                 url: 'https://www.revolico.com' + $el.find('a[href$="html"]').attr('href'),
                 description: $el.find( 'span[data-cy="adDescription"]' ).text(),
-                date: Sugar.Date.format(date, '%b %e %R'),
+                date: parseInt( $el.find( 'time[datetime]' ).attr('datetime') ),
                 location: '',
                 phones: $el.text().replace(/\W/g,'').match(/\d{8}/g),
                 // phones: $el.find( selTitle ).text().match(rePhone) || [],

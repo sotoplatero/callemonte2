@@ -66,7 +66,13 @@
 			if (response.ok) {
 				const productsSite = await response.json();
 				indexProducts.add(productsSite);
-				products = indexProducts.search(filters.q) 
+				products = indexProducts.search(filters.q,{
+				    sort: (a, b) => {
+				    	let dateA = parseInt(a.date)
+				    	let dateB = parseInt(b.date)
+				        return dateB - dateA;
+				    }					
+				}) 
 			}
 	    })
 
@@ -134,10 +140,8 @@
 
 	<div class="divide-y divide-gray-100 dark:divide-gray-900 shadow rounded-lg overflow-hidden mb-10">
 		{#if products}
-			{#each products as product }
-				<Product 
-					product={product} 
-				></Product>
+			{#each products as product (product.url)}
+				<Product product={product} />
 			{/each}
 		{/if}
 	</div>

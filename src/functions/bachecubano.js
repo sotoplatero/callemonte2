@@ -22,7 +22,7 @@ exports.handler =  async (event, context, callback) => {
             title:  cleaner( $a.text() ),
             url:    $a.attr('href'),
             location: $el.text().match(reLocations) ? $el.text().match(reLocations).toString() : '',
-            phones: $el.text().replace(/\W/g,'').match(/\d{8}/g),
+            phones: $a.text().replace(/\W/g,'').match(/\d{8}/g),
             // date: ''
             // photo:  $el.find('.lazyload').attr('data-src').replace(/__thumbnail/g, ''),
             // phones: $a.text().replace(/\W/g,'').match(rePhone) || [],
