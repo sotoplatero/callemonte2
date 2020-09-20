@@ -19,7 +19,7 @@ exports.handler =  async (event, context, callback) => {
         if ( /revolico/.test(url) ) {
             data = {
                 photo: $('[data-cy="zoomAdImage"]').first().attr('href') ,
-                phones:  getPhones( $('[href^="tel:"],[data-cy="adDescription"]').text() )
+                phones:  getPhones( $('[href^="tel:"],[data-cy="adDescription"]').text() ),
                 location: $('span.item-location').text().trim(),
             }
         }
