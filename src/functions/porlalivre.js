@@ -1,9 +1,8 @@
 const fetch = require("node-fetch");
 var cheerio = require('cheerio');
 var cleaner = require('./libs/cleaner');
-const moment = require('moment')
 var { parse } = require('fecha');
-const { reRepetition } = require('./libs/vars')
+const { reRepetition, rePhones, getPhones } = require('./libs/vars')
 var Sugar = require('sugar');
 require('sugar/locales/es.js');
 
@@ -35,14 +34,12 @@ exports.handler =  async (event, context, callback) => {
     const response = await fetch(`https://${location}.porlalivre.com/search/?q=${q}&page=${p}&price_min=${pmin}&price_max=${pmax}`);
     const body = await response.text();
     const $ = cheerio.load( body );
-    moment.locale('es')
+
     let data = $('div.classified-wrapper').map( (i,el) => {
         let $el = $(el), 
             $a = $el.find('a.classified-link'),
             reId = /([A-Z0-9]+)\/$/,
             $price = $el.find('#price2');
-
-        // console.log($el.find('ul.media-bottom li').first().text().trim() +' => ' + date)
 
         return {
             price:  $el.find('#price2').text().replace(/\D/g,''),
@@ -60,13 +57,7 @@ exports.handler =  async (event, context, callback) => {
                 return date ? Date.parse(date) : null ;
             })(),
             location: $el.find('ul.media-bottom li').eq(1).text().trim(),
-            phones: $el
-                .find('.media-heading, .media-body > span')
-                .text()
-                .replace(/\W/g,'')
-                .match(/\d{8}/g),
-            // photo:  /no_image/g.test( $el.find('.media-object').attr('src') ) ? '' : 'https://porlalivre.com'+$el.find('img.media-object').attr('src'),
-            // phones:  $el.find('.media-heading').text().replace(/\W/g,'').match(rePhone) || [],
+            phones: getPhones( $el.find('.media-body').text() ),
         };
 
     }).get();

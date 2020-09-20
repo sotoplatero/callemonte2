@@ -1,7 +1,7 @@
 const fetch = require("node-fetch");
 var cheerio = require('cheerio');
 var cleaner = require('./libs/cleaner');
-const { reLocations, reRepetition } = require('./libs/vars.js') ;
+const { reLocations, reRepetition, getPhones } = require('./libs/vars.js') ;
 
 var Sugar = require('sugar');
 require('sugar/locales/es.js');
@@ -36,9 +36,7 @@ exports.handler =  async (event, context, callback) => {
                 return date ? Date.parse(date) : null;
             })(),
             description:  $el.find('.info-anuncio small').text().trim().replace(reRepetition,'$1'),
-            phones: $el.find('.info-anuncio small,h5.anuncio-titulo').text().replace(/\W/g,'').match(/\d{8}/g),
-            // photo:  $el.find('.thumbnail').attr('data-src-mobile'),
-            // phones: $el.find('h5.anuncio-titulo').text().replace(/\W/g,'').match(rePhone) || [],
+            phones: getPhones( $el.text() ),
         };
 
     }).get();

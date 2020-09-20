@@ -9,11 +9,11 @@
 
 	$: site = product.url.match(/bachecubano|revolico|porlalivre|timbirichi|1cuc|merolico|hogarencuba/);
 
-	$: date = new Date(product.date).toLocaleDateString("en-GB",{
+	$: date = product.date ? new Date(product.date).toLocaleDateString("en-GB",{
 	     year: "2-digit",
 	     month:"2-digit",
 	     day:"2-digit"
-     });
+     }) : '';
 
 	onMount(() => {
 	});
@@ -66,7 +66,7 @@
 				{product.title}
 	        </p>
 	        {#if product.description}
-		        <p class="text-sm mt-1 text-gray-700 dark:text-gray-300">
+		        <p class="text-sm mt-1 text-gray-700 dark:text-gray-400">
 		        	{product.description}
 		        </p>
 	        {/if}
@@ -91,7 +91,7 @@
 	              >
 		        </div>	        
 	        {/if}
-	        
+
 	    </div>
 
 	    {#if updating}

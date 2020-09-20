@@ -2,7 +2,7 @@ const fetch = require("node-fetch");
 var cheerio = require('cheerio');
 var cleaner = require('./libs/cleaner');
 // const moment = require('moment')
-const { reLocations } = require('./libs/vars.js') ;
+const { reLocations, getPhones } = require('./libs/vars.js') ;
 // var Sugar = require('sugar');
 // require('sugar/locales/es.js');
 // Sugar.Date.setLocale('es');
@@ -28,7 +28,7 @@ exports.handler =  async (event, context, callback) => {
                 description: $el.find( 'span[data-cy="adDescription"]' ).text(),
                 date: parseInt( $el.find( 'time[datetime]' ).attr('datetime') ),
                 location: '',
-                phones: $el.text().replace(/\W/g,'').match(/\d{8}/g),
+                phones: getPhones( $el.text() ),
                 // phones: $el.find( selTitle ).text().match(rePhone) || [],
                 // photo: $el.find('span[data-cy="adPhoto"]').length > 0,
             }
