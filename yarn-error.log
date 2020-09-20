@@ -1,5 +1,5 @@
 Arguments: 
-  C:\Program Files\nodejs\node.exe C:\Program Files (x86)\Yarn\bin\yarn.js dev
+  C:\Program Files\nodejs\node.exe C:\Program Files (x86)\Yarn\bin\yarn.js add @mtproto/core -E
 
 PATH: 
   C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\bin\curl_7_50_1_openssl_nghttp2_x64;C:\bin\PortableGit\bin;C:\bin\mongodb\bin;C:\ProgramData\ComposerSetup\bin;C:\bin\DevKit\bin;C:\bin\rubyinstaller-2.5.0-1-x64\bin;C:\bin\laragon\bin\cmder;C:\ProgramData\chocolatey\bin;C:\Program Files (x86)\Yarn\bin\;C:\WINDOWS\System32\OpenSSH\;C:\HashiCorp\Vagrant\bin;C:\Program Files\nodejs\;C:\WINDOWS\System32\OpenSSH\;C:\bin\PortableGit\bin;C:\bin\PortableGit\usr\bin;C:\bin\laragon\bin;C:\bin\laragon\bin\apache\httpd-2.4.25-win64-VC14\bin;C:\bin\laragon\bin\composer;C:\bin\laragon\bin\git\bin;C:\bin\laragon\bin\git\cmd;C:\bin\laragon\bin\git\mingw64\bin;C:\bin\laragon\bin\laragon\utils;C:\bin\laragon\bin\mysql\mysql-5.7.18-winx64\bin;C:\bin\laragon\bin\nginx\nginx-1.12.0;C:\bin\laragon\bin\ngrok;C:\bin\laragon\bin\notepad++;C:\bin\laragon\bin\php\php-7.4.0-nts-Win32-vc15-x64;C:\bin\laragon\bin\putty;C:\bin\laragon\bin\redis\redis-x64-3.2.100;C:\bin\laragon\bin\telnet;C:\bin\laragon\bin\yarn\bin;C:\bin\laragon\usr\bin;C:\Users\soto\AppData\Local\Yarn\config\global\node_modules\.bin;C:\Users\soto\AppData\Roaming\Composer\vendor\bin;C:\Users\soto\AppData\Local\Microsoft\WindowsApps;C:\Users\soto\AppData\Local\.meteor\;C:\Users\soto\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\soto\Homestead;C:\Users\soto\AppData\Roaming\npm;C:\Users\soto\AppData\Local\hyper\app-3.0.2\resources\bin
@@ -14,17 +14,13 @@ Platform:
   win32 x64
 
 Trace: 
-  Error: package.json: EPIPE: broken pipe, write
-      at Socket._write (internal/net.js:62:25)
-      at doWrite (_stream_writable.js:441:12)
-      at writeOrBuffer (_stream_writable.js:425:5)
-      at Socket.Writable.write (_stream_writable.js:316:11)
-      at Object.clearLine (readline.js:1274:17)
-      at clearLine (C:\Program Files (x86)\Yarn\lib\cli.js:49240:12)
-      at ConsoleReporter.warn (C:\Program Files (x86)\Yarn\lib\cli.js:92440:43)
-      at warn (C:\Program Files (x86)\Yarn\lib\cli.js:51103:23)
-      at module.exports.exports.default (C:\Program Files (x86)\Yarn\lib\cli.js:37347:7)
-      at C:\Program Files (x86)\Yarn\lib\cli.js:51114:51
+  Error: Client network socket disconnected before secure TLS connection was established
+      at connResetException (internal/errors.js:604:14)
+      at TLSSocket.onConnectEnd (_tls_wrap.js:1513:19)
+      at Object.onceWrapper (events.js:417:28)
+      at TLSSocket.emit (events.js:323:22)
+      at endReadableNT (_stream_readable.js:1204:12)
+      at processTicksAndRejections (internal/process/task_queues.js:84:21)
 
 npm manifest: 
   {
@@ -964,11 +960,6 @@ Lockfile:
     resolved "https://registry.yarnpkg.com/fsevents/-/fsevents-2.1.3.tgz#fb738703ae8d2f9fe900c33836ddebee8b97f23e"
     integrity sha512-Auw9a4AxqWpa9GUfj370BMPzzyncfBABW8Mab7BGWBYDj4Isgq+cDKtx0i6u9jcX9pQDnswsaaOTgTmA5pEjuQ==
   
-  full-icu@^1.3.1:
-    version "1.3.1"
-    resolved "https://registry.yarnpkg.com/full-icu/-/full-icu-1.3.1.tgz#e67fdf58523f1d1e0d9143b1542fe2024c1c8997"
-    integrity sha512-VMtK//85QJomhk3cXOCksNwOYaw1KWnYTS37GYGgyf7A3ajdBoPGhaJuJWAH2S2kq8GZeXkdKn+3Mfmgy11cVw==
-  
   get-port@^3.2.0:
     version "3.2.0"
     resolved "https://registry.yarnpkg.com/get-port/-/get-port-3.2.0.tgz#dd7ce7de187c06c8bf353796ac71e099f0980ebc"
@@ -1380,11 +1371,6 @@ Lockfile:
     version "2.3.9"
     resolved "https://registry.yarnpkg.com/lunr/-/lunr-2.3.9.tgz#18b123142832337dd6e964df1a5a7707b25d35e1"
     integrity sha512-zTU3DaZaF3Rt9rhN3uBMGQD3dD2/vFQqnvZCDv4dl5iOzq2IZQqTxu90r4E5J+nP70J3ilqVCrbho2eWaeW8Ow==
-  
-  luxon@^1.25.0:
-    version "1.25.0"
-    resolved "https://registry.yarnpkg.com/luxon/-/luxon-1.25.0.tgz#d86219e90bc0102c0eb299d65b2f5e95efe1fe72"
-    integrity sha512-hEgLurSH8kQRjY6i4YLey+mcKVAWXbDNlZRmM6AgWDJ1cY3atl8Ztf5wEY7VBReFbmGnwQPz7KYJblL8B2k0jQ==
   
   magic-string@^0.25.2:
     version "0.25.7"

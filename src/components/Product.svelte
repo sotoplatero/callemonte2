@@ -83,7 +83,7 @@
 	        {/if}
 
 	        {#if product.updated && product.photo}
-		        <div class="relative pb-2/3 mt-2" >
+		        <div class="relative pb-3/4 mt-2 dark:bg-gray-700" >
 		          <img 
 		              class="absolute h-full w-full object-cover rounded-lg" 
 		              src="{product.photo}" 

@@ -28,10 +28,10 @@ exports.handler =  async (event, context, callback) => {
             data = {
                 photo: 'https://porlalivre.com' + $('.img-thumbnail').first().attr('href'),
                 phones: getPhones($('.contact-info,.classified-description').text()),
-                date: parse( 
-                    dateTxt, 'D, MMMM, h:m A',
-                    { monthNames: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre']}
-                )
+                // date: parse( 
+                //     dateTxt, 'D, MMMM, h:m A',
+                //     { monthNames: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre']}
+                // )
 
             }
         }
