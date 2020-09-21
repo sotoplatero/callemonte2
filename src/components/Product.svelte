@@ -71,7 +71,7 @@
 		        </p>
 	        {/if}
 	        
-	        {#if product.phones.lengt > 0}
+	        {#if product.phones.length > 0}
 				<div  class="flex flex-wrap mt-2">
 					{#each product.phones as phone}
 						<a href="tel:{phone}" class="flex items-center inline-flex py-1 px-2 rounded bg-blue-100 dark:bg-gray-700 text-blue-500 mr-1 mt-1">

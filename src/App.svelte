@@ -34,6 +34,7 @@
 
 	function handleSearch() {
 		history.pushState(filters, '', '?' + queryString.stringify(filters)) ;
+		window.scrollTo(0, 0);
 	    search();
 	}
 	
@@ -57,7 +58,6 @@
 		        field: [ "title", "description" ]
 		    }
 		});
-
 	    sites.forEach( async site => {
 			let url = `/api/${site}?q=${q}&pmin=${pmin}&pmax=${pmax}&p=${page}&province=${province}`
 			const response = await fetch(url)
@@ -91,7 +91,7 @@
           El buscador de clasificados en Cuba.
       </p>
     </div>
-    <div class="sticky top-0 py-2 dark:bg-gray-900 dark:text-gray-100 z-10">
+    <div class="sticky top-0 py-2 bg-white dark:bg-gray-900 dark:text-gray-100 z-10">
 
       <div class="flex items-center w-full appearance-none shadow rounded-none p-3 sm:p-4 text-lg border-gray-300 placeholder-gray-500 text-gray-900 dark:text-gray-100 sm:rounded-lg focus:outline-none focus:shadow-outline-green focus:border-green-300 focus:z-10 leading-5 bg-white dark:bg-gray-800 space-x-2">
 
@@ -106,6 +106,7 @@
 					name="q" 
 					type="text" 
 					autofocus
+					autocomplete="off"
 					on:keypress={ e => { if (e.key == 'Enter') handleSearch() } }
 					class="w-full bg-white dark:bg-gray-800 appearance-none focus:outline-none" 
 					placeholder="¿Qué quieres comprar?">
