@@ -1,4 +1,4 @@
-const defaultTheme = require('tailwindcss/defaultTheme');
+// const defaultTheme = require('tailwindcss/defaultTheme');
 
 module.exports = {
   experimental: {
@@ -6,9 +6,9 @@ module.exports = {
   },    
   theme: {
     extend: {
-        fontFamily: {
-            sans: ['Inter var', ...defaultTheme.fontFamily.sans],
-        },        
+        // fontFamily: {
+        //     sans: ['Inter var', ...defaultTheme.fontFamily.sans],
+        // },        
         spacing: {
             '1/2': '50%',
             '1/3': '33.333333%',

@@ -13,6 +13,7 @@ exports.handler =  async (event, context, callback) => {
         browser.visit(`http://ofertas.cu/`, function() {
             browser.fill( 'input[name="q"]', q )
             browser.pressButton('button[type="submit"]', () => { 
+<<<<<<< HEAD
                 // console.log(browser.body)
                 let ads = browser.queryAll('.listing')
                 data = ads.map( el => {
@@ -27,6 +28,9 @@ exports.handler =  async (event, context, callback) => {
                         description: description,
                         price: price ? parseInt(price[0]) : '?',
                     } )
+=======
+                // browser.assert.element('.search-page a');
+>>>>>>> 34bb92a0506e1c6df6896663570773451ef41931
 
                 })
             });
