@@ -21,6 +21,14 @@
 
 	let searching = 0;
 
+	// function setTopPositcion() {
+	$: if ( products.length){
+		let offsetTop = document.getElementById('top').offsetTop;
+		if (document.body.clientHeight >= (window.innerHeight + offsetTop)) {
+			window.scrollTo(0, offsetTop);
+		}
+	} 
+
 	onMount(() => {
 		filters = { 
 			...filters, 
@@ -34,7 +42,6 @@
 
 	function handleSearch() {
 		history.pushState(filters, '', '?' + queryString.stringify(filters)) ;
-		window.scrollTo(0, 0);
 	    search();
 	}
 	
@@ -69,6 +76,7 @@
 				products = indexProducts.search( filters.q, {
 				    sort: (a, b) => parseInt(b.date) - parseInt(a.date)					
 				}) 
+				// setTopPositcion();
 			}
 	    })
 
@@ -91,7 +99,7 @@
           El buscador de clasificados en Cuba.
       </p>
     </div>
-    <div class="sticky top-0 py-2 bg-white dark:bg-gray-900 dark:text-gray-100 z-10">
+    <div class="sticky top-0 py-2 bg-white dark:bg-gray-900 dark:text-gray-100 z-10" id="top">
 
       <div class="flex items-center w-full appearance-none shadow rounded-none p-3 sm:p-4 text-lg border-gray-300 placeholder-gray-500 text-gray-900 dark:text-gray-100 sm:rounded-lg focus:outline-none focus:shadow-outline-green focus:border-green-300 focus:z-10 leading-5 bg-white dark:bg-gray-800 space-x-2">
 
