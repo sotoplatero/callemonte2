@@ -22,13 +22,13 @@
 	let searching = 0;
 
 	// function setTopPositcion() {
-	$: if ( products.length){
-		let offsetTop = document.getElementById('top').offsetTop;
-		if (document.body.clientHeight >= (window.innerHeight + offsetTop)) {
-			window.scrollTo(0, offsetTop);
-		}
-	} 
-
+	// $: if ( products.length){
+	// 	let offsetTop = document.getElementById('top').offsetTop;
+	// 	if (document.body.clientHeight >= (window.innerHeight + offsetTop)) {
+	// 		window.scrollTo(0, offsetTop);
+	// 	}
+	// } 
+	
 	onMount(() => {
 		filters = { 
 			...filters, 
@@ -39,9 +39,10 @@
 			search()
 		}
 	});
-
+	
 	function handleSearch() {
 		history.pushState(filters, '', '?' + queryString.stringify(filters)) ;
+		window.scrollTo(0, 0);
 	    search();
 	}
 	
