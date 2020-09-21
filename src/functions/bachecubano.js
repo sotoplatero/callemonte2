@@ -23,7 +23,7 @@ exports.handler =  async (event, context, callback) => {
             url:    $a.attr('href'),
             location: $el.text().match(reLocations) ? $el.text().match(reLocations).toString() : '',
             phones: getPhones( $el.find('.product-title').text() ),
-            // date: ''
+            date: 0,
             // photo:  $el.find('.lazyload').attr('data-src').replace(/__thumbnail/g, ''),
         }
 
