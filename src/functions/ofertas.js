@@ -16,7 +16,7 @@ exports.handler =  async (event, context, callback) => {
         browser.visit(`http://ofertas.cu/`, function() {
             browser.fill( 'input[name="q"]', q )
             browser.pressButton('button[type="submit"]', () => { 
-                browser.assert.element('.search-page a');
+                // browser.assert.element('.search-page a');
 
                 let ads = browser.queryAll('.search-page a')
                 ads.forEach( el => {

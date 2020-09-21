@@ -12,9 +12,15 @@ exports.handler =  async (event, context, callback) => {
     try {
         const mtproto = new MTProto({ api_id,  api_hash,});
 
-        mtproto.call('help.getNearestDc').then( result => {
-          console.log(`country:`);
-        });        
+        mtproto.call('messages.search',{
+            peer: '@ofertasCU',
+            q: 'samsung' ,
+        },{}).then( result => {
+          console.log(result);
+        }).catch(error => {
+          console.log('error.error_code:', error.error_code);
+          console.log('error.error_message:', error.error_message);
+        });      
 // messages.search#8614ef68 
 // flags:# 
 // peer:InputPeer 

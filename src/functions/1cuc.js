@@ -21,7 +21,7 @@ exports.handler =  async (event, context, callback) => {
             $a = $el.find('h3 a');
             // console.log($el.find('.descrip').text())
             return {
-                price: ($el.find('.v-price, .sr-page__list__item_descr').text().match(/\d+\scuc/ig) || [0])
+                price: (cleaner($el.find('.v-price, .sr-page__list__item_descr').text()).match(/\d+\scuc/ig) || [0])
                         .map( p => parseInt( p.replace(/\D/g,'') ) )
                         .sort( (a,b) => b-a )
                         .shift(),

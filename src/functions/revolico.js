@@ -27,7 +27,7 @@ exports.handler =  async (event, context, callback) => {
                 url: 'https://www.revolico.com' + $el.find('a[href$="html"]').attr('href'),
                 description: $el.find( 'span[data-cy="adDescription"]' ).text(),
                 date: parseInt( $el.find( 'time[datetime]' ).attr('datetime') ),
-                location: '',
+                location: ($el.text().match(reLocations) || []).toString(),
                 phones: getPhones( $el.text() ),
                 // phones: $el.find( selTitle ).text().match(rePhone) || [],
                 // photo: $el.find('span[data-cy="adPhoto"]').length > 0,
