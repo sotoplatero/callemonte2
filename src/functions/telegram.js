@@ -1,4 +1,5 @@
 const { MTProto } = require('@mtproto/core');
+const moment = require('moment')
 
 const api_id = '1108098';
 const api_hash = '0071cf841468782ac2c1f4d604186b94';
@@ -12,21 +13,33 @@ mtproto.updateInitConnectionParams({
 exports.handler =  async (event, context, callback) => {
     var { q, p = 1, pmin = 1, pmax = '', province } = event.queryStringParameters;
     let data = []
-
-    mtproto.call('messages.search',{
-        peer: {
-            InputPeer: {
-                _: 'inputPeerChat',
-                chat_id: 868698546,
-            }
-        },
-        q: 'samsung',
-    }).then( result => {
-      console.log(result);
-    }).catch(error => {
-      console.log(error);
-    });      
-
+    let hoy = moment().valueOf()
+    // mtproto.call('messages.search',{
+    //     q: 'samsung',
+    //     peer: {
+    //         _: 'inputPeerEmpty',
+    //         // chat_id: 868698546,
+    //     },
+    //     filter: {
+    //         _: 'inputMessagesFilterPhotos'
+    //     },
+    //     // from_id: 0,
+    //     // min_date: 0 ,
+    //     // max_date: moment().valueOf(),
+    //     // offset_id: 0,
+    //     // add_offset: 0,
+    //     // limit: 20,
+    //     // max_id: 0,
+    //     // min_id: 0,
+    //     // hash: 0,
+    // }).then( result => {
+    //   console.log('result:' + result);
+    // }).catch(error => {
+    //   console.log(error);
+    // });      
+mtproto.call('help.getNearestDc').then(result => {
+  console.log(`country:`, result);
+});
     return {
         headers: { 
             'Content-Type':'application/json' , 
