@@ -113,11 +113,15 @@
 
         <div class="bg-gray-50 dark:bg-gray-800 px-4 py-3 sm:px-6 font-semibold">
 
-            <button type="button" class="justify-center rounded-md border border-transparent px-4 py-2 bg-blue-600 text-base font-semibold leading-6 text-white shadow-sm hover:bg-blue-500 focus:outline-none focus:border-blue-700 focus:shadow-outline-red transition ease-in-out duration-150 sm:leading-5" on:click|preventDefault={ filter }>
+			<button 
+				name="filters-apply" 
+				type="button" 
+				class="justify-center rounded-md border border-transparent px-4 py-2 bg-blue-600 text-base font-semibold leading-6 text-white shadow-sm hover:bg-blue-500 focus:outline-none focus:border-blue-700 focus:shadow-outline-red transition ease-in-out duration-150 sm:leading-5" on:click|preventDefault={ filter }>
               Filtrar
             </button>
 
-            <button 
+			<button 
+				name="cancel"
             	on:click|preventDefault="{ e => show = false}"
 	            type="button" 
 	            class="rounded-md border border-gray-300 dark:border-gray-700 px-4 py-2 bg-white dark:bg-gray-700 text-base font-semibold leading-6 text-gray-700 dark:text-gray-300 shadow-sm hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue transition ease-in-out duration-150 sm:text-sm sm:leading-5">
