@@ -41,7 +41,7 @@
 		        src="/static/fav/{site}.png" 
 		        class="h-8 w-8 rounded block">
 		</div>
-	    <div class="">
+	    <div class="w-full ">
 	    	
 		    <div 
 			    class="min-w-0 { product.updated ? '' : 'cursor-pointer'}" 
