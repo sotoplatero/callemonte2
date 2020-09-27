@@ -113,6 +113,7 @@
 	                href="https://api.microlink.io/?url={product.url}&pdf&embed=pdf.url&scale=1&margin=0.4cm" 
 	                class="text-sm visited:text-purple-600 hover:text-blue-500" 
 	                title="descargar"
+	                target="_blank"
 	                download="{product.title}.pdf"
 	                >
 
