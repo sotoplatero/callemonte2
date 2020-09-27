@@ -26,6 +26,7 @@
     "cheerio": "^1.0.0-rc.3",
     "fecha": "^4.2.0",
     "flexsearch": "^0.6.32",
+    "js-cookie": "^2.2.1",
     "jsdom": "^16.4.0",
     "lunr": "^2.3.9",
     "lunr-languages": "^1.4.0",

@@ -4,6 +4,8 @@
 	import Tailwindcss from "./Tailwindcss.svelte";
 	import Product from "./components/Product.svelte";
 	import Filter from "./components/Filter.svelte";
+	import Spin from "./components/Spin.svelte";
+	import Pagination from "./components/Pagination.svelte";
 
 	import queryString from 'query-string';	
 	import FlexSearch from './functions/libs/Flexsearch';
@@ -21,14 +23,6 @@
 
 	let searching = 0;
 
-	// function setTopPositcion() {
-	// $: if ( products.length){
-	// 	let offsetTop = document.getElementById('top').offsetTop;
-	// 	if (document.body.clientHeight >= (window.innerHeight + offsetTop)) {
-	// 		window.scrollTo(0, offsetTop);
-	// 	}
-	// } 
-	
 	onMount(() => {
 		filters = { 
 			...filters, 
@@ -45,13 +39,14 @@
 		window.scrollTo(0, 0);
 	    search();
 	}
-	
+
 	function search() {
 		if ( !filters.q || filters.q.length === 0) {
 			return;
 		} 
 		
-	    const sites = [ 'bachecubano','revolico','porlalivre','timbirichi','1cuc','merolico','hogarencuba' ];
+	    const sites = [ 'timbirichi','merolico' ];
+	    // const sites = [ 'bachecubano','revolico','porlalivre','timbirichi','1cuc','merolico','hogarencuba' ];
 		
 	    searching = sites.length;
 		
@@ -66,18 +61,18 @@
 		        field: [ "title", "description" ]
 		    }
 		});
+
 	    sites.forEach( async site => {
 			let url = `/api/${site}?q=${q}&pmin=${pmin}&pmax=${pmax}&p=${page}&province=${province}`
 			const response = await fetch(url)
 			searching = searching - 1;
 			
-			if (response.ok) {
+			if ( response.ok ) {
 				const productsSite = await response.json();
 				indexProducts.add(productsSite);
 				products = indexProducts.search( filters.q, {
-				    sort: (a, b) => parseInt(b.date) - parseInt(a.date)					
+				    sort: (a, b) => parseInt(b.date) - parseInt(a.date),	
 				}) 
-				// setTopPositcion();
 			}
 	    })
 
@@ -86,20 +81,22 @@
 </script>
 
 <Tailwindcss />
+
 <main>
 
 <div class="min-h-screen flex items-center justify-center ">
-  <div class="max-w-xl mx-auto w-full">
+  <div class="max-w-xl mx-auto w-full mb-6">
 
     <div>
-      <!-- <img class="mx-auto h-12 w-auto" src="/static/logo.png" alt="Workflow"> -->
       <h2 class="mt-6 text-center text-3xl sm:text-6xl leading-9 font-extrabold ">
-        Calle<span class="" style="color: #00AA00;">Monte</span>
+        Calle<span style="color: #00AA00;">Monte</span>
       </h2>
       <p class="mt-3 text-center text-base text-gray-500 sm:mt-5 sm:text-lg sm:max-w-xl sm:mx-auto my-5 md:text-xl lg:mx-0">
           El buscador de clasificados en Cuba.
       </p>
+
     </div>
+
     <div class="sticky top-0 py-2 bg-white dark:bg-gray-900 dark:text-gray-100 z-10" id="top">
 
       <div class="flex items-center w-full appearance-none shadow rounded-none p-3 sm:p-4 text-lg border-gray-300 placeholder-gray-500 text-gray-900 dark:text-gray-100 sm:rounded-lg focus:outline-none focus:shadow-outline-green focus:border-green-300 focus:z-10 leading-5 bg-white dark:bg-gray-800 space-x-2">
@@ -121,36 +118,35 @@
 					placeholder="¿Qué quieres comprar?">
           	</div>
 
-          	<!-- <div class=""> -->
 
-				{#if searching > 0}
-					<span class="text-white">
-						<svg class="animate-spin -ml-1 mr-3 h-4 w-4 sm:h-5 sm:w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-							<circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
-							<path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-						</svg>	
-					</span>
-				{/if}
+			{#if searching > 0}
+				<Spin />
+			{/if}
 
-	 			<Filter bind:value={filters} on:filter={handleSearch}/>
+ 			<Filter 
+	 			bind:value={filters} 
+	 			on:filter={handleSearch}
+ 			/>
 
-          	<!-- </div> -->
-
-<!-- 			<button>
-// 				<svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clip-rule="evenodd"></path></svg>
-// 			</button> -->
-
-      </div>
+       </div>
 
     </div>
 
-	<div class="divide-y divide-gray-100 dark:divide-gray-900 shadow rounded-lg overflow-hidden mb-10">
-		{#if products}
+	{#if products.length}
+
+		<div class="divide-y divide-gray-100 dark:divide-gray-900 shadow rounded-lg overflow-hidden mb-10">
+
 			{#each products as product (product.url)}
 				<Product product={product} />
 			{/each}
-		{/if}
-	</div>
+
+		</div>
+		
+		<Pagination 
+			bind:filters={filters} 
+			{searching}
+			on:paginate={handleSearch}	/>
+	{/if}
 
   </div>
 </div>
