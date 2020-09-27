@@ -45,8 +45,8 @@
 			return;
 		} 
 		
-	    const sites = [ 'timbirichi','merolico' ];
-	    // const sites = [ 'bachecubano','revolico','porlalivre','timbirichi','1cuc','merolico','hogarencuba' ];
+	    // const sites = [ 'timbirichi','merolico' ];
+	    const sites = [ 'bachecubano','revolico','porlalivre','timbirichi','1cuc','merolico','hogarencuba' ];
 		
 	    searching = sites.length;
 		
