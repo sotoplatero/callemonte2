@@ -45,7 +45,7 @@ exports.handler =  async (event, context, callback) => {
             price:  $el.find('#price2').text().replace(/\D/g,''),
             title:  cleaner( $el.find('.media-heading').children().remove().end().text() ),
             url: 'https://porlalivre.com' + $el.find('a.classified-link').attr('href'),
-            description: $el.find('.media-body > span').text().trim().replace(reRepetition, '$1'),
+            description: $el.find('.media-body > span').text().trim(),
             date: (()=>{
                 let dateTxt = $el.find('ul.media-bottom li').first().text();
                 let date = parse( 

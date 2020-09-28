@@ -1,6 +1,7 @@
 <script >
 	import { onMount } from 'svelte';	
 	import Hidden from "./Hidden.svelte";	
+	import Download from "./Download.svelte";	
 	// import { createEventDispatcher } from 'svelte';
 	// const dispatch = createEventDispatcher();	
 
@@ -110,11 +111,10 @@
 	            </a>   
 
 	            <a 
-	                href="https://api.microlink.io/?url={product.url}&pdf&embed=pdf.url&scale=1&margin=0.4cm" 
+					href="https://api.microlink.io/?url={product.url}&pdf&embed=pdf.url&scale=1&margin=0.4cm" 
 	                class="text-sm visited:text-purple-600 hover:text-blue-500" 
-	                title="descargar"
-	                target="_blank"
-	                download="{product.title}.pdf"
+	                title="Descargar PDF"
+					download="{product.title}.pdf"
 	                >
 
 					<svg class="h-5 w-5 inline"  xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
