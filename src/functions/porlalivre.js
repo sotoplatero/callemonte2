@@ -41,7 +41,7 @@ exports.handler =  async (event, context, callback) => {
             reId = /([A-Z0-9]+)\/$/,
             $price = $el.find('#price2');
 
-        return {
+        let ad = {
             price:  $el.find('#price2').text().replace(/\D/g,''),
             title:  cleaner( $el.find('.media-heading').children().remove().end().text() ),
             url: 'https://porlalivre.com' + $el.find('a.classified-link').attr('href'),
@@ -54,11 +54,12 @@ exports.handler =  async (event, context, callback) => {
                 )
                 Sugar.Date.setLocale('es');
                 date = date ? date : Sugar.Date.create(dateTxt);
-                return date ? Date.parse(date) : null ;
+                return date ? Date.parse(date) : 0 ;
             })(),
             location: $el.find('ul.media-bottom li').eq(1).text().trim(),
             phones: getPhones( $el.find('.media-body').text() ),
         };
+        return {...ad, score: ad.title.score(q) };
 
     }).get();
 

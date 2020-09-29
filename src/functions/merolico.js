@@ -41,7 +41,7 @@ exports.handler =  async (event, context, callback) => {
     let data = $('.adds-wrapper .item-list').map( (i,el) => { 
         let $el = $(el), 
             $a = $el.find('h5.add-title a');
-        return {
+        let ad = {
             price: parseInt( $el.find('h2.item-price').text().replace(/\D/g,'') || 0 ),    
             title: cleaner( $a.text() ),
             url: $a.attr('href'),
@@ -58,6 +58,8 @@ exports.handler =  async (event, context, callback) => {
 
         };
 
+        return {...ad, score: ad.title.score(q) };
+        
     }).get();
 
     return {

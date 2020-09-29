@@ -1347,16 +1347,6 @@ lodash@^4.15.0, lodash@^4.17.10, lodash@^4.17.11, lodash@^4.17.19, lodash@^4.17.
   resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.20.tgz#b44a9b6297bcb698f1c51a3545a2b3b368d59c52"
   integrity sha512-PlhdFcillOINfeV7Ni6oF1TAEayyZBoZ8bcshTHqOYJYlrqzRK5hagpagky5o4HfCzzd1TRkXPMFq6cKk9rGmA==
 
-lunr-languages@^1.4.0:
-  version "1.4.0"
-  resolved "https://registry.yarnpkg.com/lunr-languages/-/lunr-languages-1.4.0.tgz#42abb12aa81447d1ece5aa35676adcdf40a3e8a8"
-  integrity sha512-YWfZDExJN/MJEVE/DbM4AuVRLsqeHi+q3wmECMsWjGIOkd5mr9DUNos7fv8f5do9VLRMYXIzFjn+N4+KPI9pQA==
-
-lunr@^2.3.9:
-  version "2.3.9"
-  resolved "https://registry.yarnpkg.com/lunr/-/lunr-2.3.9.tgz#18b123142832337dd6e964df1a5a7707b25d35e1"
-  integrity sha512-zTU3DaZaF3Rt9rhN3uBMGQD3dD2/vFQqnvZCDv4dl5iOzq2IZQqTxu90r4E5J+nP70J3ilqVCrbho2eWaeW8Ow==
-
 magic-string@^0.25.2:
   version "0.25.7"
   resolved "https://registry.yarnpkg.com/magic-string/-/magic-string-0.25.7.tgz#3f497d6fd34c669c6798dcb821f2ef31f5445051"
@@ -1972,6 +1962,11 @@ stemmer_es@^1.0.2:
   resolved "https://registry.yarnpkg.com/stemmer_es/-/stemmer_es-1.0.2.tgz#7b99793ed0f3a619027e2e5b4f0e613d7d6e1dfd"
   integrity sha512-IZ8sL30Yma4hLZOlrg0WBaBk6xo+75KI0EczFNKGmFp5hQ0pJpQz9pe9pUAnkUpb6A2YjnzqS+WBMVxY9vsqmw==
 
+stopword@^1.0.3:
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/stopword/-/stopword-1.0.3.tgz#6960bdf5827aa26932231745a7d8a4c4f6bf234b"
+  integrity sha512-rkoAluafz+D0GmzGekXBnHmdZ5VeiqeloLBfoclrshdmuQpf5XgvIr+lJPftg3mH54Cc0LHHZIaJvA5Cj0E5jA==
+
 strict-uri-encode@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/strict-uri-encode/-/strict-uri-encode-2.0.0.tgz#b9c7330c7042862f6b142dc274bbcc5866ce3546"
@@ -1983,6 +1978,11 @@ string_decoder@^1.1.1:
   integrity sha512-hkRX8U1WjJFd8LsDJ2yQ/wWWxaopEsABU1XfkM8A+j0+85JAGppt16cr1Whg6KIbb4okU6Mql6BOj+uup/wKeA==
   dependencies:
     safe-buffer "~5.2.0"
+
+string_score@^0.1.22:
+  version "0.1.22"
+  resolved "https://registry.yarnpkg.com/string_score/-/string_score-0.1.22.tgz#80e112223aeef30969d8502f38db72a768eaa8fd"
+  integrity sha1-gOESIjru8wlp2FAvONtyp2jqqP0=
 
 strip-indent@^3.0.0:
   version "3.0.0"

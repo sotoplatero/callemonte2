@@ -17,7 +17,7 @@ exports.handler =  async (event, context, callback) => {
         let $el = $(el), 
             $a = $el.find('.product-title a');
 
-        return {
+        let ad = {
             price:  parseFloat($el.find('.price').text().replace(/[^\d\.,]/g,'')),
             title:  cleaner( $a.text() ),
             url:    $a.attr('href'),
@@ -26,7 +26,7 @@ exports.handler =  async (event, context, callback) => {
             date: 0,
             // photo:  $el.find('.lazyload').attr('data-src').replace(/__thumbnail/g, ''),
         }
-
+        return {...ad, score: ad.title.score(q) };
     }).get();
 
     return {
