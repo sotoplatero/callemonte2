@@ -126,7 +126,7 @@
 
 				<Hidden bind:product={product} />
 				
-	            <Favorite bind:product={product} />
+	            <!-- <Favorite bind:product={product} /> -->
 
 	        </div>
 	    </div>
