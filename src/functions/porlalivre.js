@@ -5,6 +5,7 @@ var { parse } = require('fecha');
 const { reRepetition, rePhones, getPhones } = require('./libs/vars')
 var Sugar = require('sugar');
 require('sugar/locales/es.js');
+require("string_score");
 
 const rePhone = /(\+?53)?\s?([1-9][\s-]?){1}(\d[\s-]?){7}/g;
 

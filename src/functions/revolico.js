@@ -7,7 +7,8 @@ const { reLocations, getPhones } = require('./libs/vars.js') ;
 // require('sugar/locales/es.js');
 // Sugar.Date.setLocale('es');
 
-var Browser = require("zombie");
+// var Browser = require("zombie");
+require("string_score");
 
 exports.handler =  async (event, context, callback) => {
     const { q, p = 1, pmin = 1, pmax = '' , province = '' } = event.queryStringParameters;

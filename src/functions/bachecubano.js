@@ -2,8 +2,7 @@ const fetch = require("node-fetch");
 var cheerio = require('cheerio');
 var cleaner = require('./libs/cleaner');
 const { reLocations, rePhones, getPhones } = require('./libs/vars.js') ;
-
-const rePhone = /(\+?53)?\s?([1-9][\s-]?){1}(\d[\s-]?){7}/g;
+require("string_score");
 
 exports.handler =  async (event, context, callback) => {
     var { q, p = 1, pmin = 1, pmax = '', province }= event.queryStringParameters;

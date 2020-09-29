@@ -2,12 +2,11 @@ const fetch = require("node-fetch");
 var cheerio = require('cheerio');
 var cleaner = require('./libs/cleaner');
 const { reLocations, rePhones, getPhones } = require('./libs/vars.js') ;
+require("string_score");
 
 var Sugar = require('sugar');
 require('sugar/locales/es.js')
 Sugar.Date.setLocale('es');
-
-const rePhone = /((5|7)\d{7})|((24|32|33|45)\d{6})/g;
 
 const provinces = { 
     'pinar-del-rio': 1,
@@ -59,7 +58,7 @@ exports.handler =  async (event, context, callback) => {
         };
 
         return {...ad, score: ad.title.score(q) };
-        
+
     }).get();
 
     return {
