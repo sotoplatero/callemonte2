@@ -36,7 +36,7 @@ exports.handler =  async (event, context, callback) => {
     var json = await response.json();
 
     let data = json['ads'].map( el => ({
-                title: el.title.trim(),
+                title: cleaner(el.title),
                 price: el.price,
                 photo: el.poster,
                 description: cleaner(el.description),
