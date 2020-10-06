@@ -13,7 +13,7 @@
 		.replace(/^\W/i,'')
 		.trim();
 
-	return response.charAt(0).toUpperCase() + response.slice(1)			
+	return (response.charAt(0).toUpperCase() + response.slice(1)).substring(0,280)		
 }
 
 

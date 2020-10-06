@@ -1,7 +1,7 @@
 <script >
 	import { onMount } from 'svelte';	
 	import Hidden from "./Hidden.svelte";	
-	import Download from "./Download.svelte";	
+	// import Download from "./Download.svelte";	
 	import Favorite from "./Favorite.svelte";	
 	// import { createEventDispatcher } from 'svelte';
 	// const dispatch = createEventDispatcher();	
@@ -10,7 +10,7 @@
 	let updating
 	let site 
 
-	$: site = product.url.match(/bachecubano|revolico|porlalivre|timbirichi|1cuc|merolico|hogarencuba/);
+	$: site = product.url.match(/bachecubano|revolico|porlalivre|timbirichi|1cuc|merolico|hogarencuba|ricurancia/);
 
 	$: date = product.date ? new Date(product.date).toLocaleDateString("en-GB",{
 	     year: "2-digit",
@@ -60,7 +60,7 @@
 			                <span class="font-semibold">{ date }</span>
 			            {/if}
 			            {#if product.location}
-			                <span>{ product.location }</span>
+			                <span class="uppercase">{ product.location }</span>
 						{/if}
 		            </span>
 

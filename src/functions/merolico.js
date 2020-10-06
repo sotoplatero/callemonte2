@@ -23,7 +23,7 @@ const provinces = {
     'holguin': 12,
     'granma': 13,
     'santiago-de-cuba': 14,
-    'guantánamo': 15,
+    'guantanamo': 15,
     'isla-de-la-juventud': 16,
 }
 
