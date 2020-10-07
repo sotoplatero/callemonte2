@@ -35,7 +35,7 @@
 	}
 
 </script>
-<article class="{ product.isHidden ? 'opacity-25' : '' }">
+<article class="{ product.isHidden ? 'opacity-25 print:hidden' : '' }">
 	<div class="flex relative px-2 sm:px-4 py-5 bg-white dark:bg-gray-800 w-full">
 		<div class="flex-shrink-0 h-8 w-8 mr-3">
 		    <img 
@@ -129,6 +129,7 @@
 	            <!-- <Favorite bind:product={product} /> -->
 
 	        </div>
+	        <div class="notes hidden print:block print:h-20"></div>
 	    </div>
 	    {#if updating}
 	        <div class="absolute text-white flex items-center justify-center top-0 left-0 w-full h-full bg-gray-300 dark:bg-gray-800 bg-opacity-75 z-100">
