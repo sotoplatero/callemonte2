@@ -2,8 +2,7 @@ const fetch = require("node-fetch");
 var cheerio = require('cheerio');
 var cleaner = require('./libs/cleaner');
 const { reLocations, rePhones, getPhones } = require('./libs/vars.js') ;
-
-const rePhone = /(\+?53)?\s?([1-9][\s-]?){1}(\d[\s-]?){7}/g;
+require("string_score");
 
 exports.handler =  async (event, context, callback) => {
     var { q, p = 1, pmin = 1, pmax = '', province }= event.queryStringParameters;
@@ -17,7 +16,7 @@ exports.handler =  async (event, context, callback) => {
         let $el = $(el), 
             $a = $el.find('.product-title a');
 
-        return {
+        let ad = {
             price:  parseFloat($el.find('.price').text().replace(/[^\d\.,]/g,'')),
             title:  cleaner( $a.text() ),
             url:    $a.attr('href'),
@@ -26,7 +25,7 @@ exports.handler =  async (event, context, callback) => {
             date: 0,
             // photo:  $el.find('.lazyload').attr('data-src').replace(/__thumbnail/g, ''),
         }
-
+        return {...ad, score: ad.title.score(q) };
     }).get();
 
     return {

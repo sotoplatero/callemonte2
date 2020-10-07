@@ -2,12 +2,11 @@ const fetch = require("node-fetch");
 var cheerio = require('cheerio');
 var cleaner = require('./libs/cleaner');
 const { reLocations, rePhones, getPhones } = require('./libs/vars.js') ;
+require("string_score");
 
 var Sugar = require('sugar');
 require('sugar/locales/es.js')
 Sugar.Date.setLocale('es');
-
-const rePhone = /((5|7)\d{7})|((24|32|33|45)\d{6})/g;
 
 const provinces = { 
     'pinar-del-rio': 1,
@@ -24,7 +23,7 @@ const provinces = {
     'holguin': 12,
     'granma': 13,
     'santiago-de-cuba': 14,
-    'guantánamo': 15,
+    'guantanamo': 15,
     'isla-de-la-juventud': 16,
 }
 
@@ -41,7 +40,7 @@ exports.handler =  async (event, context, callback) => {
     let data = $('.adds-wrapper .item-list').map( (i,el) => { 
         let $el = $(el), 
             $a = $el.find('h5.add-title a');
-        return {
+        let ad = {
             price: parseInt( $el.find('h2.item-price').text().replace(/\D/g,'') || 0 ),    
             title: cleaner( $a.text() ),
             url: $a.attr('href'),
@@ -57,6 +56,8 @@ exports.handler =  async (event, context, callback) => {
             phones: getPhones( $el.find('.ads-details').text() ),
 
         };
+
+        return {...ad, score: ad.title.score(q) };
 
     }).get();
 

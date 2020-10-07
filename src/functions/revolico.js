@@ -7,7 +7,8 @@ const { reLocations, getPhones } = require('./libs/vars.js') ;
 // require('sugar/locales/es.js');
 // Sugar.Date.setLocale('es');
 
-var Browser = require("zombie");
+// var Browser = require("zombie");
+require("string_score");
 
 exports.handler =  async (event, context, callback) => {
     const { q, p = 1, pmin = 1, pmax = '' , province = '' } = event.queryStringParameters;
@@ -21,7 +22,7 @@ exports.handler =  async (event, context, callback) => {
             let $el = $(el), 
                 selPrice = 'span[data-cy="adPrice"]';
 
-            return {
+            let ad = {
                 price: parseInt( $el.find( selPrice).length ? $el.find( selPrice).text() : 0 ),
                 title: cleaner( $el.find( 'span[data-cy="adTitle"]' ).text() ),
                 url: 'https://www.revolico.com' + $el.find('a[href$="html"]').attr('href'),
@@ -32,8 +33,8 @@ exports.handler =  async (event, context, callback) => {
                 // phones: $el.find( selTitle ).text().match(rePhone) || [],
                 // photo: $el.find('span[data-cy="adPhoto"]').length > 0,
             }
+            return {...ad, score: ad.title.score(q) };
         }).get();
-
     return {
         headers: { 'Content-Type':'application/json', 'Access-Control-Allow-Origin': '*' },
         statusCode: 200,

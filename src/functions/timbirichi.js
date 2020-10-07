@@ -6,7 +6,7 @@ const { reLocations, reRepetition, getPhones } = require('./libs/vars.js') ;
 var Sugar = require('sugar');
 require('sugar/locales/es.js');
 Sugar.Date.setLocale('es');
-
+require("string_score");
 
 const rePhone = /((5|7)\d{7})|((24|32|33|45)\d{6})/g;
 
@@ -22,7 +22,7 @@ exports.handler =  async (event, context, callback) => {
             reId = /[a-zA-Z]+$/,
             reNoImage = /default/g;
 
-        return {
+        let ad = {
             price:  $el.find('precio').first().text().replace(/\D/g,''),
             title:  cleaner( $el.find('h5.anuncio-titulo').text() ),
             url: $el.attr('href'),
@@ -38,6 +38,8 @@ exports.handler =  async (event, context, callback) => {
             description:  $el.find('.info-anuncio small').text().trim().replace(reRepetition,'$1'),
             phones: getPhones( $el.text() ),
         };
+
+        return {...ad, score: ad.title.score(q) };
 
     }).get();
 

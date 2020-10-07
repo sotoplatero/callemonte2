@@ -1,14 +1,16 @@
 <script >
 	import { onMount } from 'svelte';	
 	import Hidden from "./Hidden.svelte";	
+	// import Download from "./Download.svelte";	
+	import Favorite from "./Favorite.svelte";	
 	// import { createEventDispatcher } from 'svelte';
 	// const dispatch = createEventDispatcher();	
 
 	export let product
 	let updating
-	let site
+	let site 
 
-	$: site = product.url.match(/bachecubano|revolico|porlalivre|timbirichi|1cuc|merolico|hogarencuba/);
+	$: site = product.url.match(/bachecubano|revolico|porlalivre|timbirichi|1cuc|merolico|hogarencuba|ricurancia/);
 
 	$: date = product.date ? new Date(product.date).toLocaleDateString("en-GB",{
 	     year: "2-digit",
@@ -38,7 +40,7 @@
 		<div class="flex-shrink-0 h-8 w-8 mr-3">
 		    <img 
 		    	alt="{site}"
-		        src="/static/fav/{site}.png" 
+		        src="/static/fav/{site}.jpg" 
 		        class="h-8 w-8 rounded block">
 		</div>
 	    <div class="w-full ">
@@ -49,17 +51,17 @@
 		    >
 		        <div class="leading-none mr-2 whitespace-no-wrap w-full truncate space-x-1">
 
-		            <span class="font-bold">
+		            <span class="font-bold mr-auto">
 			            $ { product.price }
 			        </span>
 
-		            <span class="font-normal text-sm text-gray-500 space-x-2" >
+		            <span class="font-normal text-sm text-gray-700 dark:text-gray-400 space-x-2" >
 			            {#if product.date}
-			                <span>{ date }</span>
+			                <span class="font-semibold">{ date }</span>
 			            {/if}
 			            {#if product.location}
-			                <span>{ product.location }</span>
-			            {/if}
+			                <span class="uppercase">{ product.location }</span>
+						{/if}
 		            </span>
 
 		        </div>
@@ -96,7 +98,7 @@
 		        {/if}
 		    </div>
 
-	        <div class="grid grid-cols-4 gap-1 justify-items-stretch text-sm mt-2 text-gray-500 dark:text-gray-500">
+	        <div class="print:hidden grid grid-cols-4 gap-1 justify-items-stretch text-sm mt-2 text-gray-500 dark:text-gray-500">
 
 	            <a 
 	                href="{product.url}" 
@@ -110,20 +112,21 @@
 	            </a>   
 
 	            <a 
-	                href="https://api.microlink.io/?url={product.url}&pdf&embed=pdf.url&scale=1&margin=0.4cm" 
+					href="https://api.microlink.io/?url={product.url}&pdf&embed=pdf.url&scale=1&margin=0.4cm" 
 	                class="text-sm visited:text-purple-600 hover:text-blue-500" 
-	                title="descargar"
-	                target="_blank"
-	                download="{product.title}.pdf"
+	                title="Descargar PDF"
+					download="{product.title}.pdf"
 	                >
 
 					<svg class="h-5 w-5 inline"  xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-					  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M9 19l3 3m0 0l3-3m-3 3V10" />
-					</svg>
+						<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+					  </svg>					
 
 	            </a>  
 
-	            <Hidden bind:product={product} />
+				<Hidden bind:product={product} />
+				
+	            <!-- <Favorite bind:product={product} /> -->
 
 	        </div>
 	    </div>

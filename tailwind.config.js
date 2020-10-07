@@ -8,7 +8,10 @@ module.exports = {
     extend: {
         // fontFamily: {
         //     sans: ['Inter var', ...defaultTheme.fontFamily.sans],
-        // },        
+        // },      
+        screens: {
+          'print': {'raw': 'print'},
+        },          
         spacing: {
             '1/2': '50%',
             '1/3': '33.333333%',
