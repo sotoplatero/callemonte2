@@ -35,7 +35,10 @@
 	}
 
 </script>
-<article class="{ product.isHidden ? 'opacity-25 print:hidden' : '' }">
+<article class="
+	{ product.isHidden ? 'opacity-25' : '' }
+	{ product.isHidden || !product.phones.length ? 'print:hidden' : '' }
+">
 	<div class="flex relative px-2 sm:px-4 py-5 bg-white dark:bg-gray-800 w-full">
 		<div class="flex-shrink-0 h-8 w-8 mr-3">
 		    <img 
@@ -46,7 +49,7 @@
 	    <div class="w-full ">
 	    	
 		    <div 
-			    class="min-w-0 { product.updated ? '' : 'cursor-pointer'}" 
+			    class="min-w-0 { product.updated ? '' : 'cursor-pointer'}"
 			    on:click="{handleUpdate}"
 		    >
 		        <div class="leading-none mr-2 whitespace-no-wrap w-full truncate space-x-1">
