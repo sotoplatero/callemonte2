@@ -29,8 +29,8 @@ const provinces = {
 }
 
 exports.handler =  async (event, context, callback) => {
-    var { q, p = 1, pmin = 1, pmax = '', province = 'www' } = event.queryStringParameters;
-    let location = province==='' ? 'cuba' : provinces[province]
+    var { q, p = 1, pmin = 1, pmax = '', province = '' } = event.queryStringParameters;
+    let location = province || provinces[province]
 
     const response = await fetch(`https://${location}.porlalivre.com/search/?q=${q}&page=${p}&price_min=${pmin}&price_max=${pmax}`);
     const body = await response.text();

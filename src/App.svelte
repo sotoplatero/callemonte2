@@ -25,17 +25,13 @@
 
 	$: isSearching = searching > 0;
 
-	// $: filteredProducts = products.sort( (a, b) => parseInt(b.date) - parseInt(a.date) );
-
-	onMount(() => {
+	onMount( () => {
 		filters = { 
 			...filters, 
 			...queryString.parse(location.search)
 		};
 		
-		if ( filters.q ) {
-			search()
-		}
+		if ( filters.q ) search();
 	});
 	
 	function handleSearch() {
