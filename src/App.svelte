@@ -59,7 +59,7 @@
 				.then( r => r.json() )
 			  	.then( data => {
 					products = [...products, ...data ]
-						.filter( p => p.score > 0)
+						.filter( p => p.score > 0.1)
 						.sort( (a, b) => (b.date+b.score) - (a.date+a.score) )
 			  	})
 			  	.catch( (error) => {} )
