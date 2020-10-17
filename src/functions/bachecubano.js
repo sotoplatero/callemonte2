@@ -25,7 +25,7 @@ exports.handler =  async (event, context, callback) => {
             date: 0,
             // photo:  $el.find('.lazyload').attr('data-src').replace(/__thumbnail/g, ''),
         }
-        return {...ad, score: ad.title.score(q) };
+        return {...ad, score: ad.title.score(q,0.5) };
     }).get();
 
     return {

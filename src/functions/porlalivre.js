@@ -30,7 +30,7 @@ const provinces = {
 
 exports.handler =  async (event, context, callback) => {
     var { q, p = 1, pmin = 1, pmax = '', province = '' } = event.queryStringParameters;
-    let location = province || provinces[province]
+    let location =provinces[province] || 'www'
 
     const response = await fetch(`https://${location}.porlalivre.com/search/?q=${q}&page=${p}&price_min=${pmin}&price_max=${pmax}`);
     const body = await response.text();
@@ -60,7 +60,7 @@ exports.handler =  async (event, context, callback) => {
             location: $el.find('ul.media-bottom li').eq(1).text().trim(),
             phones: getPhones( $el.find('.media-body').text() ),
         };
-        return {...ad, score: ad.title.score(q) };
+        return {...ad, score: ad.title.score(q,0.5) };
 
     }).get();
 

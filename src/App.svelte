@@ -45,7 +45,7 @@
 			return;
 		} 
 		
-	    const sites = [ 'bachecubano','revolico','porlalivre','timbirichi','1cuc','merolico','hogarencuba','ricurancia' ];
+	    const sites = [ 'bachecubano','porlalivre','timbirichi','1cuc','merolico','hogarencuba','ricurancia' ];
 		
 	    searching = sites.length;
 		products = [];
@@ -55,7 +55,7 @@
 	    sites.forEach( site => {
 			let url = `/api/${site}?q=${q}&pmin=${pmin}&pmax=${pmax}&p=${page}&province=${province}`
 
-			fetch(url)
+				fetch(url)
 				.then( r => r.json() )
 			  	.then( data => {
 					products = [...products, ...data ]

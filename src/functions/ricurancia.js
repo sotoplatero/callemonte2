@@ -47,7 +47,7 @@ exports.handler =  async (event, context, callback) => {
                 url: `http://ricurancia.com/posting;id=${el.id}`,
                 date: Date.parse(el.created),
                 phones: getPhones(el.posterPhone),
-                score: el.title.score(q)
+                score: el.title.score(q,0.5)
             })
         )
 

@@ -39,7 +39,7 @@ exports.handler =  async (event, context, callback) => {
             phones: getPhones( $el.text() ),
         };
 
-        return {...ad, score: ad.title.score(q) };
+        return {...ad, score: ad.title.score(q,0.5) };
 
     }).get();
 
