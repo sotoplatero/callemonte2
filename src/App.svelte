@@ -101,7 +101,6 @@
 					aria-label="¿Qué quieres comprar?" 
 					name="q" 
 					type="text" 
-					autofocus
 					autocomplete="off"
 					on:keypress={ e => { if (e.key == 'Enter') handleSearch() } }
 					class="w-full bg-gray-100 dark:bg-gray-800 appearance-none focus:outline-none" 

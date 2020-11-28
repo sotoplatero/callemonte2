@@ -1,35 +1,38 @@
-const fetch = require("node-fetch");
 var cheerio = require('cheerio');
-var cleaner = require('./libs/cleaner');
-var Browser = require("zombie");
-// const moment = require('moment')
-const { reLocations, getPhones } = require('./libs/vars.js') ;
-// var Sugar = require('sugar');
-// require('sugar/locales/es.js');
-// Sugar.Date.setLocale('es');
+const chromium = require('chrome-aws-lambda');
 
-// var Browser = require("zombie");
+// the browser path
+const localChrome = process.env.PATH_CHROME;
+
+const { reLocations, getPhones } = require('./libs/vars.js') ;
 require("string_score");
 
 exports.handler =  async (event, context, callback) => {
     const { q, p = 1, pmin = 1, pmax = '' , province = '' } = event.queryStringParameters;
     var data = [];
 
-    browser = new Browser()
-    try {
-        browser.visit(`https://www.revolico.com/search.html?q=${q}&min_price=${pmin}&max_price=${pmax}&p=${p}&province=${province}`, function() {
-                console.log(browser.html('body'))
-        })
-    } catch (err){
-        console.log(err);
-    }
+    const url = `https://www.revolico.com/search.html?q=${q}&min_price=${pmin}&max_price=${pmax}&p=${p}&province=${province}`;
 
+    const browser = await chromium.puppeteer.launch({
+        ignoreDefaultArgs: ['--disable-extensions'],
+        args: chromium.args,
+        defaultViewport: chromium.defaultViewport,
+        executablePath: localChrome || await chromium.executablePath,
+        headless: chromium.headless,
+    });
+    
+    const page = await browser.newPage();
+    await page.goto(url, { waitUntil: 'networkidle2' });
 
-
-    // const response = await fetch(`https://www.revolico.com/search.html?q=${q}&min_price=${pmin}&max_price=${pmax}&p=${p}&province=${province}`);
+    // const options = {
+    //     headers: { 
+    //         'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:72.0) Gecko/20100101 Firefox/72.0'
+    //     }
+    // }
+    // const response = await fetch( url, options );
     // const body = await response.text();
     // const $ = cheerio.load( body );
-
+    // console.log(body)
     // let data = $('li[data-cy="adRow"]')
     //     .map( (i,el) => {
     //         let $el = $(el), 
