@@ -1,7 +1,10 @@
 const fetch = require("node-fetch");
 var cheerio = require('cheerio');
 var cleaner = require('./libs/cleaner');
-var Browser = require("zombie");
+
+const jsdom = require("jsdom");
+const { JSDOM } = jsdom;
+
 // const moment = require('moment')
 const { reLocations, getPhones } = require('./libs/vars.js') ;
 // var Sugar = require('sugar');
@@ -15,15 +18,19 @@ exports.handler =  async (event, context, callback) => {
     const { q, p = 1, pmin = 1, pmax = '' , province = '' } = event.queryStringParameters;
     var data = [];
 
-    browser = new Browser()
-    try {
-        browser.visit(`https://www.revolico.com/search.html?q=${q}&min_price=${pmin}&max_price=${pmax}&p=${p}&province=${province}`, function() {
-                console.log(browser.html('body'))
-        })
-    } catch (err){
-        console.log(err);
+    const url = `https://www.revolico.com/search.html?q=${q}&min_price=${pmin}&max_price=${pmax}&p=${p}&province=${province}`;
+    try{
+        let doc = await JSDOM.fromURL(url, { 
+            runScripts: "dangerously", 
+            resources: "usable" }
+        ).then( dom => dom.window.document );
+        
+        // data =  JSON.parse(doc.querySelector("#__NEXT_DATA__").innerHTML)
+        console.log( doc.querySelector('body').innerHTML ) 
     }
-
+    catch(error){
+        console.log(error);
+    }
 
 
     // const response = await fetch(`https://www.revolico.com/search.html?q=${q}&min_price=${pmin}&max_price=${pmax}&p=${p}&province=${province}`);

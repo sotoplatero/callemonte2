@@ -1,28 +1,34 @@
 <script>
-    function downloadFile(data, fileName, type="text/plain") {
-    // Create an invisible A element
-    const a = document.createElement("a");
-    a.style.display = "none";
-    document.body.appendChild(a);
+    export let products;
 
-    // Set the HREF to a Blob representation of the data to be downloaded
-    a.href = window.URL.createObjectURL(
-        new Blob([data], { type })
-    );
+    function download() {
+        let element = document.createElement('a'),
+          d = new Date(),
+          formatted_date = `${d.getFullYear()}-${(d.getMonth() + 1)}-${d.getDate()} ${d.getHours()}H${d.getMinutes()}m`,
+          filename = `callemonte.com ${formatted_date}.txt`,
+          text = products
+            .filter( p => p.phones.length )
+            .map(p => `
+                ${p.price}\t${p.title} ${p.province} ${p.date} \n\t
+                ${p.description}\n\t
+                ${p.phones}\n\t
+            `)
+            .join("\n\n\n\n\n");
 
-    // Use download attribute to set set desired file name
-    a.setAttribute("download", fileName);
+        element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
+        element.setAttribute('download', filename);
 
-    // Trigger the download by simulating click
-    a.click();
+        element.style.display = 'none';
+        document.body.appendChild(element);
 
-    // Cleanup
-    window.URL.revokeObjectURL(a.href);
-    document.body.removeChild(a);
+        element.click();
+
+        document.body.removeChild(element);
     }
+    
 </script>
 <button
-    on:click|preventDefault="{downloadFile('https://api.microlink.io/?url={product.url}&pdf&embed=pdf.url&scale=1&margin=0.4cm')}"
+    on:click|preventDefault="{download}"
     class="text-sm visited:text-purple-600 hover:text-blue-500" 
     title="Descargar PDF"
 >
