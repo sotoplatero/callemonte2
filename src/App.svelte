@@ -45,7 +45,7 @@
 			return;
 		} 
 		
-	    const sites = [ 'bachecubano','porlalivre','timbirichi','1cuc','merolico','hogarencuba','ricurancia' ];
+	    const sites = [ 'bachecubano','porlalivre','timbirichi','1cuc','merolico','hogarencuba','ricurancia','revolico' ];
 		
 	    searching = sites.length;
 		products = [];
