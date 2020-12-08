@@ -9,7 +9,6 @@
 	import "string_score";
 
 	import queryString from 'query-string';	
-	import stemmer_es from 'stemmer_es';
 
 	let filters = {
 		q: '',

@@ -40,5 +40,5 @@
 		</svg>
 
     {/if}
-
+    <span class="hidden sm:inline ml-2">Ocultar</span>
 </button> 

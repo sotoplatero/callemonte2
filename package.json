@@ -10,7 +10,7 @@
     "@fullhuman/postcss-purgecss": "^2.2.0",
     "@rollup/plugin-commonjs": "^12.0.0",
     "@rollup/plugin-node-resolve": "^8.0.0",
-    "postcss": "^7.0.30",
+    "postcss": "^8.1.14",
     "postcss-load-config": "^2.1.0",
     "rollup": "^2.3.4",
     "rollup-plugin-livereload": "^1.0.0",
@@ -18,7 +18,7 @@
     "rollup-plugin-terser": "^5.1.2",
     "svelte": "^3.0.0",
     "svelte-preprocess": "^3.7.4",
-    "tailwindcss": "^1.4.6"
+    "tailwindcss": "^2.0.0"
   },
   "dependencies": {
     "@mtproto/core": "4.0.0",
@@ -31,6 +31,7 @@
     "jsdom": "^16.4.0",
     "moment": "^2.27.0",
     "node-fetch": "^2.6.1",
+    "normalize": "^0.3.1",
     "puppeteer-core": "^5.5.0",
     "query-string": "^6.13.1",
     "sirv-cli": "^0.4.4",

@@ -3,6 +3,7 @@ const chromium = require('chrome-aws-lambda');
 
 // the browser path
 const localChrome = process.env.PATH_CHROME;
+process.setMaxListeners(0)
 
 const { reLocations, getPhones } = require('./libs/vars.js') ;
 require("string_score");
@@ -22,13 +23,9 @@ exports.handler =  async (event, context, callback) => {
     });
     
     const page = await browser.newPage();
-    await page.goto(url, { waitUntil: 'networkidle2' });
-
-    // const options = {
-    //     headers: { 
-    //         'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:72.0) Gecko/20100101 Firefox/72.0'
-    //     }
-    // }
+    await page.goto(url, { waitUntil: 'networkidle0' });
+    const body = await page.$eval('ul', el => el.outerHTML);
+    console.log(body)
     // const response = await fetch( url, options );
     // const body = await response.text();
     // const $ = cheerio.load( body );
