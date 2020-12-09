@@ -35,6 +35,7 @@
     "puppeteer-core": "^5.5.0",
     "query-string": "^6.13.1",
     "sirv-cli": "^0.4.4",
+    "slugify": "^1.4.6",
     "string_score": "^0.1.22",
     "sugar": "^2.0.6"
   }
