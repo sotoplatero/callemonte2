@@ -1,13 +1,13 @@
 // const defaultTheme = require('tailwindcss/defaultTheme');
 
 module.exports = {
-    darkMode: 'media',
+    darkMode: 'class',
     theme: {
         extend: {
         // fontFamily: {
         //     sans: ['Inter var', ...defaultTheme.fontFamily.sans],
         // },      
-        screens: {
+        screens: { 
           'print': {'raw': 'print'},
         },          
         spacing: {

@@ -1,29 +1,23 @@
-<div 
-	@click.away="flyoutMenuOpen = false" 
-	x-data="{ flyoutMenuOpen: true }" 
-	class="relative"
->
+<div class="relative" >
 	<button 
 		type="button" 
-		x-state:on="Item active" 
-		x-state:off="Item inactive" 
-		@click="flyoutMenuOpen = !flyoutMenuOpen" 
-		:class="{ 'text-gray-900': flyoutMenuOpen, 'text-gray-500': !flyoutMenuOpen }" 
-		class="group bg-white rounded-md inline-flex items-center text-base font-medium hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 text-gray-900"
+		on:click|preventDefault="{ e => show = true}"
+		
+		class="text-gray-300 print:hidden focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
 	>
-		<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+		<svg class="w-5 h-5 sm:w-6 sm:h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
 		  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 5v.01M12 12v.01M12 19v.01M12 6a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z" />
 		</svg>
-		<svg 
+<!-- 		<svg 
 			x-state:on="Item active" 
 			x-state:off="Item inactive" 
 			class="ml-2 h-5 w-5 group-hover:text-gray-500 text-gray-600" 
-			x-bind:class="{ 'text-gray-600': flyoutMenuOpen, 'text-gray-400': !flyoutMenuOpen }" x-description="Heroicon name: chevron-down" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"
+			x-description="Heroicon name: chevron-down" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"
 		>
 			<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 5v.01M12 12v.01M12 19v.01M12 6a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z" />
-		</svg>
+		</svg> -->
 	</button>
-
+	{#if show}
     <div 
 	    x-description="'Solutions' flyout menu, show/hide based on flyout menu state." 
 	    x-show="flyoutMenuOpen" 
@@ -136,4 +130,9 @@
                 </div>
               </div>
             </div>
+            {/if}	
           </div>
+
+<script>
+  let show = false
+</script>          

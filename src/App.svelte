@@ -3,10 +3,11 @@
 
 	import Tailwindcss from "./Tailwindcss.svelte";
 	import Product from "./components/Product.svelte";
+	import Menu from "./components/Menu.svelte";
+	import Theme from "./components/Theme.svelte";
 	import Filter from "./components/Filter.svelte";
 	import Spin from "./components/Spin.svelte";
 	import Pagination from "./components/Pagination.svelte";
-	import "string_score";
 
 	import queryString from 'query-string';	
 
@@ -74,13 +75,13 @@
 <main>
 
 <div class="min-h-screen flex items-center justify-center ">
-  <div class="max-w-xl mx-auto w-full mb-6">
+  <div class="max-w-2xl mx-auto w-full mb-6">
 
     <div>
       <h2 class="mt-6 text-center text-3xl sm:text-6xl leading-9 font-extrabold ">
         Calle<span style="color: #00AA00;">Monte</span>
       </h2>
-      <p class="mt-3 text-center text-base text-gray-500 sm:mt-5 sm:text-lg sm:max-w-xl sm:mx-auto my-5 md:text-xl lg:mx-0">
+      <p class="mt-3 text-center text-base text-gray-700 dark:text-gray-300 sm:mt-5 sm:text-lg sm:mx-auto my-5 md:text-xl lg:mx-0">
           El buscador de clasificados en Cuba.
       </p>
 
@@ -116,6 +117,8 @@
 	 			on:filter={handleSearch}
  			/>
 
+ 			<!-- <Menu/> -->
+
        </div>
 
     </div>
@@ -133,7 +136,11 @@
 		<Pagination {filters} {searching} />
 
 	{/if}
-
+	<footer class="text-center space-x-4 text-gray-500 mt-6">
+		<Theme/>
+		<a href="https://medium.com/callemonte" target="_blank">blog</a>
+		<a href="https://twitter.com/@callemonte" target="_blank">@callemonte</a>
+	</footer>
   </div>
 </div>
 </main>

@@ -39,7 +39,7 @@
 	{ product.isHidden ? 'opacity-25' : '' }
 	{ product.isHidden || !product.phones.length ? 'print:hidden' : '' }
 ">
-	<div class="flex relative px-2 sm:px-4 py-5 bg-white dark:bg-gray-800 w-full">
+	<div class="flex relative px-2 sm:px-4 py-5 bg-white dark:bg-gray-800 hover:bg-dark-50 dark:hover:bg-gray-700 transition duration-300 w-full">
 		<div class="flex-shrink-0 h-8 w-8 mr-3">
 		    <img 
 		    	alt="{site}"
@@ -50,7 +50,7 @@
 	    	
 		    <div class="min-w-0" >
 		        <div class="leading-none mr-2 whitespace-no-wrap w-full truncate space-x-1">
-		            <span class="font-normal text-sm text-gray-500 dark:text-gray-500 space-x-2" >
+		            <span class="font-normal text-sm text-gray-500 space-x-2" >
 			            {#if product.date}
 			                <span class="font-semibold">{ date }</span>
 			            {/if}
@@ -64,19 +64,19 @@
 	                title="Abrir la página del anuncio"
 	                target="_blank" 
 	                rel="noreferer nofollow"
-	                class="group"
+	                class="hover:text-gray-200"
 			        on:click="{handleUpdate}"
 		        >
-			        <p class="title text-sm sm:text-base group-hover:text-blue-500"  >
+			        <p class="title text-sm sm:text-base "  >
 			            <span class="font-bold mr-auto">
 				            $ { product.price }
 				        </span>
 				        -
-						<span class="font-semibold group-hover:text-blue-500">{product.title}</span>
+						<span class="font-semibold ">{product.title}</span>
 			        </p>
 
 			        {#if product.description}
-				        <p class="text-sm mt-1 text-gray-700 dark:text-gray-300 group-hover:text-blue-500">
+				        <p class="text-sm mt-1">
 				        	{product.description}
 				        </p>
 			        {/if}
@@ -124,7 +124,7 @@
 
 				<Hidden bind:product={product} />
 				
-	            <Favorite bind:product={product} />
+	            <!-- <Favorite bind:product={product} /> -->
 
 	        </div>
 	        <div class="notes hidden print:block print:h-20"></div>
