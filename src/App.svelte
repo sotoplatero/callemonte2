@@ -1,6 +1,6 @@
 <script>
 	import { onMount } from 'svelte';
-	import TailwindCss from './TailwindCss.svelte'
+	import TailwindCss from './Tailwindcss.svelte'
 	import Product from "./components/Product.svelte";
 	// import Menu from "./components/Menu.svelte";
 	import Theme from "./components/Theme.svelte";
