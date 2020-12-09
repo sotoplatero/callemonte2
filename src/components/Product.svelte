@@ -39,7 +39,7 @@
 	{ product.isHidden ? 'opacity-25' : '' }
 	{ product.isHidden || !product.phones.length ? 'print:hidden' : '' }
 ">
-	<div class="flex relative px-2 sm:px-4 py-5 bg-white dark:bg-gray-800 hover:bg-dark-50 dark:hover:bg-gray-700 transition duration-300 w-full">
+	<div class="flex relative px-2 sm:px-4 py-5 bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-700 transition duration-300 w-full">
 		<div class="flex-shrink-0 h-8 w-8 mr-3">
 		    <img 
 		    	alt="{site}"
@@ -64,7 +64,7 @@
 	                title="Abrir la página del anuncio"
 	                target="_blank" 
 	                rel="noreferer nofollow"
-	                class="hover:text-gray-200"
+	                class="hover:text-gray-800 dark:hover:text-gray-200"
 			        on:click="{handleUpdate}"
 		        >
 			        <p class="title text-sm sm:text-base "  >
