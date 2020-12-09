@@ -1,9 +1,8 @@
 <script>
 	import { onMount } from 'svelte';
-
-	import Tailwindcss from "./Tailwindcss.svelte";
+	import TailwindCss from './TailwindCss.svelte'
 	import Product from "./components/Product.svelte";
-	import Menu from "./components/Menu.svelte";
+	// import Menu from "./components/Menu.svelte";
 	import Theme from "./components/Theme.svelte";
 	import Filter from "./components/Filter.svelte";
 	import Spin from "./components/Spin.svelte";
@@ -69,8 +68,6 @@
 	}
 
 </script>
-
-<Tailwindcss />
 
 <main>
 

@@ -1,4 +1,5 @@
 // const defaultTheme = require('tailwindcss/defaultTheme');
+const production = !process.env.ROLLUP_WATCH;
 
 module.exports = {
     darkMode: 'class',
@@ -41,7 +42,16 @@ module.exports = {
     }
   },
   variants: {},
-  plugins: [
-	  require('@tailwindcss/ui'),
-  ]
+    plugins: [
+      require('@tailwindcss/ui'),
+    ],
+    purge: {
+        content: [
+            "./src/**/*.svelte",
+            "./public/**/*.html"
+        ],
+        css: ["./public/**/*.css"],
+        enabled: production // disable purge in dev
+    }
+
 }

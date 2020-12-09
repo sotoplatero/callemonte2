@@ -1,13 +1,14 @@
 <script>
 	import Cookies from 'js-cookie'
-	import store from 'store/dist/store.modern'
-	import expirePlugin from 'store/plugins/expire'
+	// import store from 'store/dist/store.modern'
+	// import expirePlugin from 'store/plugins/expire'
 
-	store.addPlugin(expirePlugin)
+	// store.addPlugin(expirePlugin)
 
 	export let product;
 
-	let favorites = store.get('favorites') || [];
+	// let favorites = store.get('favorites') || [];
+	let favorites = [];
 
 	function handleFavorite() {
 		// console.log(favorites)
@@ -16,7 +17,7 @@
 			[...favorites, product];
 	}
 
-	$: store.set('favorites', favorites,  );
+	// $: store.set('favorites', favorites,  );
 
 	$: product.isFavorite = favorites.some( el => el.url === product.url );
 
