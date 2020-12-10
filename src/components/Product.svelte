@@ -40,11 +40,11 @@
 	{ product.isHidden || !product.phones.length ? 'print:hidden' : '' }
 ">
 	<div class="flex relative px-2 sm:px-4 py-5 bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-700 transition duration-300 w-full">
-		<div class="flex-shrink-0 h-8 w-8 mr-3">
+		<div class="flex-shrink-0 h-7 w-7 mr-3">
 		    <img 
 		    	alt="{site}"
 		        src="/static/fav/{site}.jpg" 
-		        class="h-8 w-8 rounded block">
+		        class="h-7 w-7 rounded block">
 		</div>
 	    <div class="w-full ">
 	    	
