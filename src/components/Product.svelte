@@ -39,7 +39,7 @@
 	{ product.isHidden ? 'opacity-25' : '' }
 	{ product.isHidden || !product.phones.length ? 'print:hidden' : '' }
 ">
-	<div class="flex relative px-2 sm:px-4 py-5 bg-white dark:bg-gray-800 w-full">
+	<div class="flex relative px-2 sm:px-4 py-5 bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-700 transition duration-300 w-full">
 		<div class="flex-shrink-0 h-8 w-8 mr-3">
 		    <img 
 		    	alt="{site}"
@@ -48,17 +48,9 @@
 		</div>
 	    <div class="w-full ">
 	    	
-		    <div 
-			    class="min-w-0 { product.updated ? '' : 'cursor-pointer'}"
-			    on:click="{handleUpdate}"
-		    >
+		    <div class="min-w-0" >
 		        <div class="leading-none mr-2 whitespace-no-wrap w-full truncate space-x-1">
-
-		            <span class="font-bold mr-auto">
-			            $ { product.price }
-			        </span>
-
-		            <span class="font-normal text-sm text-gray-700 dark:text-gray-400 space-x-2" >
+		            <span class="font-normal text-sm text-gray-500 space-x-2" >
 			            {#if product.date}
 			                <span class="font-semibold">{ date }</span>
 			            {/if}
@@ -66,18 +58,30 @@
 			                <span class="uppercase">{ product.location }</span>
 						{/if}
 		            </span>
-
 		        </div>
-
-		        <p class="title font-semibold text-sm sm:text-base" >
-					{product.title}
-		        </p>
-
-		        {#if product.description}
-			        <p class="text-sm mt-1 text-gray-700 dark:text-gray-400">
-			        	{product.description}
+		        <a 
+	                href="{product.url}" 
+	                title="Abrir la página del anuncio"
+	                target="_blank" 
+	                rel="noreferer nofollow"
+	                class="hover:text-gray-800 dark:hover:text-gray-200"
+			        on:click="{handleUpdate}"
+		        >
+			        <p class="title text-sm sm:text-base "  >
+			            <span class="font-bold mr-auto">
+				            $ { product.price }
+				        </span>
+				        -
+						<span class="font-semibold ">{product.title}</span>
 			        </p>
-		        {/if}
+
+			        {#if product.description}
+				        <p class="text-sm mt-1">
+				        	{product.description}
+				        </p>
+			        {/if}
+		        	
+		        </a>
 		        
 		        {#if product.phones.length > 0}
 					<div  class="flex flex-wrap mt-2">
@@ -101,29 +105,20 @@
 		        {/if}
 		    </div>
 
-	        <div class="print:hidden grid grid-cols-4 gap-1 justify-items-stretch text-sm mt-2 text-gray-500 dark:text-gray-500">
-
-	            <a 
-	                href="{product.url}" 
-	                class="text-sm visited:text-purple-600 hover:text-blue-500" 
-	                title="Visitar"
-	                target="_blank" 
-	                rel="noreferer nofollow">
-
-	                <svg class="h-5 w-5 inline" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor"><path d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
-
-	            </a>   
+	        <div class="print:hidden grid grid-cols-4 gap-1 justify-items-stretch text-sm mt-2 text-gray-500 dark:text-gray-500 mt-4" >
 
 	            <a 
 					href="https://api.microlink.io/?url={product.url}&pdf&embed=pdf.url&scale=1&margin=0.4cm" 
-	                class="text-sm visited:text-purple-600 hover:text-blue-500" 
+	                class="flex items-center text-sm visited:text-purple-600 hover:text-blue-500" 
 	                title="Descargar PDF"
 					download="{product.title}.pdf"
 	                >
 
 					<svg class="h-5 w-5 inline"  xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
 						<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
-					  </svg>					
+					</svg>	
+					<span class="hidden sm:inline ml-2">Descargar</span>
+
 
 	            </a>  
 
@@ -134,7 +129,9 @@
 	        </div>
 	        <div class="notes hidden print:block print:h-20"></div>
 	    </div>
+
 	    {#if updating}
+
 	        <div class="absolute text-white flex items-center justify-center top-0 left-0 w-full h-full bg-gray-300 dark:bg-gray-800 bg-opacity-75 z-100">
 				<svg class="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
 					<circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>

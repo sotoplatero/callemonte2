@@ -1,15 +1,14 @@
 // const defaultTheme = require('tailwindcss/defaultTheme');
+const production = !process.env.ROLLUP_WATCH;
 
 module.exports = {
-  experimental: {
-    darkModeVariant: true
-  },    
-  theme: {
-    extend: {
+    darkMode: 'class',
+    theme: {
+        extend: {
         // fontFamily: {
         //     sans: ['Inter var', ...defaultTheme.fontFamily.sans],
         // },      
-        screens: {
+        screens: { 
           'print': {'raw': 'print'},
         },          
         spacing: {
@@ -43,7 +42,16 @@ module.exports = {
     }
   },
   variants: {},
-  plugins: [
-	  require('@tailwindcss/ui'),
-  ]
+    plugins: [
+      require('@tailwindcss/ui'),
+    ],
+    purge: {
+        content: [
+            "./src/**/*.svelte",
+            "./public/**/*.html"
+        ],
+        css: ["./public/**/*.css"],
+        enabled: production // disable purge in dev
+    }
+
 }

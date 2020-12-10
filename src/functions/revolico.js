@@ -1,5 +1,7 @@
 const got = require('got');
+const moment = require('moment');
 require("string_score");
+
 var cleaner = require('./libs/cleaner');
 const { reLocations, getPhones } = require('./libs/vars.js') ;
 
@@ -44,10 +46,10 @@ exports.handler =  async (event, context, callback) => {
                 title: node.title,
                 description: node.shortDescription,
                 url: 'https://www.revolico.com' + node.permalink,
-                date: node.updatedOnToOrder,
+                date: +moment(node.updatedOnToOrder),
                 location: node.province.name,
                 phones: getPhones( node.title + node.shortDescription  ),
-                score: node.title.score(q,0.5) 
+                score: node.title.score( q, 0.5 ) 
             }));    
 
         console.log(ads)   
