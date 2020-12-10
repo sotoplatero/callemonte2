@@ -55,7 +55,7 @@
 	    sites.forEach( site => {
 			let url = `/api/${site}?q=${q}&pmin=${pmin}&pmax=${pmax}&p=${page}&province=${province}`
 
-				fetch(url)
+			fetch(url)
 				.then( r => r.json() )
 			  	.then( data => {
 					products = [...products, ...data ]
@@ -75,7 +75,7 @@
 <main>
 
 <div class="min-h-screen flex items-center justify-center ">
-  <div class="max-w-xl mx-auto w-full mb-6">
+  <div class="max-w-2xl mx-auto w-full mb-6">
 
     <div>
       <h2 class="mt-6 text-center text-3xl sm:text-6xl leading-9 font-extrabold ">
