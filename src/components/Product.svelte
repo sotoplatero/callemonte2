@@ -105,7 +105,7 @@
 		        {/if}
 		    </div>
 
-	        <div class="print:hidden grid grid-cols-4 gap-1 justify-items-stretch text-sm mt-2 text-gray-500 dark:text-gray-500">
+	        <div class="print:hidden grid grid-cols-4 gap-1 justify-items-stretch text-sm mt-2 text-gray-500 dark:text-gray-500 mt-4" >
 
 	            <a 
 					href="https://api.microlink.io/?url={product.url}&pdf&embed=pdf.url&scale=1&margin=0.4cm" 
@@ -129,7 +129,9 @@
 	        </div>
 	        <div class="notes hidden print:block print:h-20"></div>
 	    </div>
+
 	    {#if updating}
+
 	        <div class="absolute text-white flex items-center justify-center top-0 left-0 w-full h-full bg-gray-300 dark:bg-gray-800 bg-opacity-75 z-100">
 				<svg class="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
 					<circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
