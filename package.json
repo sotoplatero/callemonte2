@@ -36,6 +36,7 @@
     "query-string": "^6.13.1",
     "sirv-cli": "^0.4.4",
     "slugify": "^1.4.6",
+    "store": "^2.0.12",
     "string_score": "^0.1.22",
     "sugar": "^2.0.6"
   }

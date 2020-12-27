@@ -1,8 +1,5 @@
 <script>
 	import Cookies from 'js-cookie'
-	import { createEventDispatcher } from 'svelte';
-
-	const dispatch = createEventDispatcher();
 
 	export let product;
 	let hiddens = (() => JSON.parse( Cookies.get('hiddens') || '[]' ))();
