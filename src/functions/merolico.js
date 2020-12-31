@@ -1,5 +1,6 @@
-const fetch = require("node-fetch");
-var cheerio = require('cheerio');
+// const fetch = require("node-fetch");
+const got = require('got');
+// var cheerio = require('cheerio');
 var cleaner = require('./libs/cleaner');
 const { reLocations, rePhones, getPhones } = require('./libs/vars.js') ;
 require("string_score");
@@ -28,38 +29,24 @@ const provinces = {
 }
 
 exports.handler =  async (event, context, callback) => {
-    const { q, p = 1, pmin = 1, pmax = '', province = '' }= event.queryStringParameters;
+    const { q, p = 1, pmin = 1, pmax = '', province = '' } = event.queryStringParameters;
 
     let location = provinces[province] || ''
     
-    const response = await fetch(`https://merolico.app/search/page/${p}?q=${q}&minPrice=${pmin}&maxPrice=${pmax}&location=${location}`);
-    const body = await response.text();
-    const $ = cheerio.load( body );
+    const url = `https://merolico.app/api_rest/resource?id=1&q=${q}&location=${location}&minPrice=${pmin}&maxPrice=${pmax}&size=50`;
+    const ads = await got(url).json();
 
-
-    let data = $('.adds-wrapper .item-list').map( (i,el) => { 
-        let $el = $(el), 
-            $a = $el.find('h5.add-title a');
-        let ad = {
-            price: parseInt( $el.find('h2.item-price').text().replace(/\D/g,'') || 0 ),    
-            title: cleaner( $a.text() ),
-            url: $a.attr('href'),
-            description: $el.find('.ads-details p').text().trim(),
-            date: (()=>{
-                let date = Sugar.Date.create( $el.find('li.date').text().trim() ) ;
-                return date ? Date.parse(date) : null;
-            })(),
-            location: (() => { 
-                let location = $el.find('.item-location').text().match(reLocations)
-                return location ? location.toString() : ''; 
-            })(),
-            phones: getPhones( $el.find('.ads-details').text() ),
-
-        };
-
-        return {...ad, score: ad.title.score(q,0.5) };
-
-    }).get();
+    let data = ads.items.map( ad => ({
+        id: ad.id,
+        title: ad.title,
+        url: ad.slug,
+        price: ad.price,
+        description: ad.detail,
+        photo: ad.picture,
+        score: ad.title.score( q, 0.5 ),
+        date: ( new Date(ad.update_at) ).getTime(),
+        phones: [],
+    }) )
 
     return {
         headers: { 

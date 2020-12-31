@@ -52,8 +52,6 @@ exports.handler =  async (event, context, callback) => {
                 score: node.title.score( q, 0.5 ) 
             }));    
 
-        console.log(ads)   
-
     }
     catch(error){
         console.log( error.response.body.errors );

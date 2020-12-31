@@ -17,7 +17,6 @@ exports.handler =  async (event, context, callback) => {
 
             let id = url.split(';')[1].split('=')[1];
             const response = await fetch(`http://api.riquera.com/api/ads/${id}`);
-            console.log(response)
             var json = await response.json();
 
             data = {

@@ -24,7 +24,7 @@
 	async function handleUpdate() {
 	    if (!product.updated) {
 	    	updating = true
-	        let url = `/.netlify/functions/details?url=${product.url}`
+	        let url = `/.netlify/functions/details?url=${product.url}&id=${product.id||''}`
 			let response = await fetch(url)
 	    	updating = false
 	    	if (response.ok) {
