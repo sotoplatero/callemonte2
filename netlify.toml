@@ -1,7 +1,6 @@
 [dev]
   command="yarn dev"
   publish="public"
-  port=8800
 
 [build]
   functions = "src/functions/" # netlify dev uses this to know where to scaffold and serve your functions
