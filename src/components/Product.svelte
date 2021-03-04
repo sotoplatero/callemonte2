@@ -67,16 +67,16 @@
 	                class="hover:text-gray-800 dark:hover:text-gray-200"
 			        on:click="{handleUpdate}"
 		        >
-			        <p class="title text-sm sm:text-base "  >
-			            <span class="font-bold mr-auto">
+			        <p class="title text-sm sm:text-base font-bold "  >
+			            <span class="mr-auto">
 				            $ { product.price }
 				        </span>
 				        -
-						<span class="font-semibold ">{product.title}</span>
+						<span class="">{product.title}</span>
 			        </p>
 
 			        {#if product.description}
-				        <p class="text-sm mt-1">
+				        <p class="text-sm mt-1 text-gray-700 dark:text-gray-300">
 				        	{product.description}
 				        </p>
 			        {/if}
@@ -111,6 +111,7 @@
 					href="https://api.microlink.io/?url={product.url}&pdf&embed=pdf.url&scale=1&margin=0.4cm" 
 	                class="flex items-center text-sm visited:text-purple-600 hover:text-blue-500" 
 	                title="Descargar PDF"
+					target="_blank"
 					download="{product.title}.pdf"
 	                >
 

@@ -79,7 +79,7 @@
         <div class="bg-white dark:bg-gray-900 px-4 pt-5 pb-4 sm:p-6 sm:pb-4 space-y-4">
 
 			<div class="">
-				<label for="pmin" class="mb-1 block font-semibold text-sm">Precio Minimo</label>
+				<label for="pmin" class="mb-1 block font-semibold text-sm">Precio Mínimo</label>
 				<input 
 					type="text" 
 					class="block appearance-none w-full bg-white dark:bg-gray-600 border dark:border-gray-500 px-4 py-2 pr-8 rounded  leading-tight focus:outline-none focus:shadow-outline" 
@@ -88,7 +88,7 @@
 			</div> 
 
 			<div class="">
-				<label for="pmax" class="mb-1 block font-semibold text-sm">Precio Minimo</label>
+				<label for="pmax" class="mb-1 block font-semibold text-sm">Precio Máximo</label>
 				<input 
 					type="text" 
 					class="block appearance-none w-full bg-white  dark:bg-gray-600 border dark:border-gray-500 px-4 py-2 pr-8 rounded  leading-tight focus:outline-none focus:shadow-outline" 
