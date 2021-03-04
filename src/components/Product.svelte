@@ -49,16 +49,7 @@
 	    <div class="w-full ">
 	    	
 		    <div class="min-w-0" >
-		        <div class="leading-none mr-2 whitespace-no-wrap w-full truncate space-x-1">
-		            <span class="font-normal text-sm text-gray-500 space-x-2" >
-			            {#if product.date}
-			                <span class="font-semibold">{ date }</span>
-			            {/if}
-			            {#if product.location}
-			                <span class="uppercase">{ product.location }</span>
-						{/if}
-		            </span>
-		        </div>
+
 		        <a 
 	                href="{product.url}" 
 	                title="Abrir la página del anuncio"
@@ -71,12 +62,23 @@
 			            <span class="mr-auto">
 				            $ { product.price }
 				        </span>
-				        -
+				        <span class="font-extrabold text-gray-600">-</span>
 						<span class="">{product.title}</span>
 			        </p>
 
+					<p class="leading-none whitespace-no-wrap w-full truncate space-x-1">
+						<span class="font-normal text-xs text-gray-400 dark:text-gray-500 space-x-2" >
+							{#if product.date}
+								<span class="font-semibold">{ date }</span>
+							{/if}
+							{#if product.location}
+								<span class="uppercase">{ product.location }</span>
+							{/if}
+						</span>
+					</p>
+
 			        {#if product.description}
-				        <p class="text-sm mt-1 text-gray-700 dark:text-gray-300">
+				        <p class="text-sm mt-2 text-gray-700 dark:text-gray-300">
 				        	{product.description}
 				        </p>
 			        {/if}
@@ -118,7 +120,7 @@
 					<svg class="h-5 w-5 inline"  xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
 						<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
 					</svg>	
-					<span class="hidden sm:inline ml-2">Descargar</span>
+					<span class="hidden sm:inline ml-1">Descargar</span>
 
 
 	            </a>  
