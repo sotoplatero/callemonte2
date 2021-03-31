@@ -46,6 +46,7 @@ exports.handler =  async (event, context, callback) => {
         score: ad.title.score( q, 0.5 ),
         date: ( new Date(ad.update_at) ).getTime(),
         phones: [],
+        image: ad.picture,
     }) )
 
     return {

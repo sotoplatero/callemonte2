@@ -2,7 +2,7 @@
 
 Callemonte es un meta buscador de clasificados en Cuba.
 
-Realiza las búsquedas en cada uno de los sitios, extrae los datos, consolida y los muestra y no usa base de datos. 
+Realiza las búsquedas en cada uno de los sitios, extrae los datos, consolida y los muestra por tanto no usa base de datos. 
 
 En el front utiliza [Svelte](//svelte.dev) con [Tailwind](//tailwindcss.com) y en el back las [funciones de Netlify](https://www.netlify.com/docs/functions/)
 

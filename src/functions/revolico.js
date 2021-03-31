@@ -40,7 +40,7 @@ exports.handler =  async (event, context, callback) => {
                 "variables": variables,
                 "query":"query AdsSearch($category: ID, $subcategory: ID, $contains: String, $priceGte: Float, $priceLte: Float, $sort: [adsPerPageSort], $hasImage: Boolean, $categorySlug: String, $subcategorySlug: String, $page: Int, $provinceSlug: String, $municipalitySlug: String, $pageLength: Int) {\n  adsPerPage(category: $category, subcategory: $subcategory, contains: $contains, priceGte: $priceGte, priceLte: $priceLte, hasImage: $hasImage, sort: $sort, categorySlug: $categorySlug, subcategorySlug: $subcategorySlug, page: $page, provinceSlug: $provinceSlug, municipalitySlug: $municipalitySlug, pageLength: $pageLength) {\n    pageInfo {\n      ...PaginatorPageInfo\n      __typename\n    }\n    edges {\n      node {\n        id\n        title\n        price\n        currency\n        shortDescription\n        permalink\n        imagesCount\n        updatedOnToOrder\n        isAuto\n        province {\n          id\n          name\n          slug\n          __typename\n        }\n        municipality {\n          id\n          name\n          slug\n          __typename\n        }\n        __typename\n      }\n      __typename\n    }\n    meta {\n      total\n      __typename\n    }\n    __typename\n  }\n}\n\nfragment PaginatorPageInfo on CustomPageInfo {\n  startCursor\n  endCursor\n  hasNextPage\n  hasPreviousPage\n  pageCount\n  __typename\n}\n"}]
         })
-
+        console.log(body[0].data.adsPerPage.edges)
         ads = body[0].data.adsPerPage.edges.map( ({ node }) => ({
                 price: node.price,
                 title: node.title,
@@ -49,7 +49,8 @@ exports.handler =  async (event, context, callback) => {
                 date: +moment(node.updatedOnToOrder),
                 location: node.province.name,
                 phones: getPhones( node.title + node.shortDescription  ),
-                score: node.title.score( q, 0.5 ) 
+                score: node.title.score( q, 0.5 ),
+                image: true,
             }));    
 
     }
