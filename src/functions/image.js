@@ -30,7 +30,7 @@ exports.handler =  async (event, context, callback) => {
         } else {
             const response = await fetch(url);
             const body = await response.text();
-            const $ = cheerio.load( body );            
+            var $ = cheerio.load( body );            
         }
 
         if ( /porlalivre/.test(url) ) {
