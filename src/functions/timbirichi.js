@@ -37,7 +37,7 @@ exports.handler =  async (event, context, callback) => {
             })(),
             description:  $el.find('.info-anuncio small').text().trim().replace(reRepetition,'$1'),
             phones: getPhones( $el.text() ),
-            image: !/default\.jpg$/.test( $el.find('.anuncio-foto img.thumbnail').attr('src') )
+            photo: $el.find('.anuncio-foto img.thumbnail').attr('data-src-mobile')
         };
 
         return {...ad, score: ad.title.score(q,0.5) };

@@ -59,7 +59,7 @@ exports.handler =  async (event, context, callback) => {
             })(),
             location: $el.find('ul.media-bottom li').eq(1).text().trim(),
             phones: getPhones( $el.find('.media-body').text() ),
-            image: !/no_image/g.test( $el.find('img.media-object').attr('src') ),
+            photo: !/no_image/.test( $el.find('img.media-object').attr('src') ) ? `/api/image?url=https://porlalivre.com${ $el.find('a.classified-link').attr('href') }` : '',
         };
         return {...ad, score: ad.title.score(q,0.5) };
 

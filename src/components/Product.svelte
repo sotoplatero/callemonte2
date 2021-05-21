@@ -39,7 +39,7 @@
 	{ product.isHidden ? 'opacity-25' : '' }
 	{ product.isHidden || !product.phones.length ? 'print:hidden' : '' }
 ">
-	<div class="flex relative px-2 sm:px-4 py-5 bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-700 transition duration-300 w-full">
+	<div class="flex relative px-2 sm:px-6 py-5 bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-700 transition duration-300 w-full">
 		<div class="flex-shrink-0 h-7 w-7 mr-3">
 		    <img 
 		    	alt="{site}"
@@ -56,7 +56,6 @@
 	                target="_blank" 
 	                rel="noreferer nofollow"
 	                class="hover:text-gray-800 dark:hover:text-gray-200"
-			        on:click="{handleUpdate}"
 		        >
 			        <p class="title text-sm sm:text-base font-bold "  >
 			            <span class="mr-auto">
@@ -66,7 +65,14 @@
 						<span class="">{product.title}</span>
 			        </p>
 
-					<p class="leading-none whitespace-no-wrap w-full truncate space-x-1">
+
+			        {#if product.description}
+				        <p class="mt-2 text-gray-700 dark:text-gray-300">
+				        	{product.description}
+				        </p>
+			        {/if}
+
+					<p class="leading-none whitespace-no-wrap w-full truncate space-x-1 mt-3">
 						<span class="font-normal text-xs text-gray-400 dark:text-gray-500 space-x-2" >
 							{#if product.date}
 								<span class="font-semibold">{ date }</span>
@@ -76,12 +82,6 @@
 							{/if}
 						</span>
 					</p>
-
-			        {#if product.description}
-				        <p class="text-sm mt-2 text-gray-700 dark:text-gray-300">
-				        	{product.description}
-				        </p>
-			        {/if}
 		        	
 		        </a>
 		        
@@ -96,12 +96,13 @@
 					</div>
 		        {/if}
 
-		        {#if product.updated && product.photo}
-			        <div class="relative pb-3/4 mt-2 dark:bg-gray-700" >
+		        {#if product.photo}
+			        <div class="relative pb-3/4 mt-2 dark:bg-gray-700 rounded-xl overflow-hidden" >
 			          <img 
-			              class="absolute h-full w-full object-cover rounded-lg" 
+			              class="absolute h-full w-full object-cover " 
 			              src="{product.photo}" 
 			              alt="{product.title}"
+			              loading="lazy"
 		              >
 			        </div>	        
 		        {/if}

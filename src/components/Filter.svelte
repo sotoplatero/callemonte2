@@ -36,14 +36,14 @@
 
 <button 
 	name="filters"
-	class="text-gray-400 hover:text-blue-600 print:hidden" 
+	class="flex  items-center px-4 text-gray-500 hover:text-gray-600 dark:hover:text-gray-400 print:hidden" 
 	on:click|preventDefault="{ e => show = true}"
 >
 	<svg class="w-5 h-5 sm:w-6 sm:h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M3 3a1 1 0 011-1h12a1 1 0 011 1v3a1 1 0 01-.293.707L12 11.414V15a1 1 0 01-.293.707l-2 2A1 1 0 018 17v-5.586L3.293 6.707A1 1 0 013 6V3z" clip-rule="evenodd"></path></svg>
 </button>
 
 {#if show}
-<div class="fixed z-10 inset-0 overflow-y-auto">
+<div class="fixed z-50 inset-0 overflow-y-auto">
   <div class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
     <!--
       Background overlay, show/hide based on modal state.
@@ -55,7 +55,7 @@
         From: "opacity-100"
         To: "opacity-0"
     -->
-      <div class="fixed inset-0 transition-opacity" transition:fade>
+      <div class="fixed inset-0 transition-opacity" transition:fade on:click|preventDefault="{ e => show = false}">
         <div class="absolute inset-0 bg-gray-500 opacity-75"></div>
       </div>
 

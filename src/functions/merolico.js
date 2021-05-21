@@ -42,11 +42,10 @@ exports.handler =  async (event, context, callback) => {
         url: ad.slug,
         price: ad.price,
         description: ad.detail,
-        photo: ad.picture,
         score: ad.title.score( q, 0.5 ),
         date: ( new Date(ad.update_at) ).getTime(),
         phones: [],
-        image: ad.picture,
+        photo: ad.picture.replace(/0\_/,''),
     }) )
 
     return {

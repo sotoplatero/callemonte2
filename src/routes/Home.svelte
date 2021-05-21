@@ -28,7 +28,6 @@
 			...filters, 
 			...queryString.parse(location.search)
 		};
-		
 		if ( filters.q ) search();
 
 		document.addEventListener('keydown', handleKeypress)
@@ -37,7 +36,7 @@
 	function handleSearch() {
 		history.pushState(filters, '', '?' + queryString.stringify(filters)) ;
 		window.scrollTo(0, 0);
-	    search();
+    search();
 	}
 
 	function search() {
@@ -48,7 +47,7 @@
 	    const sites = [ 'porlalivre','timbirichi','1cuc','merolico','hogarencuba','ricurancia','revolico' ];
 		
 	    searching = sites.length;
-		products = [];
+			products = [];
 
 	    let { q, pmin, pmax, page, province } = filters;
 		
@@ -87,53 +86,45 @@
 
     <div>
       <h2 class="mt-6 text-center text-3xl sm:text-6xl leading-9 font-extrabold ">
-        Calle<span style="color: #00AA00;">Monte</span>
+        <a href="/">Calle<span style="color: #00AA00;">Monte</span></a>
       </h2>
       <p class="mt-3 text-center text-base text-gray-700 dark:text-gray-300 sm:mt-5 sm:text-lg sm:mx-auto my-5 md:text-xl lg:mx-0">
           El buscador de clasificados en Cuba.
       </p>
 
     </div>
+    <div class="py-2 sticky top-0 z-50 bg-white dark:bg-gray-900 transition duration-300">
 
-    <div class="sticky top-0 py-2 z-10 bg-white dark:bg-gray-900 transition duration-300" id="top">
+			<form on:submit|preventDefault={handleSearch} class="group bg-white dark:bg-gray-800 shadow transition duration-300" >
+				<div class="max-w-10xl mx-auto flex">
+					<input bind:value={filters.q} type="text" name="q" id="search-input" placeholder="¿Qué quieres comprar?" class="flex-auto bg-transparent py-5 pl-2 sm:pl-4 text-base leading-6 text-gray-500 placeholder-gray-500 focus:outline-none focus:placeholder-gray-400"  autocomplete="off">
+					{#if searching > 0}
+						<Spin />
+					{/if}			
 
-      <div class="flex items-center w-full appearance-none shadow print:shadow-none print:bg-white rounded-none p-3 sm:p-4 text-lg border-gray-300 placeholder-gray-500 text-gray-900 dark:text-gray-100 sm:rounded-lg focus:outline-none focus:shadow-outline-green focus:border-green-300 focus:z-10 leading-5 space-x-2 bg-gray-100 dark:bg-gray-800 transition duration-300">
-
-          	<span class="my-auto text-gray-400">
-				<svg class="w-5 h-5 sm:w-6 sm:h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd"></path></svg>       	
-          	</span>
-
-          	<div class="flex-1">
-				<input 
-					bind:value={filters.q}
-					aria-label="¿Qué quieres comprar?" 
-					name="q" 
-					type="text" 
-					autocomplete="off"
-					on:keypress={ e => { if (e.key == 'Enter') handleSearch() } }
-					class="w-full bg-gray-100 dark:bg-gray-800 appearance-none focus:outline-none transition duration-300" 
-					placeholder="¿Qué quieres comprar? Presiona '/' ">
-          	</div>
+					<button type="submit" for="search-input" class="flex-none flex items-center px-4 hover:bg-gray-100 dark:bg-gray-700 dark:hover:bg-gray-600">
+						<span class="sr-only">Search all <!-- -->230<!-- --> icons</span>
+						<svg width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="text-gray-400 group-focus-within:text-gray-600 transition-colors duration-150">
+							<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+						</svg>
+					</button>
+				</div>
+			</form>
+    	
+    </div>
 
 
-			{#if searching > 0}
-				<Spin />
-			{/if}
+	{#if products.length}
 
+    <div class="flex justify-between items-center py-4">
+    	{products.length} Anuncios
  			<Filter 
 	 			bind:value={filters} 
 	 			on:filter={handleSearch}
  			/>
-
- 			<!-- <Menu/> -->
-
-       </div>
-
     </div>
 
-	{#if products.length}
-
-		<div class="divide-y divide-gray-100 dark:divide-gray-900 shadow rounded-lg overflow-hidden mb-4">
+		<div class="divide-y divide-gray-100 dark:divide-gray-900 shadow overflow-hidden mb-4">
 
 			{#each products as product (product.url)}
 				<Product product={product} />
