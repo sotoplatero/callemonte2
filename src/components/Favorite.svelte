@@ -1,47 +1,43 @@
 <script>
-	import store from 'store/dist/store.modern'
-	import expirePlugin from 'store/plugins/expire'
-
-	store.addPlugin(expirePlugin)
+	import {config} from '../store'
 
 	export let product;
+	let favorites = $config.favorites || []
+	$: product.favorite = favorites.some( el => el.url === product.url )
 
-	let favorites = store.get('favorites') || [];
-	// let favorites = [];
+	function toggleFavorite() {
+		product.favorite = !product.favorite
+		favorites = product.favorite
+			? [...favorites, product ]
+			: favorites.filter( el => el.url !== product.url )
 
-	function handleFavorite() {
-		// console.log(favorites)
-		favorites = product.isFavorite ? 
-			favorites.filter( el => el.url !== product.url ) :
-			[...favorites, product];
+		$config = {...$config, favorites }
 	}
-
-	$: store.set('favorites', favorites,  );
-
-	$: product.isFavorite = favorites.some( el => el.url === product.url );
 
 </script>
 
 <span>
 	<button
-		class="text-left text-sm hover:text-blue-500 {product.isFavorite ? 'text-yellow-300' : ''}" 
+		class="flex items-center text-left text-sm font-bold hover:text-blue-500 {product.favorite ? 'text-green-500' : ''}" 
 		title="Seleccionar"
-		on:click|preventDefault="{handleFavorite}"
+		on:click|preventDefault="{toggleFavorite}"
 	>
 
-<!-- 		{#if product.isFavorite}
+		{#if product.favorite}
 
-			<svg class="h-5 w-5 inline" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-			  <path fill-rule="evenodd" d="M10 2a4 4 0 00-4 4v1H5a1 1 0 00-.994.89l-1 9A1 1 0 004 18h12a1 1 0 00.994-1.11l-1-9A1 1 0 0015 7h-1V6a4 4 0 00-4-4zm2 5V6a2 2 0 10-4 0v1h4zm-6 3a1 1 0 112 0 1 1 0 01-2 0zm7-1a1 1 0 100 2 1 1 0 000-2z" clip-rule="evenodd" />
+			<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 20 20" fill="currentColor">
+			  <path d="M7.707 10.293a1 1 0 10-1.414 1.414l3 3a1 1 0 001.414 0l3-3a1 1 0 00-1.414-1.414L11 11.586V6h5a2 2 0 012 2v7a2 2 0 01-2 2H4a2 2 0 01-2-2V8a2 2 0 012-2h5v5.586l-1.293-1.293zM9 4a1 1 0 012 0v2H9V4z" />
 			</svg>
 
-		{:else} -->
+		{:else}
 
-			<svg class="h-5 w-5 inline"  xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-			  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+			<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+			  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-3m-1 4l-3 3m0 0l-3-3m3 3V4" />
 			</svg>
 			
-		<!-- {/if} -->
-		<span class="hidden sm:inline ml-2">Favorito</span>
+		{/if}
+		<span class="hidden sm:inline ml-2">
+			{ product.favorite ? 'Guardado' : 'Guardar' }
+		</span>
 	</button> 
 </span>
