@@ -98,7 +98,7 @@
 					<Favorite bind:product />
 					<Hidden bind:product />
 		            <a 
-						href="/api/pdf?url={product.url}" 
+						href="/api/photo?url={product.url}" 
 		                class="flex items-center text-sm visited:text-purple-600 hover:text-blue-500" 
 		                title="Descargar PDF"
 						target="_blank"
