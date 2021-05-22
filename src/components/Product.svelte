@@ -44,15 +44,8 @@
 		                rel="noreferer nofollow"
 		                class="hover:text-gray-800 dark:hover:text-gray-200"
 			        >
-						<p class="leading-none whitespace-no-wrap w-full truncate space-x-1">
-							<span class="font-normal text-xs text-gray-400 dark:text-gray-500 space-x-2" >
-								{#if product.date}
-									<span class="font-semibold">{ date }</span>
-								{/if}
-								{#if product.location}
-									<span class="uppercase">{ product.location }</span>
-								{/if}
-							</span>
+						<p class="leading-none text-sm text-gray-400 mb-1 capitalize">
+							{ date || ''} { product.location || '' }
 						</p>
 
 				        <p class="title font-bold "  >

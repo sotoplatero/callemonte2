@@ -50,6 +50,7 @@
 	    searching = sites.length;
 			products = [];
 
+
 	    let { q, pmin, pmax, page, province } = filters;
 		
 	    sites.forEach( site => {
@@ -99,7 +100,7 @@
 		<form on:submit|preventDefault={handleSearch} class="group bg-white dark:bg-gray-800 shadow transition duration-300" >
 			<div class="max-w-10xl mx-auto flex">
 				<input bind:value={filters.q} type="text" name="q" id="search-input" placeholder="¿Qué quieres comprar?" class="flex-auto bg-transparent py-4 pl-4 text-base leading-6 text-gray-800 dark:text-gray-200 placeholder-gray-500 focus:outline-none focus:placeholder-gray-400"  autocomplete="off">
-				{#if searching > 0}
+				{#if isSearching }
 					<Spin />
 				{/if}			
 
