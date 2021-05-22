@@ -50,7 +50,7 @@ exports.handler =  async (event, context, callback) => {
                 location: node.province.name,
                 phones: getPhones( node.title + node.shortDescription  ),
                 score: node.title.score( q, 0.5 ),
-                photo: node.imagesCount > 0 ? `/api/image?url=https://www.revolico.com${node.permalink}` : '',
+                photo: '',//node.imagesCount > 0 ? `/api/image?url=https://www.revolico.com${node.permalink}` : '',
             }));    
 
     }

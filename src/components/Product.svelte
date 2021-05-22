@@ -39,7 +39,7 @@
 	{ product.isHidden ? 'opacity-25' : '' }
 	{ product.isHidden || !product.phones.length ? 'print:hidden' : '' }
 ">
-	<div class="flex relative px-2 sm:px-6 py-5 bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-700 transition duration-300 w-full">
+	<div class="flex relative pl-2 pr-4 sm:pl-4 sm:pr-8 py-5 bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-700 transition duration-300 w-full">
 		<div class="flex-shrink-0 h-7 w-7 mr-3">
 		    <img 
 		    	alt="{site}"
