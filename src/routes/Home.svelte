@@ -44,8 +44,8 @@
 			return;
 		} 
 		
-	    // const sites = [ 'porlalivre','timbirichi','1cuc','merolico','hogarencuba','ricurancia','revolico' ];
-	    const sites = ['merolico' ];
+	    const sites = [ 'porlalivre','timbirichi','1cuc','merolico','ricurancia','revolico' ];
+	    // const sites = ['merolico' ];
 		
 	    searching = sites.length;
 			products = [];
