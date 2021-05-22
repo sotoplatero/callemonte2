@@ -46,6 +46,8 @@ exports.handler =  async (event, context, callback) => {
 
     } catch(e) { console.log(e) }
 
+
+
     // const response = await fetch("https://image.revolico.com/ads/qN3F5AtjsONKjH5Lr7393mjwAMr1j4cLToxuCLU34OZ8g1618351762599720746_thumb", {
     //   "headers": {
     //     "sec-ch-ua": "\" Not A;Brand\";v=\"99\", \"Chromium\";v=\"90\", \"Google Chrome\";v=\"90\"",
@@ -69,27 +71,30 @@ exports.handler =  async (event, context, callback) => {
     //         "Content-Type": "application/json"
     //     },        
     // })
-        const browser = await chromium.puppeteer.launch({
-            ignoreDefaultArgs: ['--disable-extensions'],
-            args: chromium.args,
-            defaultViewport: chromium.defaultViewport,
-            executablePath: process.env.PATH_CHROME || await chromium.executablePath,
-            headless: true,
-        });
+        // const browser = await chromium.puppeteer.launch({
+        //     ignoreDefaultArgs: ['--disable-extensions'],
+        //     args: chromium.args,
+        //     defaultViewport: chromium.defaultViewport,
+        //     executablePath: process.env.PATH_CHROME || await chromium.executablePath,
+        //     headless: true,
+        // });
         
-        // Open page base
-        const page = await browser.newPage();
-        await page.goto(url)
-        // const [response] = await Promise.all([
-        //   // page.waitForNavigation(waitOptions),
-        //     page.waitForSelector('.ReactModalPortal',{visible: true}),
-        //     page.click('[data-cy="zoomAdImage"]'),
-        //   // page.click(selector, clickOptions),
-        // ]);        
-        // await page.click('[data-cy="zoomAdImage"]')
-        const el = await page.$('data-cy="zoomAdImage"]')
-        const screenshot = await el.screenshot({ encoding: 'base64' });
-        await browser.close();        
+        // // Open page base
+        // const page = await browser.newPage();
+        // await page.goto(url)
+        // // const [response] = await Promise.all([
+        // //   // page.waitForNavigation(waitOptions),
+        // //     page.waitForSelector('.ReactModalPortal',{visible: true}),
+        // //     page.click('[data-cy="zoomAdImage"]'),
+        // //   // page.click(selector, clickOptions),
+        // // ]);        
+        // // await page.click('[data-cy="zoomAdImage"]')
+        // const el = await page.$('data-cy="zoomAdImage"]')
+        // const screenshot = await el.screenshot({ encoding: 'base64' });
+        // await browser.close();        
+
+    const result = await fetch(data)
+    image = await result.buffer()
 
     return {
         statusCode: 200,
@@ -97,7 +102,7 @@ exports.handler =  async (event, context, callback) => {
           'Content-type': 'image/jpeg',
           // 'Cache-Control': 'public, immutable, no-transform, s-maxage=31536000, max-age=31536000',
         },
-        body: screenshot,
+        body: image.toString('base64'),
         isBase64Encoded: true
     };
 }
