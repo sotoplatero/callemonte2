@@ -44,7 +44,8 @@
 			return;
 		} 
 		
-	    const sites = [ 'porlalivre','timbirichi','1cuc','merolico','hogarencuba','ricurancia','revolico' ];
+	    // const sites = [ 'porlalivre','timbirichi','1cuc','merolico','hogarencuba','ricurancia','revolico' ];
+	    const sites = ['merolico' ];
 		
 	    searching = sites.length;
 			products = [];
@@ -82,7 +83,7 @@
 <main>
 
 <div class="min-h-screen flex items-center justify-center ">
-  <div class="max-w-2xl mx-auto w-full mb-10">
+  <div class="max-w-2xl mx-auto w-full mb-10 mx-2">
 
     <div>
       <h2 class="mt-6 text-center text-3xl sm:text-6xl leading-9 font-extrabold ">
@@ -95,21 +96,21 @@
     </div>
     <div class="py-2 sticky top-0 z-50 bg-white dark:bg-gray-900 transition duration-300">
 
-			<form on:submit|preventDefault={handleSearch} class="group bg-white dark:bg-gray-800 shadow transition duration-300" >
-				<div class="max-w-10xl mx-auto flex">
-					<input bind:value={filters.q} type="text" name="q" id="search-input" placeholder="¿Qué quieres comprar?" class="flex-auto bg-transparent py-5 pl-2 sm:pl-4 text-base leading-6 text-gray-500 placeholder-gray-500 focus:outline-none focus:placeholder-gray-400"  autocomplete="off">
-					{#if searching > 0}
-						<Spin />
-					{/if}			
+		<form on:submit|preventDefault={handleSearch} class="group bg-white dark:bg-gray-800 shadow transition duration-300" >
+			<div class="max-w-10xl mx-auto flex">
+				<input bind:value={filters.q} type="text" name="q" id="search-input" placeholder="¿Qué quieres comprar?" class="flex-auto bg-transparent py-4 pl-4 text-base leading-6 text-gray-800 dark:text-gray-200 placeholder-gray-500 focus:outline-none focus:placeholder-gray-400"  autocomplete="off">
+				{#if searching > 0}
+					<Spin />
+				{/if}			
 
-					<button type="submit" for="search-input" class="flex-none flex items-center px-4 hover:bg-gray-100 dark:bg-gray-700 dark:hover:bg-gray-600">
-						<span class="sr-only">Search all <!-- -->230<!-- --> icons</span>
-						<svg width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="text-gray-400 group-focus-within:text-gray-600 transition-colors duration-150">
-							<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
-						</svg>
-					</button>
-				</div>
-			</form>
+				<button type="submit" for="search-input" class="flex-none flex items-center px-4 hover:bg-gray-100 dark:bg-gray-700 dark:hover:bg-gray-600">
+					<span class="sr-only">Search all <!-- -->230<!-- --> icons</span>
+					<svg width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="text-gray-400 group-focus-within:text-gray-600 transition-colors duration-150">
+						<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+					</svg>
+				</button>
+			</div>
+		</form>
     	
     </div>
 
