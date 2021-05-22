@@ -36,7 +36,7 @@
 		</svg>
 
     {/if}
-    <span class="hide sm:inline ml-2">
+    <span class="hidden sm:inline ml-1">
 	    { product.hide ? 'Mostrar' : 'No me Interesa'}
 	</span>
 </button> 

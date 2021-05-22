@@ -93,14 +93,14 @@
 			        {/if}
 			    </div>
 
-		        <div class="print:hidden flex space-x-6 text-sm mt-2 text-gray-700 dark:text-gray-300 font-bold mt-4" >
+		        <div class="print:hidden flex justify-between text-sm mt-2 text-gray-700 dark:text-gray-400 font-bold mt-4" >
 
 					<Favorite bind:product />
 					<Hidden bind:product />
 		            <a 
 						href="/api/photo?url={product.url}" 
 		                class="flex items-center text-sm visited:text-purple-600 hover:text-blue-500" 
-		                title="Descargar PDF"
+		                title="Captura de Pantalla"
 						target="_blank"
 						download="{product.title}.pdf"
 	                >

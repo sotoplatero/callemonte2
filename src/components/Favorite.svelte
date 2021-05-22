@@ -36,7 +36,7 @@
 			</svg>
 			
 		{/if}
-		<span class="hidden sm:inline ml-2">
+		<span class="hidden sm:inline ml-1">
 			{ product.favorite ? 'Guardado' : 'Guardar' }
 		</span>
 	</button> 
