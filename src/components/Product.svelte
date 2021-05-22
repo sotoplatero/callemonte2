@@ -22,7 +22,7 @@
 
 	<div class="flex relative pl-3 pr-10 py-5 bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-700 transition duration-300 w-full">
 		{#if product.hide}
-			<div class="px-10 flex justify-between w-full">
+			<div class="pl-10 flex justify-between w-full">
 				<div>Anuncio Oculto</div> 
 				<Hidden bind:product />
 			</div>
