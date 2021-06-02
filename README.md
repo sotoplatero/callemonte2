@@ -1,5 +1,3 @@
-# Elproyecto fue movido a [callemonte/callemonte](//github.com/callemonte/callemonte)
-
 # Callemonte
 
 Callemonte es un meta buscador de clasificados en Cuba.
