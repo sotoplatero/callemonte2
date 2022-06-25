@@ -31,7 +31,7 @@
     "got": "^11.8.0",
     "js-cookie": "^2.2.1",
     "moment": "^2.27.0",
-    "node-fetch": "^2.6.1",
+    "node-fetch": "^2.6.7",
     "puppeteer-core": "^5.5.0",
     "query-string": "^6.13.1",
     "sirv-cli": "^0.4.4",
